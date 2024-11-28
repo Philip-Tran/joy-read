@@ -47,8 +47,8 @@ const fetchAudio = async (txt, lang) => {
     console.error("error", error)
   }
 }
-
-console.log("hehe", fetchAudio("Este es interesante", "es"))
+const textToAudio = ref("Este es muy bien")
+console.log("hehe", fetchAudio(textToAudio.value, "es"))
 
 const lang = ref("es")
 const toLang = ref("en")
@@ -59,6 +59,9 @@ const audioUrl = ref("");
 <template>
   <div class="w-full flex flex-col items-center">
     <h1>This is an about page</h1>
+    <h1>Audio</h1>
+    <Input v-model="textToAudio" type="text" placeholder="text to audio" />
+
     <div>
       <h1>Play Audio</h1>
       <!-- Only render the audio element if the URL is ready -->

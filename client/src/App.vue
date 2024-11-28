@@ -18,6 +18,9 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/test" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
         Test
       </RouterLink>
+      <RouterLink to="/test-2" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+        Test 2
+      </RouterLink>
     </nav>
 
     <!-- Buttons on the right -->
