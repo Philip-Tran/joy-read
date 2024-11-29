@@ -2,12 +2,15 @@
 import PostEditor from "@/components/(features)/addLesson/PostEditor.vue"
 
 import { Input } from '@/components/ui/input';
+import { Button } from "@/components/ui/button";
 import { useForm } from 'vee-validate';
 import { toTypedSchema } from '@vee-validate/zod';
 import * as z from "zod"
+import { onMounted } from "vue";
+import axios from "axios";
 
 
-const { values, defineField, errors } = useForm({
+const { values, defineField, errors, handleSubmit } = useForm({
     validationSchema: toTypedSchema(
         z.object({
             title: z.string().min(3, "Your title is too short"),
@@ -19,18 +22,37 @@ const { values, defineField, errors } = useForm({
 const [title, titleAttrs] = defineField("title")
 const [content, contentAttrs] = defineField("content")
 
+
+const handleFormSubmit = handleSubmit(async (values) => {
+    try {
+        const response = await axios.post("http://localhost:8008/api/book/create", values, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        console.log("Response:", response.data);
+    } catch (error) {
+        console.error("Error submitting form:", error.response?.data || error.message);
+    }
+})
+
+
 </script>
 
 <template>
     <section class="w-full py-20 flex flex-col items-center justify-center">
         <h1>eidtor</h1>
         <div class="min-w-[600px] max-w-[600px]">
-            <div>
-                <Input v-model="title" class="mb-4" />
-            </div>
-            <p>{{ values }}</p>
-            <p>{{ errors }}</p>
-            <PostEditor v-model="content" />
+            <form @submit.prevent="handleFormSubmit">
+                <div>
+                    <Input v-model="title" class="mb-4" />
+                </div>
+                <p>{{ values }}</p>
+                <p>{{ errors }}</p>
+                <PostEditor v-model="content" />
+
+                <Button type="submit" variant="default">Create Book</Button>
+            </form>
 
         </div>
     </section>
