@@ -18,3 +18,7 @@ model User {
   name String 
   email String @unique
 }
+
+model Book {
+  id String @id @default(uuid())
+}

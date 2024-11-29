@@ -13,6 +13,7 @@ const getTodos = async () => {
   return response.data
 }
 
+
 // Using Vue Query to fetch data
 const { isLoading, isError, data: todos, error } = useQuery({
   queryKey: ['todos'],

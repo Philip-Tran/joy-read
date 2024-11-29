@@ -1,0 +1,6 @@
+---
+fe: 
+--- audio recorder vue component: https://www.vuetoolbox.com/projects/vue-audio-recorder
+
+ Hunspell binding for NodeJS
+ JamSpellPro - Splits merged words - Modern spell checking library - accurate, fast, multi-language

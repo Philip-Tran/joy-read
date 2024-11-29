@@ -23,19 +23,19 @@ document.addEventListener('mouseup', () => {
             height: rect.height,
         });
 
-        const createdEl = document.createElement("div");
-        createdEl.id = 'qts-anchor'; // Set the ID attribute
-        createdEl.style.position = 'absolute'; // Add absolute positioning
-        createdEl.style.visibility = 'hidden'; // Hide the element
-        createdEl.style.top = `${rect.top}px`; // Set the top position
-        createdEl.style.left = `${rect.left}px`; // Set the left position
-        createdEl.style.width = `${rect.width}px`; // Set the width
-        createdEl.style.height = `${rect.height}px`; // Set the height
+        const anchorEl = document.createElement("div");
+        anchorEl.id = 'qts-anchor'; // Set the ID attribute
+        anchorEl.style.position = 'absolute'; // Add absolute positioning
+        anchorEl.style.visibility = 'hidden'; // Hide the element
+        anchorEl.style.top = `${rect.top}px`; // Set the top position
+        anchorEl.style.left = `${rect.left}px`; // Set the left position
+        anchorEl.style.width = `${rect.width}px`; // Set the width
+        anchorEl.style.height = `${rect.height}px`; // Set the height
 
         // Append the element to the body (or any specific container)
-        document.body.appendChild(createdEl);
+        document.body.appendChild(anchorEl);
 
-        console.log('Created element as anchor:', createdEl);
+        console.log('Created element as anchor:', anchorEl);
 
         const popupEl = document.querySelector("#popup")
         console.log("this is popupel", popupEl)
@@ -53,6 +53,15 @@ document.addEventListener('mouseup', () => {
     }
 });
 
+// Handle click outside
+// document.addEventListener("click", e => {
+//     const popup = document.querySelector("#popup")
+//     console.log(popup)
+//     if (!popup.contains(e.target) && popup.style.visibility == "visible") {
+//         popup.toggleAttribute("visibility")
+//         console.log(popup)
+//     }
+// })
 const handleClosePopup = () => {
     const popup = document.querySelector("#popup")
     console.log(popup)
