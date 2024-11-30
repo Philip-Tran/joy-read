@@ -1,14 +1,21 @@
 <script setup>
 import PostEditor from "@/components/(features)/addLesson/PostEditor.vue"
 
+import {
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input';
 import { Button } from "@/components/ui/button";
 import { useForm } from 'vee-validate';
 import { toTypedSchema } from '@vee-validate/zod';
 import * as z from "zod"
-import { onMounted } from "vue";
+// import { onMounted } from "vue";
 import axios from "axios";
-
 
 const { values, defineField, errors, handleSubmit } = useForm({
     validationSchema: toTypedSchema(
@@ -42,6 +49,9 @@ const handleFormSubmit = handleSubmit(async (values) => {
 <template>
     <section class="w-full py-20 flex flex-col items-center justify-center">
         <h1>eidtor</h1>
+        <p class="text-red-400">
+            {{ titleAttrs }}
+        </p>
         <div class="min-w-[600px] max-w-[600px]">
             <form @submit.prevent="handleFormSubmit">
                 <div>

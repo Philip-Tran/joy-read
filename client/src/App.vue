@@ -1,8 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 </script>
 
 <template>
+  <VueQueryDevtools />
   <header class="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-transparent">
     <!-- Logo on the left -->
     <div class="flex items-center">
@@ -26,6 +28,9 @@ import { RouterLink, RouterView } from 'vue-router'
       </RouterLink>
       <RouterLink to="/editor" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
         Editor
+      </RouterLink>
+      <RouterLink to="/listing" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+        listing
       </RouterLink>
     </nav>
 

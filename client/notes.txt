@@ -4,3 +4,13 @@ fe:
 
  Hunspell binding for NodeJS
  JamSpellPro - Splits merged words - Modern spell checking library - accurate, fast, multi-language
+
+ ## Audio player library
+ https://521dimensions.com/open-source/amplitudejs/docs/examples/visualization-player.html
+
+
+ ## Ui
+ shadcn form: https://www.shadcn-vue.com/docs/components/input.html
+
+ ## Feat
+ - Upload images to static folder: https://www.youtube.com/watch?v=jMy4gwiFfi4

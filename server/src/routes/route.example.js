@@ -1,10 +1,15 @@
 import express from "express";
-import { createBook } from "../controllers/book.controller.js";
 
+/**
+ * Import route logic
+ */
+import createBook from "../controllers/book.controller.js";
+
+//
 const router = express.Router();
 /*
     |--------------------------------------------------------------------------
-    | Controllers
+    | Define route
     |--------------------------------------------------------------------------
     */
 
