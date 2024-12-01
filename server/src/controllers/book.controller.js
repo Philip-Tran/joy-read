@@ -1,4 +1,5 @@
 import prisma from "../../lib/prisma.js";
+import { generateDateNow } from "../../lib/generateDate.js";
 
 import axios from "axios";
 import fs from "fs";
@@ -32,7 +33,7 @@ const createBook = async (req, res) => {
         });
 
         // Generate a file name for the audio file
-        fileName = Date.now() + " " + title + path.extname(audioUrlOnl);
+        fileName = generateDateNow() + " " + title + path.extname(audioUrlOnl);
         const filePath = path.join(__dirname, "../../storage/audio", fileName);
 
         const writer = fs.createWriteStream(filePath);

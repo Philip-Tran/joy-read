@@ -10,6 +10,7 @@ import TestPdf2 from '@/views/TestPdf2.vue'
 import LoginPage2 from '@/Pages/Auth/Login/LoginPage2.vue'
 import LoginPage from '@/Pages/LoginPage.vue'
 import TestSpell from '@/views/TestSpell.vue'
+import TestPdfServer from '@/views/TestPdfServer.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,11 @@ const router = createRouter({
       path: '/test-pdf',
       name: 'testPdf',
       component: TestPdf,
+    },
+    {
+      path: '/pdf',
+      name: 'pdf',
+      component: TestPdfServer,
     },
     {
       path: '/test-pdf-2',
