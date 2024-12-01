@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import prisma from "../../../lib/prisma.js";
@@ -16,47 +16,55 @@ export const handleLogin = async (req, res) => {
 
   try {
     // Fetch user from the database using Prisma
-    const foundUser = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
     });
 
-    if (!foundUser) {
-      return res.sendStatus(401); // Unauthorized
+    if (!user) {
+      return res.status(401).send({
+        message: "There is no user registered with this email address",
+      });
     }
 
     // Evaluate password
-    const match = await bcrypt.compare(password, foundUser.password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
-    if (match) {
+    if (isMatch) {
       // Create JWTs
       const accessToken = jwt.sign(
-        { email: foundUser.email },
+        { email: user.email },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "30s" }
+        { expiresIn: "10d" }
       );
       const refreshToken = jwt.sign(
-        { email: foundUser.email },
+        { email: user.email },
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: "30d" }
       );
 
       // Update user with the refresh token in the database
       await prisma.user.update({
-        where: { email: foundUser.email },
+        where: { email: user.email },
         data: { refreshToken },
       });
 
       // Set HTTP-only cookie with the refresh token
       res.cookie("jwt", refreshToken, {
-        // httpOnly: true,
+        secure: false, // for development
+        httpOnly: true,
         sameSite: "None",
-        secure: true,
         maxAge: 24 * 60 * 60 * 1000,
       });
 
-      res.json({ accessToken });
+      res.json({
+        user: {
+          name: user.name,
+          email: user.email,
+        },
+        accessToken,
+      });
     } else {
-      res.sendStatus(401); // Unauthorized
+      res.status(401).json({ message: "Password or email is not correct" }); // Unauthorized
     }
   } catch (err) {
     console.error(err);

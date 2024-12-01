@@ -4,6 +4,12 @@ import Test2View from '@/views/Test2View.vue'
 import AudioView from '@/views/AudioView.vue'
 import EditorView from '@/views/EditorView.vue'
 import ListingView from '@/views/ListingView.vue'
+import SignUpPage from '@/Pages/SignUpPage.vue'
+import TestPdf from '@/views/TestPdf.vue'
+import TestPdf2 from '@/views/TestPdf2.vue'
+import LoginPage2 from '@/Pages/Auth/Login/LoginPage2.vue'
+import LoginPage from '@/Pages/LoginPage.vue'
+import TestSpell from '@/views/TestSpell.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,6 +18,36 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+    },
+    {
+      path: '/test-pdf',
+      name: 'testPdf',
+      component: TestPdf,
+    },
+    {
+      path: '/test-pdf-2',
+      name: 'testPdfs',
+      component: TestPdf2,
+    },
+    {
+      path: '/test-spell',
+      name: 'testSpell',
+      component: TestSpell,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginPage,
+    },
+    {
+      path: '/login-2',
+      name: 'login2',
+      component: LoginPage2,
+    },
+    {
+      path: '/sign-up',
+      name: 'sign up',
+      component: SignUpPage,
     },
     {
       path: '/listing',

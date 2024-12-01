@@ -1,9 +1,8 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { PrismaClient } from "@prisma/client";
 
+import prisma from "../../../lib/prisma.js";
 dotenv.config();
-const prisma = new PrismaClient();
 
 export const handleRefreshToken = async (req, res) => {
   const cookies = req.cookies;
@@ -25,7 +24,12 @@ export const handleRefreshToken = async (req, res) => {
       process.env.REFRESH_TOKEN_SECRET,
       (err, decoded) => {
         if (err || foundUser.email !== decoded.email) {
-          return res.sendStatus(403); // Forbidden
+          return res
+            .status(403) // Forbidden
+            .json({
+              message:
+                "You are unauthorized to make this action. Please consider login and try again",
+            });
         }
 
         // Generate a new access token

@@ -6,7 +6,6 @@ import { ref, reactive } from 'vue'
 import { useCounterStore } from "@/stores/counter.js"
 
 const store = useCounterStore()
-const count = store.count
 
 const getTodos = async () => {
   const response = await axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')

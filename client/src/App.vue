@@ -23,6 +23,15 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
       <RouterLink to="/test-2" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
         Test 2
       </RouterLink>
+      <RouterLink to="/test-pdf" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+        Test pdf
+      </RouterLink>
+      <RouterLink to="/test-pdf-2" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+        Test pdf 2
+      </RouterLink>
+      <RouterLink to="/test-spell" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+        Test spell
+      </RouterLink>
       <RouterLink to="/audio" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
         Audio
       </RouterLink>
@@ -40,11 +49,15 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
         <ModeToggle />
         <hello />
       </div>
-      <RouterLink to="/signin"
+      <RouterLink to="/login-2"
+        class="py-2 px-4 border border-gray-800 rounded hover:bg-gray-800 hover:text-white transition-colors duration-200">
+        Login 2
+      </RouterLink>
+      <RouterLink to="/login"
         class="py-2 px-4 border border-gray-800 rounded hover:bg-gray-800 hover:text-white transition-colors duration-200">
         Sign In
       </RouterLink>
-      <RouterLink to="/signup"
+      <RouterLink to="/sign-up"
         class="py-2 px-4 bg-gray-800 text-white rounded hover:opacity-90 transition-opacity duration-200">
         Sign Up
       </RouterLink>

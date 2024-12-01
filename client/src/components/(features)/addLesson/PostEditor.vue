@@ -18,6 +18,7 @@ const editor = useEditor({
     },
     editorProps: {
         attributes: {
+            spellcheck: "true",
             class: "prose max-w-none text-grey-700 prose-sm border min-h-60 max-h-[12rem] overflow-y-auto border-blue-500 p-4"
         },
         transformPastedText(text) {

@@ -1,5 +1,6 @@
 <script setup>
 import PostEditor from "@/components/(features)/addLesson/PostEditor.vue"
+import { useAuthStore } from "@/stores/Auth/AuthStore";
 
 import {
     FormControl,
@@ -17,6 +18,7 @@ import * as z from "zod"
 // import { onMounted } from "vue";
 import axios from "axios";
 
+const authStore = useAuthStore()
 const { values, defineField, errors, handleSubmit } = useForm({
     validationSchema: toTypedSchema(
         z.object({
@@ -27,14 +29,16 @@ const { values, defineField, errors, handleSubmit } = useForm({
 })
 
 const [title, titleAttrs] = defineField("title")
-const [content, contentAttrs] = defineField("content")
+const [content] = defineField("content")
 
-
+const token = localStorage.getItem('qframe_token')
+console.log(token)
 const handleFormSubmit = handleSubmit(async (values) => {
     try {
         const response = await axios.post("http://localhost:8008/api/book/create", values, {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             }
         });
         console.log("Response:", response.data);
