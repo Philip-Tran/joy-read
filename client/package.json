@@ -15,6 +15,7 @@
     "@primevue/themes": "^4.2.4",
     "@tanstack/vue-query": "^5.61.5",
     "@tanstack/vue-query-devtools": "^5.61.5",
+    "@tanstack/vue-table": "^8.20.5",
     "@tiptap/extension-code-block-lowlight": "^2.10.3",
     "@tiptap/pm": "^2.10.3",
     "@tiptap/starter-kit": "^2.10.3",

@@ -12,6 +12,8 @@ import LoginPage from '@/Pages/LoginPage.vue'
 import TestSpell from '@/views/TestSpell.vue'
 import TestPdfServer from '@/views/TestPdfServer.vue'
 import SingleBook from '@/Pages/Book/SingleBook.vue'
+import TableView from '@/views/TableView.vue'
+import PastImageInput from '@/views/PastImageInput.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +24,11 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/paste',
+      name: 'paste',
+      component: PastImageInput,
+    },
+    {
       path: '/book/:bookId',
       name: 'book',
       component: SingleBook,
@@ -30,6 +37,11 @@ const router = createRouter({
       path: '/test-pdf',
       name: 'testPdf',
       component: TestPdf,
+    },
+    {
+      path: '/table',
+      name: 'table',
+      component: TableView,
     },
     {
       path: '/pdf',
