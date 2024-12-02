@@ -25,7 +25,6 @@ import userRoutes from "./routes/user.route.js";
     */
 const PORT = process.env.PORT || 8009;
 const app = express();
-
 dotenv.config();
 app.use(logger);
 app.use(fileUpload());
@@ -42,6 +41,26 @@ app.options("*", cors()); // Preflight requests
 /* -------------------------------------------------------------------------- */
 app.use("/api/users", userRoutes);
 app.use("/api/book", bookRouter);
+
+//-----------test pdf extract----------
+// import { PDFExtract } from "pdf.js-extract";
+
+// const pdfExtract = new PDFExtract();
+// const options = { normalizeWhiteSpace: false, disableCombineTextItems: true };
+
+// pdfExtract.extract("sample.pdf", options, (err, data) => {
+//   if (err) return console.log(err);
+//   console.log(data);
+//   console.log(data.pages[0].content[0].str);
+
+//   // Iterate over pages and content to print text
+//   data.pages.forEach((page, pageIndex) => {
+//     console.log(`Page ${pageIndex + 1}:`);
+//     page.content.forEach((item) => {
+//       console.log(item.str); // Print the extracted text
+//     });
+//   });
+// });
 
 /* -------------------Bootrap------------------ */
 app.listen(PORT, () => {

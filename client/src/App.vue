@@ -26,6 +26,9 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
       <RouterLink to="/test-pdf" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
         Test pdf
       </RouterLink>
+      <RouterLink to="/pdf" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+        Test pdf server
+      </RouterLink>
       <RouterLink to="/test-pdf-2" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
         Test pdf 2
       </RouterLink>
