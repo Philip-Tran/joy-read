@@ -88,4 +88,22 @@ const getAllBooks = async (req, res) => {
   }
 };
 
-export { createBook, getAllBooks };
+const getSingleBook = async (req, res) => {
+  try {
+    const bookId = req.params.id;
+    const book = await prisma.book.findUnique({
+      where: {
+        id: bookId,
+      },
+    });
+
+    if (!book) return res.json({ message: "Error, can't not find this book" });
+
+    res.status(200).json(book);
+  } catch (error) {
+    console.log("Error getting single book", error.message);
+    res.status(400).json({ message: "Error getting single book" });
+  }
+};
+
+export { createBook, getAllBooks, getSingleBook };

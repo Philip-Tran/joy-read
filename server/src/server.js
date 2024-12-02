@@ -8,11 +8,8 @@ import fileUpload from "express-fileupload";
 
 import CorsOption from "../config/CorsOption.js";
 import { logger } from "../Logs/AppLog.js";
-
 /*
-    |--------------------------------------------------------------------------
     | APPLICATION ROUTE IMPORT
-    |--------------------------------------------------------------------------
     */
 import bookRouter from "./routes/book.route.js";
 import userRoutes from "./routes/user.route.js";

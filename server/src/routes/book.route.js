@@ -1,5 +1,9 @@
 import express from "express";
-import { createBook, getAllBooks } from "../controllers/book.controller.js";
+import {
+  createBook,
+  getAllBooks,
+  getSingleBook,
+} from "../controllers/book.controller.js";
 import { getTextFromPdf } from "../controllers/getText.Controller.js";
 
 import { verifyJWT } from "../middlewares/Auth/verifyJWT.js";
@@ -12,7 +16,8 @@ const router = express.Router();
     |--------------------------------------------------------------------------
     */
 router.post("/create", createBook);
-router.get("/get", getAllBooks);
+router.get("/", getAllBooks);
+router.get("/:id", getSingleBook);
 router.post("/get-pdf-text", getTextFromPdf);
 
 export default router;

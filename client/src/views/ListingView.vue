@@ -1,87 +1,89 @@
-<template>
-    <div class="book-listing">
-        <!-- Toggle Button -->
-        <div class="view-toggle">
-            <button :class="{ active: viewMode === 'list' }" @click="viewMode = 'list'">
-                List View
-            </button>
-            <button :class="{ active: viewMode === 'card' }" @click="viewMode = 'card'">
-                Card View
-            </button>
-        </div>
+<script setup lang="js">
+import { Button } from '@/components/ui/button'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+} from '@/components/ui/tabs'
+import { useQuery } from '@tanstack/vue-query'
+import axios from "@/api/axios.js"
 
-        <!-- Book Listing -->
-        <div>
-            <!-- List View -->
-            <div v-if="viewMode === 'list'" class="list-view">
-                <ul>
-                    <li v-for="book in books" :key="book.id" class="list-item">
-                        <div>
-                            <h3>{{ book.title }}</h3>
-                            <p>{{ book.author }}</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+const getBooks = async () => {
+    const response = await axios.get("/api/book/")
+    return response.data
+}
 
-            <!-- Card View -->
-            <div v-if="viewMode === 'card'" class="card-view">
-                <div v-for="book in books" :key="book.id" class="card-item">
-                    <h3>{{ book.title }}</h3>
-                    <p>{{ book.author }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            viewMode: "list", // Default to list view
-            books: [
-                { id: 1, title: "Book 1", author: "Author 1" },
-                { id: 2, title: "Book 2", author: "Author 2" },
-                { id: 3, title: "Book 3", author: "Author 3" },
-            ],
-        };
-    },
-};
+const { isLoading, data: books, error, isError } = useQuery({
+    queryKey: ["books"],
+    queryFn: getBooks
+})
 </script>
 
-<style scoped>
-/* Styles for Toggle Buttons */
-.view-toggle button {
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-}
+<template>
+    <div class="flex px-32 py-5">
+        <Tabs default-value="account" class="w-full">
+            <TabsList class="grid  grid-cols-2 w-[200px] mb-10">
+                <TabsTrigger value="account">
+                    Account
+                </TabsTrigger>
+                <TabsTrigger value="password">
+                    Password
+                </TabsTrigger>
+            </TabsList>
+            <TabsContent value="account">
+                <div class="grid grid-flow-row grid-cols-3 gap-7">
+                    <Card v-for="book in books" :key="book.id">
+                        <CardHeader>
+                            <CardTitle>{{ book.title }}</CardTitle>
+                            <CardDescription>
+                                {{ book.content }}
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent class="space-y-2">
+                        </CardContent>
+                        <CardFooter>
+                            <RouterLink :to="`book/${book.id}`">
+                                <Button>Read</Button>
+                            </RouterLink>
+                        </CardFooter>
 
-.view-toggle button.active {
-    background-color: #007bff;
-    color: #fff;
-}
-
-/* Styles for List View */
-.list-view .list-item {
-    display: flex;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Styles for Card View */
-.card-view {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.card-view .card-item {
-    flex: 1 1 calc(33.333% - 10px);
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-</style>
+                    </Card>
+                </div>
+            </TabsContent>
+            <TabsContent value="password">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Password</CardTitle>
+                        <CardDescription>
+                            Change your password here. After saving, you'll be logged out.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent class="space-y-2">
+                        <div class="space-y-1">
+                            <Label for="current">Current password</Label>
+                            <Input id="current" type="password" />
+                        </div>
+                        <div class="space-y-1">
+                            <Label for="new">New password</Label>
+                            <Input id="new" type="password" />
+                        </div>
+                    </CardContent>
+                    <CardFooter>
+                        <Button>Save password</Button>
+                    </CardFooter>
+                </Card>
+            </TabsContent>
+        </Tabs>
+    </div>
+</template>
