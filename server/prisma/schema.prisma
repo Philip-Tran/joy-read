@@ -14,19 +14,29 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  name String? 
-  email String @unique
-  password String 
+  id           String  @id @default(uuid())
+  name         String?
+  email        String  @unique
+  password     String
   refreshToken String?
 }
 
 model Book {
-  id String @id @default(uuid())
-  title String 
-  content String
+  id          String    @id @default(uuid())
+  title       String
+  content     String
   audioUrlSer String?
   audioUrlOnl String?
+  senFlows    SenFlow[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model SenFlow {
+  id        Int    @id @default(autoincrement())
+  frontText String
+  backText  String
+  bookId    String
+  book      Book   @relation(fields: [bookId], references: [id])
 }
