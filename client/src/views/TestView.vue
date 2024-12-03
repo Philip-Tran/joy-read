@@ -3,7 +3,6 @@ import axios from "axios"
 import { ref, onMounted } from "vue"
 import { Input } from '@/components/ui/input'
 
-
 const text = ref("I love you")
 const translatedText = ref("")
 const definitionText = ref("")

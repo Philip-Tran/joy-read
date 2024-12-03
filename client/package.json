@@ -50,7 +50,9 @@
     "prettier": "^3.3.3",
     "rollup-plugin-copy": "^3.5.0",
     "tailwindcss": "^3.4.15",
+    "tippy.js": "^6.3.7",
     "vite": "^5.4.10",
-    "vite-plugin-vue-devtools": "^7.5.4"
+    "vite-plugin-vue-devtools": "^7.5.4",
+    "vue3-calendar-heatmap": "^2.0.5"
   }
 }

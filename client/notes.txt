@@ -11,6 +11,8 @@ fe:
 
  ## Ui
  shadcn form: https://www.shadcn-vue.com/docs/components/input.html
+ upload file component: https://lian-yue.github.io/vue-upload-component/#/
+ slider select element: https://nightcatsama.github.io/vue-slider-component/#/basics/simple
 
  ## Feat
  - Upload images to static folder: https://www.youtube.com/watch?v=jMy4gwiFfi4

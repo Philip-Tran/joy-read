@@ -14,6 +14,7 @@ import TestPdfServer from '@/views/TestPdfServer.vue'
 import SingleBook from '@/Pages/Book/SingleBook.vue'
 import TableView from '@/views/TableView.vue'
 import PastImageInput from '@/views/PastImageInput.vue'
+import Calender from '@/views/Calender.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/paste',
       name: 'paste',
       component: PastImageInput,
+    },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: Calender,
     },
     {
       path: '/book/:bookId',

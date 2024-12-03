@@ -5,7 +5,7 @@ import { defineProps } from 'vue';
 import { useQuery } from '@tanstack/vue-query';
 import axios from '@/api/axios.js';
 
-const props = defineProps({})
+defineProps({})
 
 const getBook = async () => {
     const response = await axios.get(`/api/book/${params.bookId}`)

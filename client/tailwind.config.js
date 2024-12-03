@@ -1,4 +1,3 @@
-// const animate = require('tailwindcss-animate')
 import animate from 'tailwindcss-animate'
 import typography from '@tailwindcss/typography'
 
@@ -8,6 +7,9 @@ export default {
   safelist: ['dark'],
   prefix: '',
 
+  corePlugins: {
+    preflight: true,
+  },
   content: [
     './pages/**/*.{js,jsx,vue}',
     './components/**/*.{js,jsx,vue}',

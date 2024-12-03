@@ -16,6 +16,7 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/components/ui/tabs'
+import { LayoutGrid, List } from "lucide-vue-next"
 import { useQuery } from '@tanstack/vue-query'
 import axios from "@/api/axios.js"
 import BookListView from './BookListView.vue'
@@ -34,12 +35,12 @@ const { isLoading, data: books, error, isError } = useQuery({
 <template>
     <div class="flex px-32 py-5">
         <Tabs default-value="grid-view" class="w-full">
-            <TabsList class="grid  grid-cols-2 w-[200px] mb-10">
+            <TabsList class="grid grid-cols-2 w-[200px] mb-10">
                 <TabsTrigger value="grid-view">
-                    Account
+                    <LayoutGrid size="18" :stroke-width="2" />
                 </TabsTrigger>
                 <TabsTrigger value="list-view">
-                    Password
+                    <List size="18" :stroke-width="2" />
                 </TabsTrigger>
             </TabsList>
             <TabsContent value="grid-view">

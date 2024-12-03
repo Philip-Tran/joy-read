@@ -7,7 +7,7 @@
         </div>
 
         <!-- Navigation links -->
-        <nav class="hidden md:flex space-x-6">
+        <nav class="hidden md:flex text-sm space-x-8">
             <RouterLink to="/" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Home
             </RouterLink>
@@ -38,8 +38,9 @@
             <RouterLink to="/listing" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 listing
             </RouterLink>
-            <RouterLink to="/table" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
-                Table
+
+            <RouterLink to="/calendar" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                Calendar
             </RouterLink>
         </nav>
 
