@@ -19,7 +19,6 @@ const { isLoading, isError, data: todos, error } = useQuery({
   queryFn: getTodos,
 })
 
-
 </script>
 
 <template>

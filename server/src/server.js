@@ -5,6 +5,8 @@ import helmet from "helmet";
 import bodyparser from "body-parser";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
+// import { YoutubeTranscript } from "youtube-transcript";
+// import { YtTranscript } from "yt-transcript";
 
 import CorsOption from "../config/CorsOption.js";
 import { logger } from "../Logs/AppLog.js";
@@ -13,6 +15,7 @@ import { logger } from "../Logs/AppLog.js";
     */
 import bookRouter from "./routes/book.route.js";
 import userRoutes from "./routes/user.route.js";
+import videoRouter from "./routes/video.route.js";
 
 /*
     |--------------------------------------------------------------------------
@@ -38,7 +41,7 @@ app.options("*", cors()); // Preflight requests
 /* -------------------------------------------------------------------------- */
 app.use("/api/users", userRoutes);
 app.use("/api/book", bookRouter);
-
+app.use("/api/video", videoRouter);
 //-----------test pdf extract----------
 // import { PDFExtract } from "pdf.js-extract";
 
@@ -57,6 +60,30 @@ app.use("/api/book", bookRouter);
 //       console.log(item.str); // Print the extracted text
 //     });
 //   });
+// });
+
+//-----------test fetch transcript----------
+// async function fetchTranslatedTranscript(videoId, langCode) {
+//   try {
+//     const transcript = await YoutubeTranscript.fetchTranscript(videoId, {
+//       lang: langCode,
+//     });
+//     console.log(transcript);
+//   } catch (error) {
+//     console.error("Error fetching translated transcript:", error);
+//   }
+// }
+
+// fetchTranslatedTranscript("s5QOWbFZnZ8", "en");
+
+// const ytTranscript = new YtTranscript({ videoId: "dQw4w9WgXcQ" });
+
+// ytTranscript.listAllTranscripts().then((transcript) => {
+//   console.log(transcript);
+// });
+
+// ytTranscript.getTranscript().then((transcript) => {
+//   console.log(transcript);
 // });
 
 /* -------------------Bootrap------------------ */

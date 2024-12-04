@@ -1,0 +1,18 @@
+meta {
+  name: get book subtitle python
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000//api/get-transcript/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "videoLink": "https://www.youtube.com/watch?v=8IUkOAvMP-M&t=165s",
+      "lang": "en"
+  }
+}

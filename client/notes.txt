@@ -16,3 +16,4 @@ fe:
 
  ## Feat
  - Upload images to static folder: https://www.youtube.com/watch?v=jMy4gwiFfi4
+ - Ebook reader in the browser: https://github.com/johnfactotum/foliate-js

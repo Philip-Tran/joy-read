@@ -1,0 +1,19 @@
+{
+  "name": "JoyRead",
+  "version": "0.2.1",
+  "description": "Reading app for language learner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\" \"npm run start:api\"",
+    "start:client": "cd client && npm run dev",
+    "start:server": "cd server && npm run server",
+    "start:api": "cd PyApi && python manage.py runserver"
+  },
+  "keywords": [],
+  "author": "Tran Trong Quyet",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

@@ -2,7 +2,6 @@
   "dependencies": {
     "@prisma/client": "^5.22.0",
     "axios": "^1.7.8",
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",
@@ -18,7 +17,9 @@
     "nodemon": "^3.1.7",
     "pdf-parse": "^1.1.1",
     "pdf.js-extract": "^0.2.1",
-    "uuid": "^11.0.3"
+    "uuid": "^11.0.3",
+    "youtube-transcript": "^1.2.1",
+    "yt-transcript": "^0.0.2"
   },
   "name": "server",
   "version": "1.0.0",

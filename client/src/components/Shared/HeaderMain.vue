@@ -42,6 +42,12 @@
             <RouterLink to="/calendar" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Calendar
             </RouterLink>
+            <RouterLink to="/reader" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                Reader
+            </RouterLink>
+            <RouterLink to="/youtube" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                Youtube
+            </RouterLink>
         </nav>
 
         <!-- Buttons on the right -->

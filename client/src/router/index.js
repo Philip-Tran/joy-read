@@ -15,6 +15,8 @@ import SingleBook from '@/Pages/Book/SingleBook.vue'
 import TableView from '@/views/TableView.vue'
 import PastImageInput from '@/views/PastImageInput.vue'
 import Calender from '@/views/Calender.vue'
+import TestReader from '@/views/TestReader.vue'
+import TestGetYoutube from '@/views/TestGetYoutube.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +25,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+    },
+    {
+      path: '/reader',
+      name: 'reader',
+      component: TestReader,
+    },
+    {
+      path: '/youtube',
+      name: 'youtube',
+      component: TestGetYoutube,
     },
     {
       path: '/paste',

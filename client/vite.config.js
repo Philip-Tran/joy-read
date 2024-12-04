@@ -1,5 +1,3 @@
-import { vite as vidstack } from 'vidstack/plugins'
-
 import { fileURLToPath, URL } from 'node:url'
 import autoprefixer from 'autoprefixer'
 import tailwind from 'tailwindcss'
@@ -22,7 +20,6 @@ export default defineConfig({
         },
       },
     }),
-    vidstack(),
     vueDevTools(),
   ],
   resolve: {
