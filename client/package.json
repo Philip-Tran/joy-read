@@ -34,6 +34,7 @@
     "tailwindcss-animate": "^1.0.7",
     "vee-validate": "^4.14.7",
     "vue": "^3.5.12",
+    "vue-advanced-cropper": "^2.8.9",
     "vue-router": "^4.4.5",
     "youtube-transcript": "^1.2.1",
     "yt-transcript": "^0.0.2",

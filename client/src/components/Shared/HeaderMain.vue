@@ -48,6 +48,10 @@
                 class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 listing
             </RouterLink>
+            <RouterLink active-class="font-md text-orange-500" to="/paste"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                Paste
+            </RouterLink>
 
             <RouterLink active-class="font-md text-orange-500" to="/calendar"
                 class="text-gray-600 hover:text-gray-800 transition-colors duration-200">

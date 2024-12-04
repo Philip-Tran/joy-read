@@ -44,7 +44,7 @@ class VideoTranscriptAPIView(APIView):
                 original_language_code = transcript.language_code
                 # Extract available translation languages
                 available_languages = [lang_info["language_code"] for lang_info in transcript.translation_languages]
-
+                
                 # if the original language match the language received from the request
                 if original_language_code == lang:
                     transcript_data = transcript.fetch()
