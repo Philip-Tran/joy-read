@@ -668,3 +668,9 @@
 20241203	17:25:55	60995cc8-65de-487a-8b8e-44f1178e8aec	GET	http://localhost:3000	/api/book/c707e2b8-3f75-43fa-993c-616a21ec4357
 20241203	17:25:57	66aef0cb-3559-4a15-acea-5ffb52dc58e9	GET	http://localhost:3000	/api/book/
 20241203	17:41:18	33d7fa86-017f-4824-86b1-9e51e9bc6585	GET	http://localhost:3000	/api/book/
+20241204	09:56:23	bcefe7e1-7e6b-4c42-9089-09e302f501e2	POST	http://localhost:3000	/api/book/get-pdf-text
+20241204	10:01:10	d30929c1-9f8b-41e3-ae3a-9f86b98677f4	GET	http://localhost:3000	/api/book/
+20241204	10:01:11	9abd58be-2e76-4fa6-926e-6710dd96c52b	GET	http://localhost:3000	/api/book/
+20241204	10:05:52	1c4c2d54-747b-4dc0-a51a-d77aa45e92f0	GET	http://localhost:3000	/api/book/
+20241204	10:05:53	1a1e0bd1-f0b3-49ba-9ddc-55f8e1fd7030	GET	http://localhost:3000	/api/book/c707e2b8-3f75-43fa-993c-616a21ec4357
+20241204	10:06:01	c2c3e00d-2c1d-474f-a6bd-38ef74c832d8	GET	http://localhost:3000	/api/book/

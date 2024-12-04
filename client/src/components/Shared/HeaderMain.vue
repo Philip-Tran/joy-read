@@ -8,44 +8,57 @@
 
         <!-- Navigation links -->
         <nav class="hidden md:flex text-sm space-x-8">
-            <RouterLink to="/" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Home
             </RouterLink>
-            <RouterLink to="/test" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/test"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Test
             </RouterLink>
-            <RouterLink to="/test-2" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/test-2"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Test 2
             </RouterLink>
-            <RouterLink to="/test-pdf" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/test-pdf"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Test pdf
             </RouterLink>
-            <RouterLink to="/pdf" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/pdf"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Test pdf server
             </RouterLink>
-            <RouterLink to="/test-pdf-2" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/test-pdf-2"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Test pdf 2
             </RouterLink>
-            <RouterLink to="/test-spell" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
-                Test spell
+            <RouterLink active-class="font-md text-orange-500" to="/test-py"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                Py Api
             </RouterLink>
-            <RouterLink to="/audio" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/audio"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Audio
             </RouterLink>
-            <RouterLink to="/editor" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/editor"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Editor
             </RouterLink>
-            <RouterLink to="/listing" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/listing"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 listing
             </RouterLink>
 
-            <RouterLink to="/calendar" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/calendar"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Calendar
             </RouterLink>
-            <RouterLink to="/reader" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/reader"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Reader
             </RouterLink>
-            <RouterLink to="/youtube" class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+            <RouterLink active-class="font-md text-orange-500" to="/youtube"
+                class="text-gray-600 hover:text-gray-800 transition-colors duration-200">
                 Youtube
             </RouterLink>
         </nav>

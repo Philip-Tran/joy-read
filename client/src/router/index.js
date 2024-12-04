@@ -9,7 +9,7 @@ import TestPdf from '@/views/TestPdf.vue'
 import TestPdf2 from '@/views/TestPdf2.vue'
 import LoginPage2 from '@/Pages/Auth/Login/LoginPage2.vue'
 import LoginPage from '@/Pages/LoginPage.vue'
-import TestSpell from '@/views/TestSpell.vue'
+import TestPyApi from '@/views/TestPyApi.vue'
 import TestPdfServer from '@/views/TestPdfServer.vue'
 import SingleBook from '@/Pages/Book/SingleBook.vue'
 import TableView from '@/views/TableView.vue'
@@ -72,9 +72,9 @@ const router = createRouter({
       component: TestPdf2,
     },
     {
-      path: '/test-spell',
-      name: 'testSpell',
-      component: TestSpell,
+      path: '/test-py',
+      name: 'testPy',
+      component: TestPyApi,
     },
     {
       path: '/login',
