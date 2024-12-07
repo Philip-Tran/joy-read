@@ -1,5 +1,6 @@
 import { ref, type Ref } from 'vue'
-import { axiosMainApi } from '@/api/axios.express.ts'
+import { axiosMainApi } from '@/api/axios.express'
+import { axiosDjango } from '@/api/axios.django'
 
 import { defineStore } from 'pinia'
 
@@ -60,7 +61,20 @@ const useAddBookStore = defineStore('addBook', () => {
     initialState.value.book.audioUrlOnl = values.audioUrlOnl ?? ''
   }
 
-  return { initialState, addBook, updateBook }
+  const getTranscriptFromYoutube = async (values: { videoLink: string; lang: string }) => {
+    try {
+      const response = await axiosDjango.post('/api/get-transcript/', values)
+      if (response.data && response.data.transcript) {
+        initialState.value.book.content = response.data.transcript
+          .map((item: { text: string }) => item.text)
+          .join(' ')
+      }
+    } catch (error: unknown) {
+      console.log('Error', (error as Error).message)
+    }
+  }
+
+  return { initialState, addBook, updateBook, getTranscriptFromYoutube }
 })
 
 export { useAddBookStore }

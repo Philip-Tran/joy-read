@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BookContentEditor from '@/components/(features)/book/BookContentEditor.vue';
-import { useAddBookStore } from '@/stores/BookStore.ts';
+import { useAddBookStore } from '@/stores/BookStore';
 import type { Book } from '@/stores/BookStore.ts';
 
 import { useForm } from 'vee-validate'
@@ -19,7 +19,7 @@ const { defineField, handleSubmit, values } = useForm({
 
 const onSubmit = handleSubmit(values => {
     console.log(values)
-    bookStore.addBook(values)
+    bookStore.addBook(values as Book)
 })
 
 const [title] = defineField('title')

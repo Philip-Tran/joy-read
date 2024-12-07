@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import BookManualImportTabContent from '@/pages/AddBook/components/BookManualImportTabContent.vue';
+import BookYouTubeImportTabContent from './components/BookYouTubeImportTabContent.vue';
 import BookContentEditor from '@/components/(features)/book/BookContentEditor.vue';
 import AppNoSidebarLayout from '@/layouts/type/AppNoSidebarLayout.vue';
-import { useAddBookStore } from '@/stores/BookStore.ts';
-import { addBookSchema } from "@/schemas/BookSchemas.ts"
+import { useAddBookStore } from '@/stores/BookStore';
+import { addBookSchema } from "@/schemas/BookSchemas"
 
 const bookStore = useAddBookStore()
 
@@ -38,7 +39,7 @@ import { ChevronLeft } from 'lucide-vue-next';
                 </Button>
             </RouterLink>
         </div>
-        <div class="w-full h-screen py-4 px-4 lg:px-20 xl:px-80">
+        <div class="w-full h-screen py-4 px-4 lg:px-20 xl:px-44 2xl:px-60">
             <div class="w-full">
                 <div class="mb-12">
                     <h2 class="text-3xl font-semibold mb-3">
@@ -48,8 +49,8 @@ import { ChevronLeft } from 'lucide-vue-next';
                         Import new book here...
                     </p>
                 </div>
-                <div class="flex flex-col lg:flex-row lg:space-x-20">
-                    <div class="lg:w-2/3">
+                <div class="flex flex-col lg:flex-row lg:space-x-20 2xl:space-x-32 ">
+                    <div class="lg:w-2/3 xl:w-3/4">
                         <Tabs default-value="manual-import">
                             <TabsList class="grid w-full grid-cols-3 mb-10">
                                 <TabsTrigger value="manual-import">
@@ -105,13 +106,21 @@ import { ChevronLeft } from 'lucide-vue-next';
                             </TabsContent>
                         </Tabs>
                     </div>
-                    <div class="lg:w-1/3">
+                    <div class="lg:w-1/3 xl:w-1/4">
                         <div>
                             <span class="text-lg font-md">Preview</span>
                             <div>
-                                <pre>{{ bookStore.initialState.book.title }}</pre>
-                                <pre>{{ bookStore.initialState.book.content }}</pre>
-                                <pre>{{ bookStore.initialState.book.audioUrlOnl }}</pre>
+                                <div class="w-72 h-[360px] flex relative bg-slate-200 mb-4">
+                                    <div class="flex items-center justify-center align-middle w-full">
+                                        <span class="text-center text-wrap text-lg self-center font-semibold">{{
+                                            bookStore.initialState.book.title }}</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <p class="text-lg font-medium">{{ bookStore.initialState.book.title }}</p>
+                                </div>
+                            </div>
+                            <div>
                             </div>
                         </div>
                     </div>
