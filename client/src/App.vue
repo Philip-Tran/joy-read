@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppLayout from "@/layouts/AppLayout.vue"
 import { RouterView } from 'vue-router';
 
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
@@ -7,9 +6,7 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
 
 <template>
   <VueQueryDevtools />
-  <AppLayout>
-    <div>
-      <RouterView />
-    </div>
-  </AppLayout>
+  <div>
+    <RouterView />
+  </div>
 </template>

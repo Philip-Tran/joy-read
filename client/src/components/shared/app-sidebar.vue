@@ -52,7 +52,7 @@ const items = [
 </script>
 
 <template>
-    <Sidebar>
+    <Sidebar class="bg-white">
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>

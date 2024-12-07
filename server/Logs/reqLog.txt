@@ -720,3 +720,16 @@
 20241204	22:18:15	dc61cb5d-dedd-4dd2-8b67-391707f1e6f2	POST	http://localhost:3000	/api/book/create
 20241205	19:01:42	508a43bd-03ed-4340-870e-24772de6c5ba	POST	http://localhost:3000	/api/book/get-pdf-text
 20241207	14:10:25	f8160da3-809b-40f5-a658-86c1926eb13d	GET	undefined	/
+20241207	19:29:00	21128eb6-8c73-42f7-8bfd-2bef15bbeb2b	GET	undefined	/api/books/create
+20241207	19:29:07	d339865d-3624-49ab-bf27-2694d806960d	POST	undefined	/api/books/create
+20241207	19:29:10	b7fb71bb-9cbb-4b2a-8a64-5b13abb12977	POST	undefined	/api/books/create
+20241207	19:29:35	e1036c80-a3f6-4d1f-b1fa-4d7029b078b9	POST	undefined	/api/book/create
+20241207	19:33:36	ef12c2fc-615d-4994-a525-1840e60b9b5e	POST	undefined	/api/book/create
+20241207	19:36:13	f3aa6ddc-8f2d-43c6-977b-d31dcefb380b	OPTIONS	http://localhost:3000	/api/book/create
+20241207	19:36:13	86c10a8f-9359-405b-9b02-506ad4dcdcde	POST	http://localhost:3000	/api/book/create
+20241207	19:37:29	51725dca-4b60-489f-b3c2-a19508198267	OPTIONS	http://localhost:3000	/api/book/create
+20241207	19:37:29	6b773f09-c58e-4528-900b-e43c9626ae09	POST	http://localhost:3000	/api/book/create
+20241207	19:39:28	ef40706b-dc01-4fe2-8c16-09d3599fc72f	OPTIONS	http://localhost:3000	/api/book/create
+20241207	19:39:28	037c06e4-de0c-4127-8276-4b337c59bba6	POST	http://localhost:3000	/api/book/create
+20241207	20:02:07	a6dbf61f-9f2e-45fe-9a14-cfe187eddb87	OPTIONS	http://localhost:3000	/api/book/create
+20241207	20:02:07	5cb01393-2c46-4cc5-aaef-40326b6cb70a	POST	http://localhost:3000	/api/book/create
