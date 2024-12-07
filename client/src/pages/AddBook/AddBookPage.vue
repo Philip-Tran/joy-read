@@ -1,10 +1,16 @@
 <script setup lang="ts">
+import BookManualImportTabContent from '@/pages/AddBook/components/BookManualImportTabContent.vue';
+import BookContentEditor from '@/components/(features)/book/BookContentEditor.vue';
 import AppNoSidebarLayout from '@/layouts/type/AppNoSidebarLayout.vue';
+import { useAddBookStore } from '@/stores/BookStore.ts';
 import { addBookSchema } from "@/schemas/BookSchemas.ts"
+
+const bookStore = useAddBookStore()
 
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 
+import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -18,11 +24,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 import { ChevronLeft } from 'lucide-vue-next';
-import BookContentEditor from '@/components/(features)/book/BookContentEditor.vue';
-import BookManualImportTabContent from '@/pages/AddBook/components/BookManualImportTabContent.vue';
 
-import { useAddBookStore } from '@/stores/BookStore.ts';
-const bookStore = useAddBookStore()
 
 </script>
 
@@ -99,44 +101,19 @@ const bookStore = useAddBookStore()
                                 </div>
                             </TabsContent>
                             <TabsContent value="youtube-import">
-                                <div>
-                                    <form @submit.prevent="onSubmit">
-                                        <FormField v-slot="{ componentField }" name="title">
-                                            <FormItem class="mb-5">
-                                                <FormLabel>Book Title</FormLabel>
-                                                <FormControl>
-                                                    <Input type="text" placeholder="Your book title"
-                                                        v-bind="componentField" />
-                                                </FormControl>
-                                                <!-- <FormDescription>
-                                                    This is your public display name.
-                                                </FormDescription> -->
-                                                <FormMessage />
-                                            </FormItem>
-                                        </FormField>
-                                        <FormField v-slot="{ componentField }" name="audioUrl">
-                                            <FormItem>
-                                                <FormLabel>Audio Url (optional)</FormLabel>
-                                                <FormControl>
-                                                    <Input type="text" placeholder="Audio Url"
-                                                        v-bind="componentField" />
-                                                </FormControl>
-                                                <!-- <FormDescription>
-                                                    Audio url here, accept mp3, wav file
-                                                </FormDescription> -->
-                                                <FormMessage />
-                                            </FormItem>
-                                        </FormField>
-                                        <div class="mt-8">
-                                            haha
-                                        </div>
-                                    </form>
-                                </div>
+                                <BookYouTubeImportTabContent />
                             </TabsContent>
-                        </Tabs>.
+                        </Tabs>
                     </div>
                     <div class="lg:w-1/3">
-                        some things
+                        <div>
+                            <span class="text-lg font-md">Preview</span>
+                            <div>
+                                <pre>{{ bookStore.initialState.book.title }}</pre>
+                                <pre>{{ bookStore.initialState.book.content }}</pre>
+                                <pre>{{ bookStore.initialState.book.audioUrlOnl }}</pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
