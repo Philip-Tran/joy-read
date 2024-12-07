@@ -719,3 +719,4 @@
 20241204	22:18:15	719d1418-66a0-4aa3-b790-4c5c20cd2ab4	OPTIONS	http://localhost:3000	/api/book/create
 20241204	22:18:15	dc61cb5d-dedd-4dd2-8b67-391707f1e6f2	POST	http://localhost:3000	/api/book/create
 20241205	19:01:42	508a43bd-03ed-4340-870e-24772de6c5ba	POST	http://localhost:3000	/api/book/get-pdf-text
+20241207	14:10:25	f8160da3-809b-40f5-a658-86c1926eb13d	GET	undefined	/

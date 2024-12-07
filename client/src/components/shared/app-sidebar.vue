@@ -29,23 +29,23 @@ const items = [
         icon: Home,
     },
     {
-        title: "Inbox",
-        url: "#",
+        title: "Books",
+        url: "/books",
         icon: Inbox,
     },
     {
-        title: "Calendar",
-        url: "#",
+        title: "Senflow",
+        url: "/senflows",
         icon: Calendar,
     },
     {
-        title: "Search",
-        url: "#",
+        title: "Analytic",
+        url: "/analytic",
         icon: Search,
     },
     {
         title: "Settings",
-        url: "#",
+        url: "/settings",
         icon: Settings,
     },
 ]
@@ -77,12 +77,12 @@ const items = [
         </SidebarHeader>
         <SidebarContent>
             <SidebarGroup>
-                <SidebarGroupLabel>Application</SidebarGroupLabel>
+                <SidebarGroupLabel>Main</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
                         <SidebarMenuItem v-for="item in items" :key="item.title">
-                            <SidebarMenuButton asChild>
-                                <RouterLink to="item.url">
+                            <SidebarMenuButton asChild class="min-h-9 hover:bg-slate-100">
+                                <RouterLink :to="item.url">
                                     <component :is="item.icon" />
                                     <span>{{ item.title }}</span>
                                 </RouterLink>

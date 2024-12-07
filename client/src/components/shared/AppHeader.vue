@@ -8,23 +8,24 @@ import {
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { SidebarTrigger } from '@/components/ui/sidebar'
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
-    <div class="flex flex-row py-2 px-4 items-center space-x-4 border-b w-full">
+    <div class="flex flex-row py-2 px-4 items-center space-x-4 border-b w-full max-h-[70px]">
         <SidebarTrigger />
         <Breadcrumb>
             <BreadcrumbList>
                 <BreadcrumbItem>
-                    <BreadcrumbLink href="/">
+                    <RouterLink to="/">
                         Home
-                    </BreadcrumbLink>
+                    </RouterLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                    <BreadcrumbLink href="/books">
+                    <RouterLInk to="/books">
                         Reading
-                    </BreadcrumbLink>
+                    </RouterLInk>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>

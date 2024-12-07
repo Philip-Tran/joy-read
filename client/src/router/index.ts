@@ -1,4 +1,5 @@
-import App from '@/App.vue'
+import BooksPage from '@/pages/BooksPage.vue'
+import HomePage from '@/pages/HomePage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -7,7 +8,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: App,
+      component: HomePage,
+    },
+    {
+      path: '/books',
+      name: 'books',
+      component: BooksPage,
     },
   ],
 })
