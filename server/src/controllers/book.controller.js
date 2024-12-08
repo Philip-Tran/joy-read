@@ -71,7 +71,7 @@ const createBook = async (req, res) => {
 const getAllBooks = async (req, res) => {
   try {
     const books = await prisma.book.findMany({
-      take: 10,
+      take: 4,
       orderBy: {
         createdAt: "desc",
       },

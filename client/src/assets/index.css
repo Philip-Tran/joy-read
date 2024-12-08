@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* scrollbar */
+@layer utilities {
+  ::-webkit-scrollbar {
+    @apply w-2; /* Set scrollbar width */
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-200; /* Background color */
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-lg; /* Thumb color and rounded corners */
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500; /* Thumb hover color */
+  }
+}
+
+/* shadcn-ui */
 @layer base {
   :root {
     --background: 0 0% 100%;

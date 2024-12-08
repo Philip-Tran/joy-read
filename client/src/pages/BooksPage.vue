@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import AppHasSidebarLayout from '@/layouts/type/AppHasSidebarLayout.vue';
-
 import BookCard from '@/components/(features)/book/BookCard.vue';
+import { useBookGeneralStore } from '@/stores/BookGeneralStore';
+import { axiosMainApi } from '@/api/axios.express';
+
+import { useQuery } from '@tanstack/vue-query';
 import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
@@ -13,44 +16,18 @@ import {
 } from '@/components/ui/tabs'
 import { CirclePlus } from 'lucide-vue-next';
 
-const books = [
-    {
-        title: "The Great Gatsby",
-        author: "F. Scott Fitzgerald",
-        genre: "Classic",
-        year: 1925,
-        rating: 4.5,
-    },
-    {
-        title: "To Kill a Mockingbird",
-        author: "Harper Lee",
-        genre: "Fiction",
-        year: 1960,
-        rating: 4.8,
-    },
-    {
-        title: "1984",
-        author: "George Orwell",
-        genre: "Dystopian",
-        year: 1949,
-        rating: 4.7,
-    },
-    {
-        title: "Moby-Dick",
-        author: "Herman Melville",
-        genre: "Adventure",
-        year: 1851,
-        rating: 3.9,
-    },
-    {
-        title: "Pride and Prejudice",
-        author: "Jane Austen",
-        genre: "Romance",
-        year: 1813,
-        rating: 4.6,
-    }
+const bookStore = useBookGeneralStore()
 
-];
+const getBooks = async () => {
+    const response = await axiosMainApi.get("/api/book/")
+    if (response.data) console.log("Get All books successfully")
+    return response.data
+}
+
+const { isLoading, isError, data: books, error } = useQuery({
+    queryKey: ["books"],
+    queryFn: getBooks
+})
 
 </script>
 
@@ -93,14 +70,19 @@ const books = [
 
                 </div>
                 <TabsContent value="music" class="border-none flex-col p-0 outline-none">
-
                     <div class="relative">
-                        <div class="flex space-x-4 pb-4">
-                            <BookCard v-for="book in books" :key="book.title" :book="book" class="w-[250px]" />
-                        </div>
-
+                        <ScrollArea>
+                            <div class="flex space-x-4 pb-4">
+                                <div v-if="isLoading">
+                                    Loading...
+                                </div>
+                                <BookCard v-else v-for="book in books" :key="book.title" :book="book" class="w-[250px]"
+                                    aspect-ratio="portrait" :width="250" :height="330" />
+                            </div>
+                            <ScrollBar orientation="horizontal" />
+                        </ScrollArea>
                     </div>
-                    <div class="mt-6 space-y-1">
+                    <div class=" mt-6 space-y-1">
                         <h2 class="text-2xl font-semibold tracking-tight">
                             SenFlow
                         </h2>

@@ -94,7 +94,7 @@ const handleSubmit = () => {
                             </div>
                             <Button @click="handleSubmit">Add Book</Button>
                             <div>
-                                <p>{{ bookStore.initialState.book.content }}</p>
+                                <div class="prose" v-html="bookStore.initialState.book.content"></div>
                             </div>
                         </div>
                     </div>

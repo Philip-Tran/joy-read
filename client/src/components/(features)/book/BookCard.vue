@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BookListingCard } from "@/types/BookTypes"
+
 import {
     ContextMenu,
     ContextMenuContent,
@@ -12,51 +14,68 @@ import {
 import { cn } from '@/lib/utils'
 import { BookOpen, CirclePlus } from 'lucide-vue-next'
 
-defineProps({
-    book: Object
+interface bookCardProps {
+    book: BookListingCard,
+    aspectRatio?: 'portrait' | 'square',
+    width?: number
+    height?: number
+}
+
+withDefaults(defineProps<bookCardProps>(), {
+    aspectRatio: 'portrait',
 })
 
 </script>
 
 <template>
-    <div :class="cn('space-y-3', $attrs.class ?? '')">
-        <ContextMenu>
-            <ContextMenuTrigger>
-                <div class="overflow-hidden rounded-md relative">
-                    <BookOpen :size="48" :stroke-width="1.5" class="right-0" />
-                    <img class="w-[250px] h-[330px] absolute inset-0" :class="cn(
-                        'h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]'
-                    )" />
-                </div>
-            </ContextMenuTrigger>
-            <ContextMenuContent class="w-40">
-                <ContextMenuItem>Start Reading</ContextMenuItem>
-                <ContextMenuSub>
-                    <ContextMenuSubTrigger>Edit</ContextMenuSubTrigger>
-                    <ContextMenuSubContent class="w-48">
-                        <ContextMenuItem>
-                            <CirclePlus class="mr-2 h-4 w-4" />
-                            New Playlist
-                        </ContextMenuItem>
-                        <ContextMenuSeparator />
-                    </ContextMenuSubContent>
-                </ContextMenuSub>
-                <ContextMenuSeparator />
-                <ContextMenuItem>Play Next</ContextMenuItem>
-                <ContextMenuItem>Play Later</ContextMenuItem>
-                <ContextMenuItem>Create Station</ContextMenuItem>
-                <ContextMenuSeparator />
-                <ContextMenuItem>Like</ContextMenuItem>
-                <ContextMenuItem>Share</ContextMenuItem>
-            </ContextMenuContent>
-        </ContextMenu>
-        <div class="space-y-1 text-sm">
-            <h3 class="font-medium leading-none">
-                {{ book.title }}
-            </h3>
-            <p class="text-xs text-muted-foreground">
-                {{ book.author }}
-            </p>
+    <RouterLink to="/books/:id">
+        <div :class="cn('space-y-3', $attrs.class ?? '')">
+            <ContextMenu>
+                <ContextMenuTrigger>
+                    <div class="overflow-hidden rounded-md">
+                        <div v-if="book.cover">
+                            <img :src="book.cover" :alt="book.title" :width="width" :height="height" :class="cn('h-auto w-auto object-cover transition-all hover:scale-105',
+                                aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square',
+                            )">
+                        </div>
+                        <div v-else>
+                            <img src="https://via.placeholder.com/300x600?text=No+Image" alt="No image available"
+                                :width="width" :height="height" :class="cn('h-auto w-auto object-cover transition-all hover:scale-105',
+                                    aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square',
+                                )" />
+                        </div>
+                    </div>
+                </ContextMenuTrigger>
+                <ContextMenuContent class="w-40">
+                    <ContextMenuItem>Start Reading</ContextMenuItem>
+                    <ContextMenuSub>
+                        <ContextMenuSubTrigger>Edit</ContextMenuSubTrigger>
+                        <ContextMenuSubContent class="w-48">
+                            <ContextMenuItem>
+                                <CirclePlus class="mr-2 h-4 w-4" />
+                                New Playlist
+                            </ContextMenuItem>
+                            <ContextMenuSeparator />
+                        </ContextMenuSubContent>
+                    </ContextMenuSub>
+                    <ContextMenuSeparator />
+                    <ContextMenuItem>Play Next</ContextMenuItem>
+                    <ContextMenuItem>Play Later</ContextMenuItem>
+                    <ContextMenuItem>Create Station</ContextMenuItem>
+                    <ContextMenuSeparator />
+                    <ContextMenuItem>Like</ContextMenuItem>
+                    <ContextMenuItem>Share</ContextMenuItem>
+                </ContextMenuContent>
+            </ContextMenu>
+            <div class="space-y-1 text-sm">
+                <h3 class="font-medium leading-none">
+                    {{ book?.title }}
+                </h3>
+                <p class="text-xs text-muted-foreground">
+                    {{ book?.createdAt }}
+                    dd
+                </p>
+            </div>
         </div>
-    </div>
+    </RouterLink>
 </template>
