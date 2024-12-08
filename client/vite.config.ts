@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import path from 'node:path'
 
 import autoprefixer from 'autoprefixer'
 import tailwind from 'tailwindcss'
@@ -17,6 +18,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@server': path.resolve(__dirname, '../server'),
     },
   },
   server: {

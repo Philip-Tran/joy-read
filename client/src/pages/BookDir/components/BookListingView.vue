@@ -17,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="container py-10 mx-auto">
+    <div class=" mx-auto">
         <DataTable :columns="columns" :data="data" />
     </div>
 </template>

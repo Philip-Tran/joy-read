@@ -13,7 +13,7 @@ import {
     ContextMenuTrigger,
 } from '@/components/ui/context-menu'
 import { cn } from '@/lib/utils'
-import { BookOpen, CirclePlus } from 'lucide-vue-next'
+import { CirclePlus } from 'lucide-vue-next'
 
 interface bookCardProps {
     book: BookListingCard,
@@ -26,10 +26,6 @@ withDefaults(defineProps<bookCardProps>(), {
     aspectRatio: 'portrait',
 })
 
-// Format the `createdAt` date
-// const formattedCreatedAt = computed(() => {
-//     return dayjs(book.createdAt).format("MM-DD-YYYY"); // Change format as needed
-// });
 </script>
 
 <template>

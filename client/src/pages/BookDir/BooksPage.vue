@@ -18,7 +18,7 @@ import BookListingView from './components/BookListingView.vue';
 
 const bookStore = useBookGeneralStore()
 
-const { isLoading, isError, data: books, error } = useQuery({
+const { isLoading, data: books } = useQuery({
     queryKey: ["books"],
     queryFn: bookStore.getAllBook
 })

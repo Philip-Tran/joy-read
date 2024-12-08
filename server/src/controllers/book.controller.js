@@ -32,8 +32,10 @@ const createBook = async (req, res) => {
           responseType: "stream",
         });
 
+        const sanitizedTitle = title.trim().replace(/\s+/g, "_");
         // Generate a file name for the audio file
-        fileName = generateDateNow() + " " + title + path.extname(audioUrlOnl);
+        fileName =
+          generateDateNow() + "_" + sanitizedTitle + path.extname(audioUrlOnl);
         const filePath = path.join(__dirname, "../../storage/audio", fileName);
 
         const writer = fs.createWriteStream(filePath);

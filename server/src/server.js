@@ -5,8 +5,13 @@ import helmet from "helmet";
 import bodyparser from "body-parser";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 // import { YoutubeTranscript } from "youtube-transcript";
 // import { YtTranscript } from "yt-transcript";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 import CorsOption from "../config/CorsOption.js";
 import { logger } from "../Logs/AppLog.js";
@@ -27,6 +32,7 @@ const PORT = process.env.PORT || 8009;
 const app = express();
 dotenv.config();
 app.use(logger);
+app.use("/storage", express.static(path.join(__dirname, "../storage"))); // server static files in storage directory
 app.use(fileUpload());
 app.use(express.json());
 app.use(cookieParser());
