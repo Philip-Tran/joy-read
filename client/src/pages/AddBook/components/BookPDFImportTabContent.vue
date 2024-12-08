@@ -3,16 +3,15 @@ import BookContentEditor from '@/components/(features)/book/BookContentEditor.vu
 import { useAddBookStore } from '@/stores/BookStore';
 import type { Book } from '@/stores/BookStore.ts';
 
+import { watch, ref, type Ref } from 'vue';
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { addBookSchema } from '@/schemas/BookSchemas';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { watch } from 'vue';
 
 const bookStore = useAddBookStore()
-
 const { defineField, handleSubmit, values } = useForm({
     validationSchema: toTypedSchema(addBookSchema)
 })
@@ -33,6 +32,32 @@ watch(
     },
     { deep: true }
 )
+
+watch(
+    () => bookStore.initialState.book.content,
+    (newValue) => {
+        const isSame = content.value === newValue
+        if (!isSame) {
+            content.value = newValue
+        }
+    }
+)
+
+// handle pdf
+const inpFile: Ref<HTMLInputElement | null> = ref(null);
+
+const uploadFile = async () => {
+    if (!inpFile.value || !inpFile.value.files[0]) {
+        alert("Please select a file before uploading.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("pdfFile", inpFile.value.files[0]);
+
+    bookStore.getPdfText(formData)
+}
+
 </script>
 
 <template>
@@ -62,23 +87,26 @@ watch(
             </FormField>
 
             <div class="mt-8">
+                <!-- test -->
+                <div>
+                    <input type="file" ref="inpFile" />
+                    <Button type="buttom" @click="uploadFile">Upload</Button>
+
+                </div>
                 <div class="border rounded-lg">
                     <div class="p-4 border-b flex flex-row justify-between">
                         <span class="text-lg font-semibold">
-                            Add book content
+                            Adjust book content
                         </span>
-                        <select>
-
-                        </select>
                     </div>
                     <div class="p-4 ">
                         <BookContentEditor v-model="content" />
                     </div>
                 </div>
             </div>
-            <div>
-                <Button type="submit"> Click</Button>
-            </div>
         </form>
+        <div class="fixed px-4 xl:px-12 bottom-0 w-full bg-slate-400 py-3">
+            <Button type="submit" form="addBookForm" class=" left-80 my-2"> Add Book</Button>
+        </div>
     </div>
 </template>

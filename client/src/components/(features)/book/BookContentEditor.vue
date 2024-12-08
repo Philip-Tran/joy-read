@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import { watch } from 'vue';
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import { Bold, Heading5, Italic, List, Pilcrow, Quote, Redo, Undo } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button';
+import { Bold, Heading5, Italic, List, Pilcrow, Quote, Redo, Undo } from 'lucide-vue-next';
 
-const props = defineProps({
-    modelValue: String,
-
-})
+const props = defineProps<{
+    modelValue?: string;
+}>();
 
 const emit = defineEmits(['update:modelValue'])
 
@@ -28,11 +28,23 @@ const editor = useEditor({
     },
     extensions: [StarterKit],
 })
+
+watch(
+    () => props.modelValue,
+    (newValue) => {
+        if (editor.value && typeof newValue === 'string') {
+            const isSame = editor.value.getHTML() === newValue;
+
+            // If the new value is already the same, skip updating the content
+            if (!isSame) {
+                editor.value.commands.setContent(newValue, false);
+            }
+        }
+    }
+);
 </script>
 
 <template>
-
-
     <div class="rounded-lg border space-y-2">
         <div v-if="editor" class="w-full min-h-12 p-2 flex flex-wrap gap-3 border-b border-slate-200">
             <Button class="rounded-full w-8 h-8 bg-slate-100 hover:bg-slate-200"

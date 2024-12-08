@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BookManualImportTabContent from '@/pages/AddBook/components/BookManualImportTabContent.vue';
 import BookYouTubeImportTabContent from './components/BookYouTubeImportTabContent.vue';
+import BookPDFImportTabContent from './components/BookPDFImportTabContent.vue';
 import BookContentEditor from '@/components/(features)/book/BookContentEditor.vue';
 import AppNoSidebarLayout from '@/layouts/type/AppNoSidebarLayout.vue';
 import { useAddBookStore } from '@/stores/BookStore';
@@ -23,7 +24,6 @@ import {
     FormMessage
 } from '@/components/ui/form'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-
 import { ChevronLeft } from 'lucide-vue-next';
 
 
@@ -31,7 +31,7 @@ import { ChevronLeft } from 'lucide-vue-next';
 
 <template>
     <AppNoSidebarLayout>
-        <div class="w-full min-h-14 px-4 xl:px-8 py-2 flex items-center">
+        <div class="w-full min-h-14 px-4 md:px-5 xl:px-10 py-2 flex items-center md:fixed">
             <RouterLink to="/">
                 <Button variant="secondary" class="hover:bg-slate-200">
                     <ChevronLeft :stroke-width="1.5" />
@@ -39,7 +39,7 @@ import { ChevronLeft } from 'lucide-vue-next';
                 </Button>
             </RouterLink>
         </div>
-        <div class="w-full h-screen py-4 px-4 lg:px-20 xl:px-44 2xl:px-60">
+        <div class="w-full h-screen py-8 px-4 lg:px-20 xl:px-44 2xl:px-60 sm:py-6 md:py-16 xl:py-14 2xl:py-20">
             <div class="w-full">
                 <div class="mb-12">
                     <h2 class="text-3xl font-semibold mb-3">
@@ -52,6 +52,7 @@ import { ChevronLeft } from 'lucide-vue-next';
                 <div class="flex flex-col lg:flex-row lg:space-x-20 2xl:space-x-32 ">
                     <div class="lg:w-2/3 xl:w-3/4">
                         <Tabs default-value="manual-import">
+                            <!-- Tab Control -->
                             <TabsList class="grid w-full grid-cols-3 mb-10">
                                 <TabsTrigger value="manual-import">
                                     Manual Import
@@ -63,43 +64,12 @@ import { ChevronLeft } from 'lucide-vue-next';
                                     YouTube Caption Import
                                 </TabsTrigger>
                             </TabsList>
+                            <!-- Tab Content  -->
                             <TabsContent value="manual-import">
                                 <BookManualImportTabContent />
                             </TabsContent>
                             <TabsContent value="pdf-import">
-                                <div>
-                                    <form @submit.prevent="onSubmit">
-                                        <FormField v-slot="{ componentField }" name="title">
-                                            <FormItem class="mb-5">
-                                                <FormLabel>Book Title</FormLabel>
-                                                <FormControl>
-                                                    <Input type="text" placeholder="Your book title"
-                                                        v-bind="componentField" />
-                                                </FormControl>
-                                                <!-- <FormDescription>
-                                                    This is your public display name.
-                                                </FormDescription> -->
-                                                <FormMessage />
-                                            </FormItem>
-                                        </FormField>
-                                        <FormField v-slot="{ componentField }" name="audioUrl">
-                                            <FormItem>
-                                                <FormLabel>Audio Url (optional)</FormLabel>
-                                                <FormControl>
-                                                    <Input type="text" placeholder="Audio Url"
-                                                        v-bind="componentField" />
-                                                </FormControl>
-                                                <!-- <FormDescription>
-                                                    Audio url here, accept mp3, wav file
-                                                </FormDescription> -->
-                                                <FormMessage />
-                                            </FormItem>
-                                        </FormField>
-                                        <div class="mt-8">
-                                            <BookContentEditor v-model="content" />
-                                        </div>
-                                    </form>
-                                </div>
+                                <BookPDFImportTabContent />
                             </TabsContent>
                             <TabsContent value="youtube-import">
                                 <BookYouTubeImportTabContent />
@@ -107,7 +77,7 @@ import { ChevronLeft } from 'lucide-vue-next';
                         </Tabs>
                     </div>
                     <div class="lg:w-1/3 xl:w-1/4">
-                        <div>
+                        <div class="xl:fixed">
                             <span class="text-lg font-md">Preview</span>
                             <div>
                                 <div class="w-72 h-[360px] flex relative bg-slate-200 mb-4">

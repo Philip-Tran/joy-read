@@ -45,7 +45,8 @@ watch(
                 editor.value.commands.setContent(newValue, false);
             }
         }
-    });
+    }
+);
 </script>
 
 <template>
@@ -99,8 +100,8 @@ watch(
                 <Redo class="text-slate-800" />
             </Button>
             <Button class="rounded-full w-8 h-8 bg-slate-100 hover:bg-slate-200"
-                @click="editor.chain().focus().setColor('#958DF1').run()"
-                :class="{ 'is-active': editor.isActive('textStyle', { color: '#958DF1' }) }">
+                @click="editor.chain().focus().setColor('#4056F4').run()"
+                :class="{ 'is-active': editor.isActive('textStyle', { color: '#4056F4' }) }">
                 <div class="w-2 h-2 bg-blue-500 rounded-full">
                 </div>
             </Button>

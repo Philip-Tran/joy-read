@@ -55,12 +55,6 @@ const useAddBookStore = defineStore('addBook', () => {
     }
   }
 
-  const updateBook = (values: Book) => {
-    initialState.value.book.title = values.title ?? ''
-    initialState.value.book.content = values.content ?? ''
-    initialState.value.book.audioUrlOnl = values.audioUrlOnl ?? ''
-  }
-
   const getTranscriptFromYoutube = async (values: { videoLink: string; lang: string }) => {
     try {
       const response = await axiosDjango.post('/api/get-transcript/', values)
@@ -74,7 +68,34 @@ const useAddBookStore = defineStore('addBook', () => {
     }
   }
 
-  return { initialState, addBook, updateBook, getTranscriptFromYoutube }
+  const updateBook = (values: Book) => {
+    initialState.value.book.title = values.title ?? ''
+    initialState.value.book.content = values.content ?? ''
+    initialState.value.book.audioUrlOnl = values.audioUrlOnl ?? ''
+  }
+
+  const getPdfText = async (formData: FormData) => {
+    try {
+      const response = await axiosMainApi.post('/api/book/get-pdf-text', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      console.log('axios works, from store')
+      console.log(response.data.trim())
+      if (response.data) {
+        initialState.value.message = 'Extract text from PDF successfully'
+      }
+      initialState.value.book.content = response.data.trim()
+    } catch (error) {
+      console.error('Error getting text from pdf file:', (error as Error).message)
+      alert('Failed to extract text. Please check the server logs.')
+    } finally {
+      initialState.value.isLoading = false
+    }
+  }
+
+  return { initialState, addBook, updateBook, getTranscriptFromYoutube, getPdfText }
 })
 
 export { useAddBookStore }
