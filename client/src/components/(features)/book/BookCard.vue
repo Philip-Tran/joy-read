@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BookListingCard } from "@/types/BookTypes"
+import dayjs from "dayjs";
 
 import {
     ContextMenu,
@@ -25,10 +26,14 @@ withDefaults(defineProps<bookCardProps>(), {
     aspectRatio: 'portrait',
 })
 
+// Format the `createdAt` date
+// const formattedCreatedAt = computed(() => {
+//     return dayjs(book.createdAt).format("MM-DD-YYYY"); // Change format as needed
+// });
 </script>
 
 <template>
-    <RouterLink to="/books/:id">
+    <RouterLink :to="`/books/${book.id}`">
         <div :class="cn('space-y-3', $attrs.class ?? '')">
             <ContextMenu>
                 <ContextMenuTrigger>
@@ -72,8 +77,7 @@ withDefaults(defineProps<bookCardProps>(), {
                     {{ book?.title }}
                 </h3>
                 <p class="text-xs text-muted-foreground">
-                    {{ book?.createdAt }}
-                    dd
+                    {{ dayjs(book.createdAt).format("MMMM D, YYYY") }}
                 </p>
             </div>
         </div>

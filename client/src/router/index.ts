@@ -1,5 +1,5 @@
 import AddBookPage from '@/pages/AddBook/AddBookPage.vue'
-import BooksPage from '@/pages/BooksPage.vue'
+import BooksPage from '@/pages/BookDir/BooksPage.vue'
 import HomePage from '@/pages/HomePage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 

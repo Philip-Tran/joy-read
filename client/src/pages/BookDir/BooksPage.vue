@@ -2,7 +2,6 @@
 import AppHasSidebarLayout from '@/layouts/type/AppHasSidebarLayout.vue';
 import BookCard from '@/components/(features)/book/BookCard.vue';
 import { useBookGeneralStore } from '@/stores/BookGeneralStore';
-import { axiosMainApi } from '@/api/axios.express';
 
 import { useQuery } from '@tanstack/vue-query';
 import { Button } from '@/components/ui/button';
@@ -15,18 +14,13 @@ import {
     TabsTrigger,
 } from '@/components/ui/tabs'
 import { CirclePlus } from 'lucide-vue-next';
+import BookListingView from './components/BookListingView.vue';
 
 const bookStore = useBookGeneralStore()
 
-const getBooks = async () => {
-    const response = await axiosMainApi.get("/api/book/")
-    if (response.data) console.log("Get All books successfully")
-    return response.data
-}
-
 const { isLoading, isError, data: books, error } = useQuery({
     queryKey: ["books"],
-    queryFn: getBooks
+    queryFn: bookStore.getAllBook
 })
 
 </script>
@@ -34,24 +28,24 @@ const { isLoading, isError, data: books, error } = useQuery({
 <template>
     <AppHasSidebarLayout>
         <div class="h-full px-4 py-6 lg:px-8 w-full">
-            <Tabs default-value="music" class="h-full space-y-6">
+            <Tabs default-value="grid-view" class="h-full space-y-6">
                 <div class="space-y-8">
-
                     <div class="space-between flex items-center">
                         <TabsList>
-                            <TabsTrigger value="music" class="relative">
+                            <TabsTrigger value="grid-view" class="relative">
                                 Grid
                             </TabsTrigger>
-                            <TabsTrigger value="podcasts">
+                            <TabsTrigger value="list-view">
                                 List
                             </TabsTrigger>
-
                         </TabsList>
                         <div class="ml-auto mr-4">
-                            <Button>
-                                <CirclePlus class="mr-2 h-5 w-5" />
-                                Add book
-                            </Button>
+                            <RouterLink to="/books/create">
+                                <Button>
+                                    <CirclePlus class="mr-2 h-5 w-5" />
+                                    Add book
+                                </Button>
+                            </RouterLink>
                         </div>
                     </div>
                     <div>
@@ -69,7 +63,7 @@ const { isLoading, isError, data: books, error } = useQuery({
                     </div>
 
                 </div>
-                <TabsContent value="music" class="border-none flex-col p-0 outline-none">
+                <TabsContent value="grid-view" class="border-none flex-col p-0 outline-none">
                     <div class="relative">
                         <ScrollArea>
                             <div class="flex space-x-4 pb-4">
@@ -82,28 +76,14 @@ const { isLoading, isError, data: books, error } = useQuery({
                             <ScrollBar orientation="horizontal" />
                         </ScrollArea>
                     </div>
-                    <div class=" mt-6 space-y-1">
-                        <h2 class="text-2xl font-semibold tracking-tight">
-                            SenFlow
-                        </h2>
-                        <p class="text-sm text-muted-foreground">
-                            Your personal playlists. Updated daily.
-                        </p>
-                    </div>
-                    <Separator class="my-4" />
-                    <div class="relative">
-                        <ScrollArea>
-                            <div class="flex space-x-4 pb-4">
-                                <AlbumArtwork v-for="book in books" :key="book.title" :book="book" class="w-[150px]"
-                                    aspect-ratio="square" :width="150" :height="150" />
-                            </div>
-                            <ScrollBar orientation="horizontal" />
-                        </ScrollArea>
-                    </div>
                 </TabsContent>
-                <TabsContent value="podcasts" class="h-full flex-col border-none p-0 data-[state=active]:flex">
-
-                    <PodcastEmptyPlaceholder />
+                <TabsContent value="list-view" class="h-full flex-col border-none p-0 data-[state=active]:flex">
+                    <div>
+                        <div v-if="isLoading">
+                            Loading...
+                        </div>
+                        <BookListingView v-else :books="books" />
+                    </div>
                 </TabsContent>
             </Tabs>
         </div>
