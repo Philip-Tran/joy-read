@@ -26,7 +26,9 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ChevronLeft } from 'lucide-vue-next';
 
-
+const handleSubmit = () => {
+    bookStore.addBookDirectFromStore()
+}
 </script>
 
 <template>
@@ -82,15 +84,17 @@ import { ChevronLeft } from 'lucide-vue-next';
                             <div>
                                 <div class="w-72 h-[360px] flex relative bg-slate-200 mb-4">
                                     <div class="flex items-center justify-center align-middle w-full">
-                                        <span class="text-center text-wrap text-lg self-center font-semibold">{{
-                                            bookStore.initialState.book.title }}</span>
+                                        <span class="text-center text-wrap text-lg self-center font-semibold">
+                                            {{ bookStore.initialState.book.title }}</span>
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <p class="text-lg font-medium">{{ bookStore.initialState.book.title }}</p>
                                 </div>
                             </div>
+                            <Button @click="handleSubmit">Add Book</Button>
                             <div>
+                                <p>{{ bookStore.initialState.book.content }}</p>
                             </div>
                         </div>
                     </div>

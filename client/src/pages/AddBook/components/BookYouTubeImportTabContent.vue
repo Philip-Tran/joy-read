@@ -36,6 +36,13 @@ watch(
     () => content.value,
     () => {
         bookStore.initialState.book.content = content.value ? content.value : ""
+    },
+    { deep: true }
+)
+watch(
+    () => values.title,
+    () => {
+        bookStore.initialState.book.title = values.title ? values.title : ""
     }
 )
 </script>

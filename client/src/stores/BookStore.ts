@@ -55,6 +55,25 @@ const useAddBookStore = defineStore('addBook', () => {
     }
   }
 
+  const addBookDirectFromStore = async () => {
+    try {
+      const book = initialState.value.book
+      initialState.value.isLoading = true
+      const response = await axiosMainApi.post('/api/book/create', book)
+      if (!response) {
+        initialState.value.isError = true
+        initialState.value.message = 'Error occur when creating book'
+      }
+
+      initialState.value.book.content = response.data.book.content
+      initialState.value.book.title = response.data.book.title
+      initialState.value.message = response.data.message
+    } catch (error: unknown) {
+      console.error('Error add book from pinia store:', (error as Error).message)
+      initialState.value.message = 'Error occur when creating book'
+    }
+  }
+
   const getTranscriptFromYoutube = async (values: { videoLink: string; lang: string }) => {
     try {
       const response = await axiosDjango.post('/api/get-transcript/', values)
@@ -95,7 +114,14 @@ const useAddBookStore = defineStore('addBook', () => {
     }
   }
 
-  return { initialState, addBook, updateBook, getTranscriptFromYoutube, getPdfText }
+  return {
+    initialState,
+    addBook,
+    updateBook,
+    getTranscriptFromYoutube,
+    getPdfText,
+    addBookDirectFromStore,
+  }
 })
 
 export { useAddBookStore }
