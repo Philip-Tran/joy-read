@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createBook,
+  deleteBook,
   getAllBooks,
   getSingleBook,
 } from "../controllers/book.controller.js";
@@ -19,6 +20,7 @@ import senFlowRouter from "../routes/senFlow.route.js";
 router.post("/create", createBook);
 router.get("/", getAllBooks);
 router.get("/:id", getSingleBook);
+router.delete("/:id", deleteBook);
 router.post("/get-pdf-text", getTextFromPdf);
 
 router.use("/:id/flow", senFlowRouter);

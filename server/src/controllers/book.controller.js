@@ -108,4 +108,20 @@ const getSingleBook = async (req, res) => {
   }
 };
 
-export { createBook, getAllBooks, getSingleBook };
+const deleteBook = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await prisma.book.delete({
+      where: {
+        id,
+      },
+    });
+    res.status(200).json({ message: "Delete book successfully" });
+  } catch (error) {
+    console.log("Error getting single book", error.message);
+    res.status(400).json({ message: "Error deleting book" });
+  }
+};
+
+export { createBook, getAllBooks, getSingleBook, deleteBook };

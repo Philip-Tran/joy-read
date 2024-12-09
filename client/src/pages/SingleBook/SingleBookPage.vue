@@ -47,6 +47,7 @@ const { isLoading, data: book } = useQuery<Book>({
                 <BookAudioPlayer :audioUrlSer="book?.audioUrlSer" />
             </div>
 
+            <!-- Main -->
             <div class="pt-12">
                 <div class="px-4 lg:px-10 self-center lg:mx-auto lg:max-w-[700px]">
                     <h1 class="text-2xl font-medium mb-5">{{ book?.title }}</h1>

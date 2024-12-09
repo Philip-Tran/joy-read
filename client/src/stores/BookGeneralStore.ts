@@ -15,6 +15,7 @@ interface geAllBookStateType {
   message: string
   isLoading: boolean
   isError: boolean
+  isSuccess: boolean
 }
 
 const useBookGeneralStore = defineStore('book', () => {
@@ -23,6 +24,7 @@ const useBookGeneralStore = defineStore('book', () => {
     message: '',
     isLoading: false,
     isError: false,
+    isSuccess: false,
   })
 
   const getAllBook = async () => {
@@ -41,9 +43,29 @@ const useBookGeneralStore = defineStore('book', () => {
     }
   }
 
+  const deleteBook = async (bookId: string) => {
+    try {
+      const res = await axiosMainApi.delete(`/api/book/${bookId}`)
+      if (!res) {
+        console.log('Internal server error')
+      }
+      console.log('Delete book successfully, from pinia')
+      initialState.value.isSuccess = true
+      initialState.value.message = res.data.message
+
+      return { success: true }
+    } catch (error) {
+      initialState.value.isSuccess = false
+      console.log('Error deleteing book:', (error as Error).message)
+    } finally {
+      initialState.value.isSuccess = false
+    }
+  }
+
   return {
     initialState,
     getAllBook,
+    deleteBook,
   }
 })
 
