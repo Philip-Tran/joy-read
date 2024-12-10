@@ -172,21 +172,26 @@ watch(
         <!-- <div id="qts-anchor" style="visibility: hidden; position:absolute"></div> -->
         <!-- pop up -->
         <div ref="popupDiv" id="popup" style="visibility: hidden;"
-            class="popup z-50 min-h-24 max-h-45 min-w-60 max-w-80 rounded-md border absolute bg-slate-50 transition-transform duration-300 ease-out">
-            <div class=" relative p-3">
+            class="popup z-50 min-h-24 max-h-45 min-w-60 max-w-96 rounded-md border absolute bg-slate-50 transition-transform duration-300 ease-out">
+            <div class=" relative p-4">
                 <div class="text-sm text-gray-600">
-                    <Skeleton v-if="popupStore.initialState.isLoading" class="w-[50px] h-2 rounded-full" />
-                    <div v-else class="flex flex-row space-x-2 items-start">
-                        <Button variant="link" class="p-1" @click="playAudio">
-                            <AudioLines />
-                        </Button>
-                        <p id="translated-text" class="text-gray-800 text-base">{{
-                            popupStore.initialState.translatedText }}
-                        </p>
+                    <div v-if="popupStore.initialState.isLoading">
+                        <Skeleton class="w-5 h-5 rounded-full mt-2 mb-3" />
+                        <Skeleton class="w-[80px] h-3 rounded-full pt-2" />
+                    </div>
+                    <div v-else>
+                        <div class="flex flex-col items-start">
+                            <Button variant="link" class="p-0" @click="playAudio">
+                                <AudioLines />
+                            </Button>
+                            <span id="translated-text" class="text-gray-800 text-base">{{
+                                popupStore.initialState.translatedText }}
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-4 flex justify-end space-x-2">
-                    <Button @click="handleClosePopup" variant="secondary" id="close-button"
+                    <Button @click="handleClosePopup" variant="ghost" id="close-button"
                         class="bg-transparent rounded-full w-8 h-8 absolute top-1 right-1 p-2 py-2 focus:ring focus:ring-gray-300">
                         <Minus />
                     </Button>
