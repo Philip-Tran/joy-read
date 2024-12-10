@@ -1,6 +1,7 @@
 import { ref, type Ref } from 'vue'
 import { axiosMainApi } from '@/api/axios.express'
 import { axiosDjango } from '@/api/axios.django'
+import { readingTime } from 'reading-time-estimator'
 
 import { defineStore } from 'pinia'
 
@@ -16,6 +17,12 @@ interface AddBookState {
   isLoading: boolean
   isSuccess: boolean
   isError: boolean
+  stats: {
+    words: number | null
+    minutes: number | null
+    text: string | null
+    readingSpeed: number
+  }
 }
 
 export type { Book }
@@ -31,6 +38,12 @@ const useAddBookStore = defineStore('addBook', () => {
     isLoading: false,
     isSuccess: false,
     isError: false,
+    stats: {
+      words: null,
+      minutes: null,
+      text: '',
+      readingSpeed: 200,
+    },
   })
 
   const addBook = async (book: Book) => {
@@ -93,6 +106,13 @@ const useAddBookStore = defineStore('addBook', () => {
     initialState.value.book.audioUrlOnl = values.audioUrlOnl ?? ''
   }
 
+  const getReadingTimeStat = (content: string) => {
+    const result = readingTime(content, initialState.value.stats?.readingSpeed, 'es')
+    initialState.value.stats.minutes = result.minutes
+    initialState.value.stats.words = result.words
+    initialState.value.stats.text = result.text
+  }
+
   const getPdfText = async (formData: FormData) => {
     try {
       const response = await axiosMainApi.post('/api/book/get-pdf-text', formData, {
@@ -121,6 +141,7 @@ const useAddBookStore = defineStore('addBook', () => {
     getTranscriptFromYoutube,
     getPdfText,
     addBookDirectFromStore,
+    getReadingTimeStat,
   }
 })
 

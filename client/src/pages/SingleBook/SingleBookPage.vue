@@ -3,7 +3,6 @@ import { usePopupTranslateStore } from '@/stores/PopupTranslateStore';
 import FocusModeLayout from '@/layouts/FocusModeLayout.vue';
 import { axiosMainApi } from '@/api/axios.express';
 
-import { readingTime } from 'reading-time-estimator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useQuery } from '@tanstack/vue-query';
 import { useRoute } from 'vue-router';
@@ -12,6 +11,7 @@ import { Separator } from '@/components/ui/separator';
 import BookAudioPlayer from './components/BookAudioPlayer.vue';
 import { ref, nextTick, watch, onMounted, onUnmounted, computed } from 'vue';
 import { Minus, AudioLines } from 'lucide-vue-next';
+import { useAddBookStore } from '@/stores/BookStore';
 
 interface Book {
     id: string
@@ -21,6 +21,7 @@ interface Book {
     audioUrlSer: string
 }
 
+const bookStore = useAddBookStore()
 const popupStore = usePopupTranslateStore()
 const { params } = useRoute()
 
@@ -152,20 +153,13 @@ const playAudio = (): void => {
 };
 
 // reading time
-const readingTimeResult = ref<string>("");
-const readingTimeResultObject = ref<{ minutes: number, text: string, words: number }>();
 const bookContent = computed(() => book?.value?.content);
 
 watch(
     () => bookContent.value,
     (content) => {
         if (content) {
-            const result = readingTime(content,
-                200,  // reading speed 200 words per second
-                "es"
-            );
-            readingTimeResult.value = result.text;
-            readingTimeResultObject.value = result
+            bookStore.getReadingTimeStat(content)
         }
     },
     { immediate: true }
@@ -181,7 +175,6 @@ watch(
             class="popup z-50 min-h-24 max-h-45 min-w-60 max-w-80 rounded-md border absolute bg-slate-50 transition-transform duration-300 ease-out">
             <div class=" relative p-3">
                 <div class="text-sm text-gray-600">
-                    <!-- <p id="original-text" class="mb-2 font-semibold">{{ selectedText }}</p> -->
                     <Skeleton v-if="popupStore.initialState.isLoading" class="w-[50px] h-2 rounded-full" />
                     <div v-else class="flex flex-row space-x-2 items-start">
                         <Button variant="link" class="p-1" @click="playAudio">
@@ -222,7 +215,7 @@ watch(
             <div class="pt-12">
                 <div class="px-4 lg:px-10 self-center lg:mx-auto lg:max-w-[700px]">
                     <h1 class="text-2xl font-medium mb-4">{{ book?.title }}</h1>
-                    <div class="mb-4">{{ readingTimeResult }}</div>
+                    <div class="mb-4">{{ bookStore.initialState.stats.text }}</div>
                     <Separator />
                     <div v-html="`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${book?.content}`"
                         class="prose font-serif text-xl leading-9 text-[#363737] mt-10">
