@@ -39,6 +39,7 @@ export default {
       }),
       fontFamily: {
         serif: ['Palatino', 'serif'],
+        garamond: ['Garamond', 'serif'],
       },
       colors: {
         border: 'hsl(var(--border))',

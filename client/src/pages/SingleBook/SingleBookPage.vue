@@ -3,14 +3,14 @@ import { usePopupTranslateStore } from '@/stores/PopupTranslateStore';
 import FocusModeLayout from '@/layouts/FocusModeLayout.vue';
 import { axiosMainApi } from '@/api/axios.express';
 
-import { Skeleton } from '@/components/ui/skeleton'
 import { useQuery } from '@tanstack/vue-query';
 import { useRoute } from 'vue-router';
+import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import BookAudioPlayer from './components/BookAudioPlayer.vue';
 import { ref, nextTick, watch, onMounted, onUnmounted, computed } from 'vue';
-import { Minus, AudioLines } from 'lucide-vue-next';
+import { Minus, AudioLines, ChevronLeft } from 'lucide-vue-next';
 import { useAddBookStore } from '@/stores/BookStore';
 
 interface Book {
@@ -195,31 +195,38 @@ watch(
         </div>
 
         <!-- MAIN -->
-        <div class="bg-[#fffffe]">
-            <div v-if="isLoading">
-                Loading...
-            </div>
+        <div class="bg-[#e9e9e9]">
+
             <!-- Back button -->
             <div class="fixed top-3 left-5">
                 <RouterLink to="/books">
-                    <Button variant="ghost" class="text-sm font-light text-transparent">Back</Button>
+                    <Button variant="ghost" class="text-sm text-transparent">
+                        <ChevronLeft />
+                    </Button>
                 </RouterLink>
             </div>
 
             <!-- Audio player -->
-            <div v-if="book?.audioUrlSer" class="w-60 h-10 bg-slate-500 fixed bottom-8 left-8">
+            <div v-if="book?.audioUrlSer" class=" fixed bottom-8 left-8">
                 <BookAudioPlayer :audioUrlSer="book?.audioUrlSer" />
             </div>
 
             <!-- Main -->
-            <div class="pt-12">
-                <div class="px-4 lg:px-10 self-center lg:mx-auto lg:max-w-[700px]">
-                    <h1 class="text-2xl font-medium mb-4">{{ book?.title }}</h1>
-                    <div class="mb-4">{{ bookStore.initialState.stats.text }}</div>
+            <div class="py-12 font-garamond min-h-screen">
+                <div v-if="isLoading">
+                    <Skeleton height="200px" />
+                </div>
+                <div v-else
+                    class="bg-[#f8f9f8] min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-14 self-center lg:mx-auto lg:max-w-[800px]">
+                    <h1 class="text-5xl font-bold mb-4">{{ book?.title }}</h1>
+                    <div class="mb-4 font-medium text-xl">{{ bookStore.initialState.stats.text }}</div>
                     <Separator />
                     <div v-html="`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${book?.content}`"
-                        class="prose font-serif text-xl leading-9 text-[#363737] mt-10">
+                        class="prose font-garamond font-[600] text-2xl leading-9 text-[#333333] mt-10">
                     </div>
+                </div>
+                <div class="w-full min-h-32 items-center justify-center flex ">
+                    <span class="font-medium text-base self-center">The End!</span>
                 </div>
             </div>
         </div>
