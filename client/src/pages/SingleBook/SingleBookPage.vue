@@ -229,7 +229,9 @@ watch(
                 <div v-else
                     class="bg-[#f8f9f8] min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-14 self-center lg:mx-auto lg:max-w-[800px]">
                     <h1 class="text-5xl font-bold mb-4">{{ book?.title }}</h1>
-                    <div class="mb-4 font-medium text-xl">{{ bookStore.initialState.stats.text }}</div>
+                    <div class="mb-4 font-medium text-xl">{{ bookStore.initialState.stats.text }}
+
+                    </div>
                     <Separator />
                     <div v-html="`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${book?.content}`"
                         class="prose font-garamond font-[600] text-2xl leading-9 text-[#333333] mt-10">
