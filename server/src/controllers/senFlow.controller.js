@@ -1,7 +1,7 @@
 import prisma from "../../lib/prisma.js";
 
 /**
- * Controller login function
+ * Controller
  */
 const getSenFlow = async (req, res) => {
   const { id } = req.params;
@@ -38,7 +38,7 @@ const addSenFlow = async (req, res) => {
         bookId: id,
       },
     });
-    res.json({ bokid: id, sen: senFlow });
+    res.json({ bookId: id, sen: senFlow });
   } catch (error) {
     console.log("Error get senflow", error.message);
   }

@@ -12,7 +12,6 @@ import { Separator } from '@/components/ui/separator';
 import BookAudioPlayer from './components/BookAudioPlayer.vue';
 import { ref, nextTick, watch, onMounted, onUnmounted, computed } from 'vue';
 import { Minus, AudioLines } from 'lucide-vue-next';
-import axios from 'axios';
 
 interface Book {
     id: string
@@ -69,11 +68,9 @@ const handleTextSelection = async () => {
 
         popupStore.getTranslation(textToTranslate)
         translatedText.value = popupStore.initialState.translatedText
-
-        fetchAudio(selectedText.value, "es")
+        popupStore.fetchAudio()
 
         const popupEl: HTMLElement | null = document.querySelector("#popup");
-        const anchorEl: HTMLElement | null = document.querySelector("#qts-anchor");
 
         // Position popup based on the selected text
         if (popupEl) {
@@ -90,14 +87,22 @@ const handleTextSelection = async () => {
 };
 
 // Clear the timeout if the user is still selecting text
-const clearPreviousSelection = (): void => {
+const clearPreviousSelection = (event: MouseEvent): void => {
+    if (selectionTimeout) {
+        clearTimeout(selectionTimeout);
+    }
+
+    const popupEl: HTMLElement | null = document.querySelector("#popup");
+    if (popupEl && popupEl.contains(event.target as Node)) {
+        return; // Ignore clicks inside the popup
+    }
     if (selectionTimeout) {
         clearTimeout(selectionTimeout);
     }
     selectionTimeout = setTimeout(handleTextSelection, 300); // Delay API call to prevent excess requests
 };
 
-document.addEventListener('mouseup', clearPreviousSelection);
+document.addEventListener('mouseup', (event) => clearPreviousSelection(event));
 
 const handleOutsideClick = (event: MouseEvent): void => {
     const popupEl: HTMLElement | null = document.querySelector("#popup");
@@ -105,6 +110,7 @@ const handleOutsideClick = (event: MouseEvent): void => {
         handleClosePopup();
     }
 };
+
 // Attach and detach the global click listener
 onMounted(() => {
     document.addEventListener("mousedown", handleOutsideClick);
@@ -133,32 +139,17 @@ const handleClosePopup = () => {
     }
 };
 
-const fetchAudio = async (txt: string, lang: string): Promise<void> => {
-    try {
-        const encodedText: string = encodeURIComponent(txt)
-
-        const response = await axios.get(`https://lingva.ml/api/v1/audio/${lang}/${encodedText}`)
-
-        const audioBlob = new Blob([new Uint8Array(response.data.audio)], { type: "audio/mpeg" });
-        audioUrl.value = URL.createObjectURL(audioBlob);
-        return response.data.audio
-    } catch (error) {
-        console.error("error", error)
-    }
-}
-
 const playAudio = (): void => {
-    if (!audioUrl.value) {
+    const audioUrl = popupStore.initialState.audioUrl
+    if (!audioUrl) {
         console.error("Audio URL is not available");
         return;
     }
-    const audio = new Audio(audioUrl.value);
+    const audio = new Audio(audioUrl);
     audio.play().catch((error) => {
         console.error("Error playing audio:", error);
     });
 };
-
-const audioUrl = ref<string>("");
 
 // reading time
 const readingTimeResult = ref<string>("");
@@ -175,7 +166,6 @@ watch(
             );
             readingTimeResult.value = result.text;
             readingTimeResultObject.value = result
-            console.log("Estimated Reading Time:", result);
         }
     },
     { immediate: true }
@@ -185,7 +175,7 @@ watch(
 <template>
     <FocusModeLayout>
         <!-- anchor -->
-        <div id="qts-anchor" style="visibility: hidden; position:absolute"></div>
+        <!-- <div id="qts-anchor" style="visibility: hidden; position:absolute"></div> -->
         <!-- pop up -->
         <div ref="popupDiv" id="popup" style="visibility: hidden;"
             class="popup z-50 min-h-24 max-h-45 min-w-60 max-w-80 rounded-md border absolute bg-slate-50 transition-transform duration-300 ease-out">
