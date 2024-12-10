@@ -1,7 +1,6 @@
 <script setup lang="ts">
-defineProps({
-    audioUrlSer: String,
-})
+defineProps<{ audioUrlSer: string }>()
+
 </script>
 
 <template>

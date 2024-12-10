@@ -1,4 +1,5 @@
 import pdfParse from "pdf-parse";
+import Parser from "@postlight/parser";
 
 const getTextFromPdf = (req, res) => {
   if (!req.files && !req.files.pdfFile) {
@@ -50,4 +51,26 @@ const getTextFromPdf = (req, res) => {
   });
 };
 
-export { getTextFromPdf };
+const getTextFromWeb = async (req, res) => {
+  try {
+    const { webUrl } = req.body;
+    const result = await Parser.parse(webUrl, { contentType: "html" });
+
+    if (!result) {
+      console.log("Error, no result from parsing web url");
+      return res
+        .status(400)
+        .json({ message: "Error occur when getting content from web page" });
+    }
+
+    return res.status(200).json({
+      title: result.title,
+      content: result.content,
+      wordCount: result.word_count,
+    });
+  } catch (error) {
+    console.log("Error extracting text from webpage:", error.message);
+  }
+};
+
+export { getTextFromPdf, getTextFromWeb };

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { usePopupTranslateStore } from '@/stores/PopupTranslateStore';
-import FocusModeLayout from '@/layouts/FocusModeLayout.vue';
 import { axiosMainApi } from '@/api/axios.express';
+import FocusModeLayout from '@/layouts/FocusModeLayout.vue';
+import BookFloatingScrollButton from './components/BookFloatingScrollButton.vue';
 
 import { useQuery } from '@tanstack/vue-query';
 import { useRoute } from 'vue-router';
@@ -168,6 +169,7 @@ watch(
 
 <template>
     <FocusModeLayout>
+        <BookFloatingScrollButton scrollType="auto" />
         <!-- anchor -->
         <!-- <div id="qts-anchor" style="visibility: hidden; position:absolute"></div> -->
         <!-- pop up -->
@@ -182,8 +184,11 @@ watch(
                     <div v-else>
                         <div class="flex flex-col items-start">
                             <Button variant="link" class="p-0" @click="playAudio">
-                                <AudioLines />
+                                <AudioLines class="text-slate-600 hover:text-slate-700" />
                             </Button>
+                            <span id="translated-text" class="text-gray-800 text-base">{{
+                                popupStore.initialState.selectedText }}
+                            </span>
                             <span id="translated-text" class="text-gray-800 text-base">{{
                                 popupStore.initialState.translatedText }}
                             </span>
@@ -193,7 +198,7 @@ watch(
                 <div class="mt-4 flex justify-end space-x-2">
                     <Button @click="handleClosePopup" variant="ghost" id="close-button"
                         class="bg-transparent rounded-full w-8 h-8 absolute top-1 right-1 p-2 py-2 focus:ring focus:ring-gray-300">
-                        <Minus />
+                        <Minus class="text-slate-400" />
                     </Button>
                 </div>
             </div>

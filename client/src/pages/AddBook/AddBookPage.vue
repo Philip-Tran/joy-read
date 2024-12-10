@@ -1,28 +1,15 @@
 <script setup lang="ts">
 import BookManualImportTabContent from '@/pages/AddBook/components/BookManualImportTabContent.vue';
 import BookYouTubeImportTabContent from './components/BookYouTubeImportTabContent.vue';
+import BookWebImportTabContent from './components/BookWebImportTabContent.vue';
 import BookPDFImportTabContent from './components/BookPDFImportTabContent.vue';
-import BookContentEditor from '@/components/(features)/book/BookContentEditor.vue';
 import AppNoSidebarLayout from '@/layouts/type/AppNoSidebarLayout.vue';
 import { useAddBookStore } from '@/stores/BookStore';
-import { addBookSchema } from "@/schemas/BookSchemas"
 
 const bookStore = useAddBookStore()
 
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
 
-import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from '@/components/ui/form'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ChevronLeft } from 'lucide-vue-next';
 
@@ -55,15 +42,18 @@ const handleSubmit = () => {
                     <div class="lg:w-2/3 xl:w-3/4">
                         <Tabs default-value="manual-import">
                             <!-- Tab Control -->
-                            <TabsList class="grid w-full grid-cols-3 mb-10">
+                            <TabsList class="grid w-full grid-cols-4 mb-10">
                                 <TabsTrigger value="manual-import">
                                     Manual Import
                                 </TabsTrigger>
                                 <TabsTrigger value="pdf-import">
-                                    PDF Import
+                                    PDF
+                                </TabsTrigger>
+                                <TabsTrigger value="web-import">
+                                    Web Page
                                 </TabsTrigger>
                                 <TabsTrigger value="youtube-import">
-                                    YouTube Caption Import
+                                    YouTube Subtitle
                                 </TabsTrigger>
                             </TabsList>
                             <!-- Tab Content  -->
@@ -72,6 +62,9 @@ const handleSubmit = () => {
                             </TabsContent>
                             <TabsContent value="pdf-import">
                                 <BookPDFImportTabContent />
+                            </TabsContent>
+                            <TabsContent value="web-import">
+                                <BookWebImportTabContent />
                             </TabsContent>
                             <TabsContent value="youtube-import">
                                 <BookYouTubeImportTabContent />

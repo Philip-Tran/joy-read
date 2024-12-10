@@ -100,6 +100,19 @@ const useAddBookStore = defineStore('addBook', () => {
     }
   }
 
+  const getTextFromWeb = async (values: { webUrl: string }) => {
+    try {
+      const response = await axiosMainApi.post('/api/book/get-web-text', values)
+      if (response.data && response.data.content) {
+        initialState.value.book.content = response.data.content
+        initialState.value.book.title = response.data.title
+        initialState.value.stats.words = response.data.wordCount
+      }
+    } catch (error: unknown) {
+      console.log('Error', (error as Error).message)
+    }
+  }
+
   const updateBook = (values: Book) => {
     initialState.value.book.title = values.title ?? ''
     initialState.value.book.content = values.content ?? ''
@@ -140,6 +153,7 @@ const useAddBookStore = defineStore('addBook', () => {
     updateBook,
     getTranscriptFromYoutube,
     getPdfText,
+    getTextFromWeb,
     addBookDirectFromStore,
     getReadingTimeStat,
   }

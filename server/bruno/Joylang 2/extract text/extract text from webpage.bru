@@ -1,0 +1,17 @@
+meta {
+  name: extract text from webpage
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8008/api/book/get-web-text
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "webUrl": "https://blog.kotobee.com/best-fonts-for-ebooks/"
+  }
+}

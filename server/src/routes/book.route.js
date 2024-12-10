@@ -5,7 +5,10 @@ import {
   getAllBooks,
   getSingleBook,
 } from "../controllers/book.controller.js";
-import { getTextFromPdf } from "../controllers/getText.Controller.js";
+import {
+  getTextFromPdf,
+  getTextFromWeb,
+} from "../controllers/getText.Controller.js";
 
 import { verifyJWT } from "../middlewares/Auth/verifyJWT.js";
 
@@ -22,6 +25,7 @@ router.get("/", getAllBooks);
 router.get("/:id", getSingleBook);
 router.delete("/:id", deleteBook);
 router.post("/get-pdf-text", getTextFromPdf);
+router.post("/get-web-text", getTextFromWeb);
 
 router.use("/:id/flow", senFlowRouter);
 

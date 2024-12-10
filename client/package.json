@@ -13,6 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@postlight/parser": "^2.2.3",
     "@primevue/themes": "^4.2.4",
     "@tailwindcss/typography": "^0.5.15",
     "@tanstack/vue-query": "^5.62.3",
