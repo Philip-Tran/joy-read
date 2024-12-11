@@ -7,6 +7,9 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const platform = os.platform();
+let appDataPath;
+
 // Set the app data path based on the platform
 if (platform === "win32") {
   appDataPath = path.join(os.homedir(), "AppData", "Local", "JoyRead");

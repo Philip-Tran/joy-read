@@ -16,21 +16,21 @@ export const columns: ColumnDef<BookListingCard>[] = [
     },
   },
   {
-    accessorKey: 'id',
-    header: () => h('div', { class: 'text-left' }, 'ID'),
-    cell: ({ row }) => {
-      const id = row.getValue('id') as string
-
-      return h('div', { class: 'text-left font-medium' }, id)
-    },
-  },
-  {
     accessorKey: 'createdAt',
     header: () => h('div', { class: 'text-left' }, 'Created At'),
     cell: ({ row }) => {
       const formattedDate = dayjs(row.getValue('createdAt')).format('DD/MM/YYYY')
 
       return h('div', { class: 'text-left font-medium' }, formattedDate)
+    },
+  },
+  {
+    accessorKey: 'id',
+    header: () => h('div', { class: 'text-left' }, 'ID'),
+    cell: ({ row }) => {
+      const id = row.getValue('id') as string
+
+      return h('div', { class: 'text-left font-medium' }, id)
     },
   },
   {

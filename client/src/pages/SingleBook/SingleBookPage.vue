@@ -168,8 +168,12 @@ watch(
 </script>
 
 <template>
-    <FocusModeLayout>
+    <FocusModeLayout class="relative">
         <BookFloatingScrollButton scrollType="auto" />
+        <!-- hidden setting button -->
+        <div class="absolute w-32 h-32 bg-slate-400 top-0 right-0">
+
+        </div>
         <!-- anchor -->
         <!-- <div id="qts-anchor" style="visibility: hidden; position:absolute"></div> -->
         <!-- pop up -->

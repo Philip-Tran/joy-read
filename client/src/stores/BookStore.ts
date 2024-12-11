@@ -9,6 +9,7 @@ interface Book {
   title: string
   content: string
   audioUrlOnl?: string
+  id: string
 }
 
 interface AddBookState {
@@ -33,6 +34,7 @@ const useAddBookStore = defineStore('addBook', () => {
       title: '',
       content: '',
       audioUrlOnl: undefined,
+      id: '',
     },
     message: '',
     isLoading: false,
@@ -81,6 +83,9 @@ const useAddBookStore = defineStore('addBook', () => {
       initialState.value.book.content = response.data.book.content
       initialState.value.book.title = response.data.book.title
       initialState.value.message = response.data.message
+      initialState.value.book.id = response.data.book.id
+
+      return { success: true, bookId: response.data.book.id }
     } catch (error: unknown) {
       console.error('Error add book from pinia store:', (error as Error).message)
       initialState.value.message = 'Error occur when creating book'

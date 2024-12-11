@@ -52,7 +52,7 @@ const items = [
 </script>
 
 <template>
-    <Sidebar class="bg-white">
+    <Sidebar class="">
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
@@ -80,8 +80,8 @@ const items = [
                 <SidebarGroupLabel>Main</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
-                        <SidebarMenuItem v-for="item in items" :key="item.title">
-                            <SidebarMenuButton asChild class="min-h-9 hover:bg-slate-100">
+                        <SidebarMenuItem v-for="item in items" :key="item.title" class="">
+                            <SidebarMenuButton asChild class="min-h-10">
                                 <RouterLink :to="item.url">
                                     <component :is="item.icon" />
                                     <span>{{ item.title }}</span>

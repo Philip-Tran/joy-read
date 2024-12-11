@@ -59,7 +59,6 @@ const books = [
         <div class="h-full px-4 py-6 lg:px-8 w-full">
             <Tabs default-value="music" class="h-full space-y-6">
                 <div class="space-y-8">
-
                     <div class="space-between flex items-center">
                         <TabsList>
                             <TabsTrigger value="music" class="relative">

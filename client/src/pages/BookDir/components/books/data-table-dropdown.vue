@@ -2,12 +2,11 @@
 import { useBookGeneralStore } from '@/stores/BookGeneralStore';
 
 import { useRouter } from 'vue-router';
+import { toast } from "vue-sonner"
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-vue-next';
 import { Dialog, DialogContent, DialogTrigger, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { toast } from "vue-sonner"
-import { Toaster } from "@/components/ui/sonner"
 
 defineProps<{
     book: {
@@ -45,7 +44,6 @@ const handleDeleteBook = async (id: string) => {
 </script>
 
 <template>
-    <Toaster richColors position="bottom-center" />
     <Dialog>
         <DropdownMenu>
             <DropdownMenuTrigger as-child>

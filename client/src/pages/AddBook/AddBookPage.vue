@@ -5,7 +5,10 @@ import BookWebImportTabContent from './components/BookWebImportTabContent.vue';
 import BookPDFImportTabContent from './components/BookPDFImportTabContent.vue';
 import AppNoSidebarLayout from '@/layouts/type/AppNoSidebarLayout.vue';
 import { useAddBookStore } from '@/stores/BookStore';
+import { toast } from "vue-sonner"
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const bookStore = useAddBookStore()
 
 
@@ -13,8 +16,13 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ChevronLeft } from 'lucide-vue-next';
 
-const handleSubmit = () => {
-    bookStore.addBookDirectFromStore()
+const handleSubmit = async () => {
+    const result = await bookStore.addBookDirectFromStore()
+    if (result?.success) {
+        const bookId = result.bookId
+        toast.info(bookStore.initialState.message)
+        router.push(`/books/${bookId}`)
+    }
 }
 </script>
 

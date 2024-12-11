@@ -1,8 +1,0 @@
--- CreateTable
-CREATE TABLE "SenFlow" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "frontText" TEXT NOT NULL,
-    "backText" TEXT NOT NULL,
-    "bookId" TEXT NOT NULL,
-    CONSTRAINT "SenFlow_bookId_fkey" FOREIGN KEY ("bookId") REFERENCES "Book" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
