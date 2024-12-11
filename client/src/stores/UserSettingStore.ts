@@ -6,6 +6,7 @@ type UserSettingState = {
   interfaceLanguage: string
   learningLanguage: string
   colorMode: 'light' | 'dark'
+  audioPlayer: boolean
 }
 
 const useUserSettingStore = defineStore(
@@ -16,6 +17,7 @@ const useUserSettingStore = defineStore(
       interfaceLanguage: 'en',
       learningLanguage: 'es',
       colorMode: 'light',
+      audioPlayer: true,
     })
 
     const toggleUsePopup = () => {
@@ -27,7 +29,14 @@ const useUserSettingStore = defineStore(
       state.value = settings
     }
 
-    return { state, toggleUsePopup, updateSetting }
+    const updatePopupState = () => {
+      state.value.isUsePopup = !state.value.isUsePopup
+    }
+
+    const toggleAudioPlayer = () => {
+      state.value.audioPlayer = !state.value.audioPlayer
+    }
+    return { state, toggleUsePopup, updateSetting, updatePopupState, toggleAudioPlayer }
   },
   {
     persist: true,

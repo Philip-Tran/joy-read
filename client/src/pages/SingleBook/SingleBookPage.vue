@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useUserSettingStore } from '@/stores/UserSettingStore';
 import { usePopupTranslateStore } from '@/stores/PopupTranslateStore';
 import { axiosMainApi } from '@/api/axios.express';
 import FocusModeLayout from '@/layouts/FocusModeLayout.vue';
@@ -13,6 +14,7 @@ import BookAudioPlayer from './components/BookAudioPlayer.vue';
 import { ref, nextTick, watch, onMounted, onUnmounted, computed } from 'vue';
 import { Minus, AudioLines, ChevronLeft } from 'lucide-vue-next';
 import { useAddBookStore } from '@/stores/BookStore';
+import HiddenSetting from './components/HiddenSetting.vue';
 
 interface Book {
     id: string
@@ -23,6 +25,7 @@ interface Book {
 }
 
 const bookStore = useAddBookStore()
+const settingStore = useUserSettingStore()
 const popupStore = usePopupTranslateStore()
 const { params } = useRoute()
 
@@ -50,6 +53,7 @@ watch(
 )
 
 const handleTextSelection = async () => {
+    if (settingStore.state.isUsePopup == false) return
     const selection: Selection | null = window.getSelection();
 
     if (selection && selection.rangeCount > 0) {
@@ -170,10 +174,7 @@ watch(
 <template>
     <FocusModeLayout class="relative">
         <BookFloatingScrollButton scrollType="auto" />
-        <!-- hidden setting button -->
-        <div class="absolute w-32 h-32 bg-slate-400 top-0 right-0">
-
-        </div>
+        <HiddenSetting />
         <!-- anchor -->
         <!-- <div id="qts-anchor" style="visibility: hidden; position:absolute"></div> -->
         <!-- pop up -->
@@ -221,7 +222,7 @@ watch(
             </div>
 
             <!-- Audio player -->
-            <div v-if="book?.audioUrlSer" class=" fixed bottom-8 left-8">
+            <div v-if="settingStore.state.audioPlayer && book?.audioUrlSer" class=" fixed bottom-8 left-8">
                 <BookAudioPlayer :audioUrlSer="book?.audioUrlSer" />
             </div>
 
