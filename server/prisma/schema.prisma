@@ -45,6 +45,6 @@ model Setting {
   id                Int     @id @default(autoincrement())
   usePopupTranslate Boolean @default(true)
   interfaceLanguage String  @default("en") // Valid values: "en",
-  learningLanguage  String // Valid values: "en", "es", "fr", "vi"
+  learningLanguage  String // Valid values: "en", "es", "fr", "vi", ...
   avatarUrl         String
 }

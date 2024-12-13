@@ -24,7 +24,7 @@ const toggleAudioPlayer = () => {
 </script>
 
 <template>
-    <div class="absolute  top-4 right-4">
+    <div class="fixed top-4 right-4">
         <Popover>
             <PopoverTrigger>
                 <Button variant="ghost" class="bg-transparent text-transparent"> Open setting</Button>

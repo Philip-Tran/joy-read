@@ -4,4 +4,4 @@ npm install @postlight/parser
 
 ### TODO
 
-[] Add reading time function to global store
+[x] Add reading time function to global store
