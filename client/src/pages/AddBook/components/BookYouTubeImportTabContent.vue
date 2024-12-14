@@ -49,8 +49,10 @@ watch(
 
 <template>
     <div>
-        <pre>{{ values }}</pre>
         <form @submit.prevent="onSubmit">
+            <div class="flex space-x-3 items-center w-full mb-5 rounded bg-slate-100 p-4 lg:p-5">
+                <BookFormGetYTTranscript />
+            </div>
             <FormField name="title">
                 <FormItem class="mb-5">
                     <FormLabel>Book Title</FormLabel>
@@ -75,20 +77,17 @@ watch(
                     <FormMessage />
                 </FormItem>
             </FormField>
-            <div class="mt-8">
+            <div class="mt-8" v-if="content">
                 <div class="p-4 border rounded-md">
                     <div class="w-full">
-                        <div class="flex space-x-3 items-center w-full">
-                            <BookFormGetYTTranscript />
-                        </div>
                         <div v-if="content">
                             <BookContentEditorYT v-model="content" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div>
-                <Button type="submit">Submit</Button>
+            <div class="mt-8">
+                <Button type="submit">Add Book</Button>
             </div>
         </form>
     </div>

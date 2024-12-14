@@ -36,10 +36,8 @@ watch(
 </script>
 
 <template>
-    <div>
+    <div class="pb-32">
         <form @submit.prevent="onSubmit" id="addBookForm">
-            <p>{{ values }}</p>
-
             <FormField name="title">
                 <FormItem>
                     <FormLabel>Book Title</FormLabel>
@@ -67,9 +65,6 @@ watch(
                         <span class="text-lg font-semibold">
                             Add book content
                         </span>
-                        <select>
-
-                        </select>
                     </div>
                     <div class="p-4 ">
                         <BookContentEditor v-model="content" />
@@ -77,7 +72,7 @@ watch(
                 </div>
             </div>
             <div>
-                <Button type="submit" class="bg-red-500 !important" variant="default"> Click</Button>
+                <Button type="submit" class="mt-12" variant="default"> Create book</Button>
             </div>
         </form>
     </div>

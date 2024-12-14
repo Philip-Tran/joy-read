@@ -23,7 +23,7 @@ import { ArrowRight } from "lucide-vue-next";
             Reading tool that every
             <span class="text-transparent bg-gradient-to-r from-[#D247BF] to-primary bg-clip-text">Language learner
             </span>
-            deserve
+            deserves
           </h1>
         </div>
 

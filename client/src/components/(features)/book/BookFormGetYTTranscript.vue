@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAddBookStore } from '@/stores/BookStore';
+import { useUserSettingStore } from '@/stores/UserSettingStore';
 
 import { useForm } from 'vee-validate';
 import { ref } from "vue"
@@ -22,6 +23,7 @@ const formSchema = toTypedSchema(
     }),
 );
 
+const settingStore = useUserSettingStore()
 const bookStore = useAddBookStore()
 
 const { defineField, values, handleSubmit } = useForm({
@@ -62,8 +64,8 @@ const languages = ref([
                 </FormField>
             </div>
             <div class="w-1/4 !important">
-                <Label for="youtube-video-link" class="mb-4">Language</Label>
-                <Select v-model="lang" class="">
+                <Label for="youtube-video-link" class="flex mb-2">Language</Label>
+                <Select v-model="lang" class="" :default-value="settingStore.state.learningLanguage">
                     <SelectTrigger>
                         <SelectValue placeholder="Select a language" />
                     </SelectTrigger>
@@ -79,10 +81,8 @@ const languages = ref([
             </div>
         </div>
         <div class="mt-4">
-            <Button type="submit" class="bg-red-700">Get Transcript</Button>
+            <Button type="submit" class="bg-blue-500">Get Transcript</Button>
         </div>
-        <pre>
-            {{ values }}
-        </pre>
+
     </form>
 </template>

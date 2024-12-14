@@ -48,6 +48,27 @@ const useAddBookStore = defineStore('addBook', () => {
     },
   })
 
+  const resetState = () => {
+    initialState.value = {
+      book: {
+        title: '',
+        content: '',
+        audioUrlOnl: undefined,
+        id: '',
+      },
+      message: '',
+      isLoading: false,
+      isSuccess: false,
+      isError: false,
+      stats: {
+        words: null,
+        minutes: null,
+        text: '',
+        readingSpeed: 200,
+      },
+    }
+  }
+
   const addBook = async (book: Book) => {
     try {
       const response = await axiosMainApi.post('/api/book/create', book)
@@ -161,6 +182,7 @@ const useAddBookStore = defineStore('addBook', () => {
     getTextFromWeb,
     addBookDirectFromStore,
     getReadingTimeStat,
+    resetState,
   }
 })
 

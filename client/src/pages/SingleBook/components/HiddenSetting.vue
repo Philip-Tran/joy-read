@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/popover'
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
+import ToggleTheme from '@/pages/LandingPage/components/ToggleTheme.vue';
 
 const settingStore = useUserSettingStore()
 const isAudioVisible = ref(false)
@@ -24,34 +25,52 @@ const toggleAudioPlayer = () => {
 </script>
 
 <template>
-    <div class="absolute  top-4 right-4">
+    <div class="fixed top-4 right-4">
         <Popover>
             <PopoverTrigger>
-                <Button variant="ghost" class="bg-transparent text-transparent"> Open setting</Button>
+                <Button variant="ghost"
+                    class="bg-gray-200 dark:bg-slate-800 text-gray-700 hover:bg-gray-300 focus:ring-2 focus:ring-blue-500">
+                    Open Settings
+                </Button>
             </PopoverTrigger>
-            <PopoverContent>
-                <div class="grid gap-4">
-                    <div class="space-y-2">
-                        <h4 class="font-medium leading-none">
-                            Change setting
+            <PopoverContent class="p-6 bg-white shadow-lg mr-4 rounded-lg border border-gray-200 max-w-sm">
+                <div class="grid gap-6">
+                    <!-- Header Section -->
+                    <!-- <div class="space-y-2">
+                        <h4 class="font-semibold text-lg leading-tight text-gray-900">
+                            Change Settings
                         </h4>
-                        <p class="text-sm text-muted-foreground">
-                            See changes in real time
+                        <p class="text-sm text-gray-600">
+                            See changes in real-time.
                         </p>
-                    </div>
-                    <div class="grid gap-2">
-                        <div class="grid-cols-3 items-center gap-4">
-                            <Label for="width" class="col-span-2">Popup Translation</Label>
-                            <Switch class="col-span-1" @update:checked="togglePopupTranslation">
+                    </div> -->
 
+                    <!-- Options Section -->
+                    <div class="space-y-4">
+                        <!-- Popup Translation Option -->
+                        <div class="grid grid-cols-3 items-center gap-4">
+                            <Label for="popupTranslation" class="col-span-2 text-gray-700 text-sm font-medium">
+                                Popup Translation
+                            </Label>
+                            <Switch id="popupTranslation" class="col-span-1" @update:checked="togglePopupTranslation">
                             </Switch>
                         </div>
-                        <div class="grid-cols-3 items-center gap-4">
-                            <Label for="width" class="col-span-2">Hide audio player</Label>
-                            <Switch class="col-span-1" v-model:checked="isAudioVisible"
-                                @update:checked="toggleAudioPlayer">
 
-                            </Switch>
+                        <!-- Hide Audio Player Option -->
+                        <div class="grid grid-cols-3 items-center gap-4">
+                            <Label for="hideAudioPlayer" class="col-span-2 text-gray-700 text-sm font-medium">
+                                Hide Audio Player
+                            </Label>
+                            <Switch id="hideAudioPlayer" class="col-span-1" v-model:checked="isAudioVisible"
+                                @update:checked="toggleAudioPlayer"></Switch>
+                        </div>
+
+                        <!-- change color mode -->
+                        <div class="grid grid-cols-3 items-center gap-4">
+                            <Label for="hideAudioPlayer" class="col-span-2 text-gray-700 text-sm font-medium">
+                                Change color mode
+                            </Label>
+                            <ToggleTheme />
                         </div>
                     </div>
                 </div>

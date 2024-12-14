@@ -26,40 +26,28 @@
         </swiper>
     </div>
 </template>
-<script>
-// Import Swiper Vue.js components
+
+<script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 
+const modules = [Navigation, Pagination, Scrollbar, A11y];
 
-export default {
-    components: {
-        Swiper,
-        SwiperSlide,
-    },
-    setup() {
-        const onSwiper = (swiper) => {
-            console.log(swiper);
-        };
-        const onSlideChange = () => {
-            console.log('slide change');
-        };
-        return {
-            onSwiper,
-            onSlideChange,
-            modules: [Navigation, Pagination, Scrollbar, A11y],
-
-        };
-    },
+const onSwiper = (swiper) => {
+    console.log(swiper);
 };
+
+const onSlideChange = () => {
+    console.log('slide change');
+};
+
 </script>
+
 
 <style scoped>
 :deep(.swiper-pagination) {

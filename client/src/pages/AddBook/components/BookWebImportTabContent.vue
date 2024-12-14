@@ -53,9 +53,11 @@ watch(
 </script>
 
 <template>
-    <div>
-        <pre>{{ values }}</pre>
+    <div class="mb-32">
         <form @submit.prevent="onSubmit">
+            <div class="flex space-x-3 items-center w-full mb-8 p-4 lg:p-5 rounded bg-slate-100">
+                <BookFormGetTextWebPage />
+            </div>
             <FormField name="title">
                 <FormItem class="mb-5">
                     <FormLabel>Book Title</FormLabel>
@@ -80,20 +82,17 @@ watch(
                     <FormMessage />
                 </FormItem>
             </FormField>
-            <div class="mt-8">
+            <div class="mt-8 " v-if="content">
                 <div class="p-4 border rounded-md">
                     <div class="w-full">
-                        <div class="flex space-x-3 items-center w-full">
-                            <BookFormGetTextWebPage />
-                        </div>
                         <div v-if="content">
                             <BookContentEditorYT v-model="content" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div>
-                <Button type="submit">Submit</Button>
+            <div class="mt-10">
+                <Button type="submit">Add book</Button>
             </div>
         </form>
     </div>

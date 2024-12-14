@@ -63,8 +63,11 @@ const uploadFile = async () => {
 <template>
     <div>
         <form @submit.prevent="onSubmit" id="addBookForm">
-            <p>{{ values }}</p>
-
+            <div class="p-4 bg-slate-100 rounded mb-4 lg:mb-8">
+                <input type="file" ref="inpFile"
+                    class="block w-full text-sm  text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:outline-none" />
+                <Button type="buttom" class="mt-5" @click="uploadFile">Extract text</Button>
+            </div>
             <FormField name="title">
                 <FormItem>
                     <FormLabel>Book Title</FormLabel>
@@ -87,12 +90,6 @@ const uploadFile = async () => {
             </FormField>
 
             <div class="mt-8">
-                <!-- test -->
-                <div>
-                    <input type="file" ref="inpFile" />
-                    <Button type="buttom" @click="uploadFile">Upload</Button>
-
-                </div>
                 <div class="border rounded-lg">
                     <div class="p-4 border-b flex flex-row justify-between">
                         <span class="text-lg font-semibold">
@@ -105,7 +102,7 @@ const uploadFile = async () => {
                 </div>
             </div>
         </form>
-        <div class="fixed px-4 xl:px-12 bottom-0 w-full bg-slate-400 py-3">
+        <div class="px-4 xl:px-12 bottom-0  py-3">
             <Button type="submit" form="addBookForm" class=" left-80 my-2"> Add Book</Button>
         </div>
     </div>

@@ -22,12 +22,14 @@ const handleSubmit = async () => {
         const bookId = result.bookId
         toast.info(bookStore.initialState.message)
         router.push(`/books/${bookId}`)
+        bookStore.resetState()
     }
 }
 </script>
 
 <template>
     <AppNoSidebarLayout>
+        <Button @click="handleSubmit" class="fixed right-4 top-4 lg:hidden ">Add Book</Button>
         <div class="w-full min-h-14 px-4 md:px-5 xl:px-10 py-2 flex items-center md:fixed">
             <RouterLink to="/">
                 <Button variant="secondary" class="hover:bg-slate-200">
@@ -79,24 +81,21 @@ const handleSubmit = async () => {
                             </TabsContent>
                         </Tabs>
                     </div>
-                    <div class="lg:w-1/3 xl:w-1/4">
-                        <div class="xl:fixed">
-                            <span class="text-lg font-md">Preview</span>
+                    <div class="lg:w-1/3 xl:w-1/4 -mt-7 ">
+                        <div class="hidden lg:flex flex-col w-full  lg:fixed">
+                            <span class="text-lg font-md mb-2">Preview</span>
                             <div>
-                                <div class="w-72 h-[360px] flex relative bg-slate-200 mb-4">
+                                <div class="w-64 h-[360px] flex relative bg-slate-200 mb-4 rounded-sm lg:p-5">
                                     <div class="flex items-center justify-center align-middle w-full">
                                         <span class="text-center text-wrap text-lg self-center font-semibold">
                                             {{ bookStore.initialState.book.title }}</span>
                                     </div>
                                 </div>
-                                <div class="flex flex-col">
+                                <div class="flex flex-col w-64">
                                     <p class="text-lg font-medium">{{ bookStore.initialState.book.title }}</p>
                                 </div>
                             </div>
-                            <Button @click="handleSubmit">Add Book</Button>
-                            <div>
-                                <div class="prose" v-html="bookStore.initialState.book.content"></div>
-                            </div>
+                            <Button @click="handleSubmit" class="w-64 mt-12">Add Book</Button>
                         </div>
                     </div>
                 </div>

@@ -33,12 +33,12 @@ const handleFromSubmit = handleSubmit(values => {
 </script>
 
 <template>
-    <form @submit.prevent="handleFromSubmit" class="w-full">
+    <form @submit.prevent="handleFromSubmit" class="w-full flex">
         <div class="flex flex-row gap-4 w-full">
             <div class="w-3/4 !important">
                 <FormField name="videoLink">
                     <FormItem>
-                        <FormLabel>Web Page Url</FormLabel>
+                        <FormLabel>Web Page Link</FormLabel>
                         <FormControl>
                             <Input v-model="webUrl" class="" placeholder="Url" />
                         </FormControl>
@@ -49,14 +49,9 @@ const handleFromSubmit = handleSubmit(values => {
                     </FormItem>
                 </FormField>
             </div>
-            <div class="w-1/4 !important">
+            <div class="w-1/4 h-full flex items-center justify-start">
+                <Button type="submit" class="my-auto w-full bg-blue-500">Get Text</Button>
             </div>
         </div>
-        <div class="mt-4">
-            <Button type="submit" class="bg-red-700">Get Text</Button>
-        </div>
-        <pre>
-            {{ values }}
-        </pre>
     </form>
 </template>
