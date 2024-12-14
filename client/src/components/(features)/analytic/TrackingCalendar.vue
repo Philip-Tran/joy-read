@@ -1,15 +1,6 @@
 <script setup>
 import { CalendarHeatmap } from 'vue3-calendar-heatmap'
 
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
 import { reactive, ref } from 'vue';
 const data = [
     { date: '2024-01-15', count: 12 },
@@ -56,22 +47,23 @@ console.log(selectedDate.value)
         <div class="">
 
         </div>
-        <calendar-heatmap :key="selectedDate" tooltip-unit="stars" :range-color="color" :round="5"
+        <calendar-heatmap :key="selectedDate" tooltip-unit="stars" :range-color="color" :round="2"
             :end-date="selectedDate" :values="data" class="border p-1 lg:p-4 rounded-md" />
     </div>
 </template>
 
 <style scoped>
-/* Use a more general selector or ::v-deep to target the labels */
-::v-deep .vch__month__label {
+:deep(.vch__month__label) {
     font-size: 10px !important;
 }
 
-::v-deep .vch__day__label {
+:deep(.vch__day__label) {
     font-size: 10px !important;
 }
 
-::v-deep .vch__legend {
+
+:deep(.vch__legend) {
+
     display: flex;
     flex-direction: row;
     align-items: center;

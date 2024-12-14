@@ -12821,3 +12821,11 @@
 20241214	15:21:19	0aac6495-ef5f-416a-af31-31ae37e3c9c9	GET	http://localhost:3000	/api/book/
 20241214	15:22:16	9b24b2d1-993a-42af-ac51-cd01091a9f92	GET	http://localhost:3000	/api/book/
 20241214	15:22:18	e9add181-5a52-4ea3-a3b8-8f6ba98437aa	GET	http://localhost:3000	/api/book/
+20241214	15:33:15	e37ef259-1fe5-4748-9477-66380a0cd020	GET	http://localhost:3000	/api/book/
+20241214	15:33:27	3198d223-1887-4227-853c-0434fea40c15	GET	http://localhost:3000	/api/book/cm4nup9oo000013qg5ng357ys
+20241214	15:33:29	be6564a1-9e74-4f0e-9dae-2d2202b186a5	GET	http://localhost:3000	/api/book/
+20241214	15:33:54	bc08003c-ece0-4f2e-89ae-c111f3a513f4	GET	http://localhost:3000	/api/book/
+20241214	15:40:52	ebd6d239-939b-48a1-b337-1b14e088eeea	GET	http://localhost:3000	/api/book/
+20241214	15:41:39	2701b7b5-ee04-4f51-a74a-71c1b02f2e92	GET	http://localhost:3000	/api/book/
+20241214	15:41:43	aaafb168-121d-43e2-8a26-bfe3423d2e88	GET	http://localhost:3000	/api/book/
+20241214	15:57:19	b623b3c2-3564-4a5b-ae35-9ebe82a65c78	GET	http://localhost:3000	/api/book/

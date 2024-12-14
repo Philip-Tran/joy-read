@@ -77,7 +77,7 @@ watch(
                 </div>
             </div>
             <div>
-                <Button type="submit"> Click</Button>
+                <Button type="submit" class="bg-red-500 !important" variant="default"> Click</Button>
             </div>
         </form>
     </div>
