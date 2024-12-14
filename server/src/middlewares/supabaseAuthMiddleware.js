@@ -21,7 +21,7 @@ const authenticateUser = async (req, res, next) => {
       res.status(401).json({ message: "Unauthorized" });
     }
 
-    const authId = data.User.auth_id;
+    const authId = data.user.auth_id;
     const user = await prisma.user.find({
       where: {
         auth_id: authId,
