@@ -1,11 +1,12 @@
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { createAuthUser } from "../../modules/supabase/Auth/createAuthUser.js";
+import { createDbUser } from "../../modules/supabase/Auth/createDbUser.js";
 import dotenv from "dotenv";
 import prisma from "../../../lib/prisma.js";
+import { authLogin } from "../../modules/supabase/Auth/authLogin.js";
 
 dotenv.config();
 
-export const handleLogin = async (req, res) => {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -15,59 +16,25 @@ export const handleLogin = async (req, res) => {
   }
 
   try {
-    // Fetch user from the database using Prisma
-    const user = await prisma.user.findUnique({
-      where: { email },
-    });
+    const data = await authLogin(email, password);
 
-    if (!user) {
-      return res.status(401).send({
-        message: "There is no user registered with this email address",
-      });
-    }
-
-    // Evaluate password
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (isMatch) {
-      // Create JWTs
-      const accessToken = jwt.sign(
-        { email: user.email },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "10d" }
-      );
-      const refreshToken = jwt.sign(
-        { email: user.email },
-        process.env.REFRESH_TOKEN_SECRET,
-        { expiresIn: "30d" }
-      );
-
-      // Update user with the refresh token in the database
-      await prisma.user.update({
-        where: { email: user.email },
-        data: { refreshToken },
-      });
-
-      // Set HTTP-only cookie with the refresh token
-      res.cookie("jwt", refreshToken, {
-        secure: false, // for development
-        httpOnly: true,
-        sameSite: "None",
-        maxAge: 24 * 60 * 60 * 1000,
-      });
-
-      res.json({
-        user: {
-          name: user.name,
-          email: user.email,
-        },
-        accessToken,
-      });
-    } else {
-      res.status(401).json({ message: "Password or email is not correct" }); // Unauthorized
-    }
+    res.status(200).json(data);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const createNewUser = async (req, res) => {
+  try {
+    const { email, password, username } = req.body;
+
+    let authId = await createAuthUser(email, password);
+
+    await createDbUser(authId, email, username);
+    res.status(201).json({ message: "Register user successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
   }
 };

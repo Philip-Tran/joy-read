@@ -21,6 +21,7 @@ import { logger } from "../Logs/AppLog.js";
 import bookRouter from "./routes/book.route.js";
 import userRoutes from "./routes/user.route.js";
 import videoRouter from "./routes/video.route.js";
+import authRoutes from "./routes/auth.route.js";
 
 /*
     |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ app.options("*", cors()); // Preflight requests
 app.use("/api/users", userRoutes);
 app.use("/api/book", bookRouter);
 app.use("/api/video", videoRouter);
+app.use("/auth", authRoutes);
 //-----------test pdf extract----------
 // import { PDFExtract } from "pdf.js-extract";
 

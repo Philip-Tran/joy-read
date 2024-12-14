@@ -10,8 +10,6 @@ import {
   getTextFromWeb,
 } from "../controllers/getText.Controller.js";
 
-import { verifyJWT } from "../middlewares/Auth/verifyJWT.js";
-
 const router = express.Router();
 import senFlowRouter from "../routes/senFlow.route.js";
 
