@@ -13,8 +13,8 @@ import { RouterLink } from 'vue-router';
 </script>
 
 <template>
-    <div class="flex flex-row py-2 px-4 items-center space-x-4 border-b w-full max-h-[70px]">
-        <div class="flex items-center justify-between">
+    <div class="flex flex-row py-2 px-4 items-center justify-between space-x-4 border-b w-full max-h-[70px]">
+        <div class="flex items-center justify-between space-x-4">
             <SidebarTrigger />
             <Breadcrumb>
                 <BreadcrumbList>
@@ -26,12 +26,8 @@ import { RouterLink } from 'vue-router';
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
                         <RouterLInk to="/books">
-                            Reading
+                            Books
                         </RouterLInk>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                        <BreadcrumbPage>Books</BreadcrumbPage>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>

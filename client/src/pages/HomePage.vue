@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import TrackingCalendar from "@/components/(features)/analytic/TrackingCalendar.vue"
+import { useBookGeneralStore } from '@/stores/BookGeneralStore';
 import BookCard from '@/components/(features)/book/BookCard.vue';
 import AppHasSidebarLayout from '@/layouts/type/AppHasSidebarLayout.vue';
 
+import { useQuery } from '@tanstack/vue-query';
 import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
@@ -13,44 +16,13 @@ import {
 } from '@/components/ui/tabs'
 import { CirclePlus } from 'lucide-vue-next';
 
-const books = [
-    {
-        title: "The Great Gatsby",
-        author: "F. Scott Fitzgerald",
-        genre: "Classic",
-        year: 1925,
-        rating: 4.5,
-    },
-    {
-        title: "To Kill a Mockingbird",
-        author: "Harper Lee",
-        genre: "Fiction",
-        year: 1960,
-        rating: 4.8,
-    },
-    {
-        title: "1984",
-        author: "George Orwell",
-        genre: "Dystopian",
-        year: 1949,
-        rating: 4.7,
-    },
-    {
-        title: "Moby-Dick",
-        author: "Herman Melville",
-        genre: "Adventure",
-        year: 1851,
-        rating: 3.9,
-    },
-    {
-        title: "Pride and Prejudice",
-        author: "Jane Austen",
-        genre: "Romance",
-        year: 1813,
-        rating: 4.6,
-    }
+const bookStore = useBookGeneralStore()
 
-];
+const { isLoading, data: books } = useQuery({
+    queryKey: ["books"],
+    queryFn: bookStore.getAllBook
+})
+
 
 </script>
 
@@ -110,14 +82,17 @@ const books = [
                         </p>
                     </div>
                     <Separator class="my-4" />
-                    <div class="relative">
-                        <ScrollArea>
+                    <div class="relative flex lg:flex-row w-full">
+                        <ScrollArea class="w-1/2">
                             <div class="flex space-x-4 pb-4">
-                                <AlbumArtwork v-for="book in books" :key="book.title" :book="book" class="w-[150px]"
+                                <BookCard v-for="book in books" :key="book.title" :book="book" class="w-[150px]"
                                     aspect-ratio="square" :width="150" :height="150" />
                             </div>
                             <ScrollBar orientation="horizontal" />
                         </ScrollArea>
+                        <div class="w-1/2">
+                            <TrackingCalendar />
+                        </div>
                     </div>
                 </TabsContent>
                 <TabsContent value="podcasts" class="h-full flex-col border-none p-0 data-[state=active]:flex">
