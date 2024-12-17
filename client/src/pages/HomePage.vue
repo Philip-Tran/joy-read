@@ -2,7 +2,7 @@
 import TrackingCalendar from "@/components/(features)/analytic/TrackingCalendar.vue"
 import { useBookGeneralStore } from '@/stores/BookGeneralStore';
 import BookCard from '@/components/(features)/book/BookCard.vue';
-import AppHasSidebarLayout from '@/layouts/type/AppHasSidebarLayout.vue';
+import AppHasSidebarLayout from '@/layouts/AppHasSidebarLayout.vue';
 
 import { useQuery } from '@tanstack/vue-query';
 import { Button } from '@/components/ui/button';

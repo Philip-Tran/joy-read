@@ -16,6 +16,7 @@
     "@postlight/parser": "^2.2.3",
     "@primevue/themes": "^4.2.4",
     "@selemondev/vue3-marquee": "^0.0.8",
+    "@supabase/supabase-js": "^2.47.8",
     "@tailwindcss/typography": "^0.5.15",
     "@tanstack/vue-query": "^5.62.3",
     "@tanstack/vue-query-devtools": "^5.62.3",

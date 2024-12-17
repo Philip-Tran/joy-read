@@ -3,8 +3,9 @@ import BookManualImportTabContent from '@/pages/AddBook/components/BookManualImp
 import BookYouTubeImportTabContent from './components/BookYouTubeImportTabContent.vue';
 import BookWebImportTabContent from './components/BookWebImportTabContent.vue';
 import BookPDFImportTabContent from './components/BookPDFImportTabContent.vue';
-import AppNoSidebarLayout from '@/layouts/type/AppNoSidebarLayout.vue';
+import AppNoSidebarLayout from '@/layouts/AppNoSidebarLayout.vue';
 import { useAddBookStore } from '@/stores/BookStore';
+
 import { toast } from "vue-sonner"
 import { useRouter } from 'vue-router';
 

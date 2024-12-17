@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUserSettingStore } from "@/stores/UserSettingStore"
-import AppHasSidebarLayout from "@/layouts/type/AppHasSideBarLayout.vue"
+import AppHasSidebarLayout from '@/layouts/AppHasSidebarLayout.vue';
 import { Button } from '@/components/ui/button'
 import {
     FormControl,

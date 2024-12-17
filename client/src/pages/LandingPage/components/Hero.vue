@@ -5,6 +5,21 @@ const mode = useColorMode();
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-vue-next";
+
+import { supabaseCli } from "@/lib/supabase.js"
+
+import { ref, onMounted, onBeforeMount } from 'vue';
+
+const user2 = ref()
+onBeforeMount(async () => {
+  try {
+    const { data: { user } } = await supabaseCli.auth.getUser()
+    console.log(user)
+    user2.value = user
+  } catch (error) {
+
+  }
+})
 </script>
 
 <template>
@@ -16,6 +31,9 @@ import { ArrowRight } from "lucide-vue-next";
             <Badge>New</Badge>
           </span>
           <span> Design is out now! </span>
+          <div>
+            <!-- {{ user }} -->
+          </div>
         </Badge>
 
         <div class="max-w-screen-md mx-auto text-center text-5xl md:text-6xl font-bold">
@@ -39,7 +57,12 @@ import { ArrowRight } from "lucide-vue-next";
               <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
           </RouterLink>
-          <RouterLink to="/login">
+          <RouterLink v-if="user2" to="/">
+            <Button variant="secondary" class="font-bold">
+              DashBoard
+            </Button>
+          </RouterLink>
+          <RouterLink v-else to="/login">
             <Button variant="ghost" class="font-bold">
               Login
             </Button>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppHasSidebarLayout from '@/layouts/type/AppHasSidebarLayout.vue';
+import AppHasSidebarLayout from '@/layouts/AppHasSidebarLayout.vue';
 import BookCard from '@/components/(features)/book/BookCard.vue';
 import { useBookGeneralStore } from '@/stores/BookGeneralStore';
 

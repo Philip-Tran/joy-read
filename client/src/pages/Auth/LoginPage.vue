@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/AuthStore/AuthStore";
 
+import { use } from "@su"
 import { toTypedSchema } from "@vee-validate/zod"
 import { useForm } from 'vee-validate';
 import { z } from 'zod' // Make sure to import zod
@@ -9,9 +10,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useRouter } from "vue-router";
 import { useToast } from 'primevue/usetoast';
+import { onMounted } from "vue"
 
 import Toast from 'primevue/toast';
-import AuthLayout from "@/layouts/type/AuthLayout.vue";
+import AuthLayout from "@/layouts/AuthLayout.vue";
 
 const authStore = useAuthStore()
 
@@ -61,6 +63,26 @@ const onSubmit = handleSubmit((values) => {
         life: 3000
     });
 });
+
+const handleGoogleLogin = async () => {
+    try {
+        const { data, error } = await supabaseCli.auth.signInWithOAuth({
+            provider: 'google',
+        });
+        if (error) throw error;
+        console.log('Redirecting to Google for login:', data);
+    } catch (error) {
+        console.error('Login failed:', error.message);
+    }
+}
+
+import { supabaseCli } from "@/lib/supabase.js"
+
+import { ref, onMounted } from 'vue';
+
+// const { data: { user } } = await supabaseCli.auth.getUser()
+// console.log(user)
+
 </script>
 
 <template>
@@ -73,6 +95,9 @@ const onSubmit = handleSubmit((values) => {
                         <h1 class="text-3xl font-bold">
                             Login
                         </h1>
+                        <!-- <div>
+                            {{ user }}
+                        </div> -->
                         <p class="text-balance text-muted-foreground">
                             Enter your email below to login to your account
                         </p>
@@ -102,6 +127,9 @@ const onSubmit = handleSubmit((values) => {
                             </Button>
                         </div>
                     </form>
+                    <div>
+                        <Button @click="handleGoogleLogin" class="w-full" variant="outline">Login With Google</Button>
+                    </div>
                     <div class="mt-6 text-center text-sm">
                         Don't have an account?
                         <RouterLink to="/sign-up" class="underline">

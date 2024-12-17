@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/AuthStore/AuthStore"
-import AuthLayout from "@/layouts/type/AuthLayout.vue"
+import AuthLayout from "@/layouts/AuthLayout.vue"
 
 import { z } from 'zod'
 import { toTypedSchema } from "@vee-validate/zod"
@@ -9,9 +9,11 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useToast } from 'primevue/usetoast'
 import { useRouter } from 'vue-router'
 import SignUpSwiper from "./components/SignUpSwiper.vue"
+import { Eye, EyeOff } from 'lucide-vue-next'
+import { ref } from "vue"
+import { toast } from "vue-sonner"
 
 // Zod validation schema
 const signUpSchema = z.object({
@@ -24,7 +26,6 @@ const signUpSchema = z.object({
 })
 
 const authStore = useAuthStore()
-const toast = useToast()
 const router = useRouter()
 
 const { values, defineField, errors, handleSubmit } = useForm({
@@ -38,33 +39,31 @@ const [password, passwordProps] = defineField('password')
 const handleFormSubmit = handleSubmit(async (values) => {
     try {
         const result = await authStore.signUpUser(values)
-        toast.add({
-            severity: 'success',
-            summary: 'Registration',
-            detail: 'Account created successfully',
-            life: 3000
-        })
         if (result?.success) {
+            toast.success("Registration", {
+                description: "Sign Up successfully"
+            })
             router.push('/login')
         }
         // Redirect to lo or dashboard
     } catch (error) {
-        toast.add({
-            severity: 'error',
-            summary: 'Registration Failed',
-            detail: error instanceof Error ? error.message : 'An error occurred during registration',
-            life: 3000
+        toast.error("Registration", {
+            description: "Error occurs. Please try again"
         })
     }
 }, (invalidSubmit) => {
     // Handle invalid submit
-    toast.add({
-        severity: 'warn',
-        summary: 'Validation Error',
-        detail: 'Please check your inputs',
-        life: 3000
+    toast.error("Registration", {
+        description: "Error occurs. Please try again"
     })
 })
+
+// show / hide password in password field
+const showPassword = ref(false)
+
+const togglePasswordVisibility = () => {
+    showPassword.value = !showPassword.value
+}
 </script>
 
 <template>
@@ -113,8 +112,16 @@ const handleFormSubmit = handleSubmit(async (values) => {
                                         </div>
                                         <div class="grid gap-2">
                                             <Label for="password">Password</Label>
-                                            <Input v-bind="passwordProps" v-model="password" id="password"
-                                                type="password" :class="{ 'border-red-500': errors.password }" />
+                                            <div class="relative">
+                                                <Input v-bind="passwordProps" v-model="password" id="password"
+                                                    :type="showPassword ? 'text' : 'password'"
+                                                    :class="{ 'border-red-500': errors.password }" />
+                                                <button type="button" @click="togglePasswordVisibility"
+                                                    class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                                                    <Eye v-if="!showPassword" class="w-5 h-5" />
+                                                    <EyeOff v-else class="w-5 h-5" />
+                                                </button>
+                                            </div>
                                             <span v-if="errors.password" class="text-red-500 text-sm">
                                                 {{ errors.password }}
                                             </span>
