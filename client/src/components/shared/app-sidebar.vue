@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useUserStore } from "@/stores/UserStore";
+
 import { RouterLink } from "vue-router";
 import { Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-vue-next"
 
@@ -49,6 +51,14 @@ const items = [
         icon: Settings,
     },
 ]
+
+const userStore = useUserStore()
+const handleLogout = async () => {
+    const res = await userStore.logOut()
+    if (res?.success) {
+        console.log(res.message)
+    }
+}
 </script>
 
 <template>
@@ -69,6 +79,9 @@ const items = [
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                                 <span>Acme Corp.</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Button @click="handleLogout"> Log out</Button>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

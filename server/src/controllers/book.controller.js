@@ -73,7 +73,13 @@ const createBook = async (req, res) => {
 
 const getAllBooks = async (req, res) => {
   try {
+    const { userId } = req.params;
+    console.log("userId here", userId);
+    if (!userId) return res.status(400).json({ message: "Unauthorized" });
     const books = await prisma.book.findMany({
+      where: {
+        userId,
+      },
       take: 4,
       orderBy: {
         createdAt: "desc",
@@ -93,10 +99,11 @@ const getAllBooks = async (req, res) => {
 
 const getSingleBook = async (req, res) => {
   try {
-    const bookId = req.params.id;
+    const { bookId, userId } = req.params;
     const book = await prisma.book.findUnique({
       where: {
         id: bookId,
+        userId,
       },
     });
 

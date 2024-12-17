@@ -1,7 +1,8 @@
 import { axiosMainApi } from '@/api/axios.express'
 
 import { defineStore } from 'pinia'
-import { type Ref, ref } from 'vue'
+import { type Ref, ref, useId } from 'vue'
+import { useUserStore } from './UserStore'
 
 interface Book {
   title: string
@@ -29,8 +30,10 @@ const useBookGeneralStore = defineStore('book', () => {
 
   const getAllBook = async () => {
     try {
+      const userStore = useUserStore()
+      const userId = await userStore.getId()
       initialState.value.isLoading = true
-      const response = await axiosMainApi.get('/api/book/')
+      const response = await axiosMainApi.get(`/api/book/${userId}`)
       if (!response) {
         console.log('Error fetching books from database')
       }

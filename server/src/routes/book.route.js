@@ -19,8 +19,8 @@ import senFlowRouter from "../routes/senFlow.route.js";
     |--------------------------------------------------------------------------
     */
 router.post("/create", createBook);
-router.get("/", getAllBooks);
-router.get("/:id", getSingleBook);
+router.get("/:userId", getAllBooks);
+router.get("/:userId/:bookId", getSingleBook);
 router.delete("/:id", deleteBook);
 router.post("/get-pdf-text", getTextFromPdf);
 router.post("/get-web-text", getTextFromWeb);

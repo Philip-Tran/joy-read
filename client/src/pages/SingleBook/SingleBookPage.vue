@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useUserStore } from '@/stores/UserStore';
 import { useUserSettingStore } from '@/stores/UserSettingStore';
 import { usePopupTranslateStore } from '@/stores/PopupTranslateStore';
 import { axiosMainApi } from '@/api/axios.express';
@@ -11,7 +12,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import BookAudioPlayer from './components/BookAudioPlayer.vue';
-import { ref, nextTick, watch, onMounted, onUnmounted, computed } from 'vue';
+import { ref, nextTick, watch, onMounted, onUnmounted, computed, onBeforeMount } from 'vue';
 import { Minus, AudioLines, ChevronLeft } from 'lucide-vue-next';
 import { useAddBookStore } from '@/stores/BookStore';
 import HiddenSetting from './components/HiddenSetting.vue';
@@ -24,13 +25,20 @@ interface Book {
     audioUrlSer: string
 }
 
+const userStore = useUserStore()
 const bookStore = useAddBookStore()
 const settingStore = useUserSettingStore()
 const popupStore = usePopupTranslateStore()
 const { params } = useRoute()
 
+const userId = ref<string>()
+onBeforeMount(async () => {
+    const id = await userStore.getId()
+    if (id) userId.value = id
+})
+
 const getBook = async (): Promise<Book> => {
-    const response = await axiosMainApi.get(`/api/book/${params.bookId}`)
+    const response = await axiosMainApi.get(`/api/book/${userId.value}/${params.bookId}`)
     return response.data
 }
 
@@ -177,6 +185,7 @@ watch(
         <HiddenSetting />
         <!-- anchor -->
         <!-- <div id="qts-anchor" style="visibility: hidden; position:absolute"></div> -->
+
         <!-- pop up -->
         <div ref="popupDiv" id="popup" style="visibility: hidden;"
             class="popup z-50 min-h-24 max-h-45 min-w-60 max-w-96 rounded-md border absolute bg-slate-50 transition-transform duration-300 ease-out">
@@ -228,8 +237,10 @@ watch(
 
             <!-- Main -->
             <div class="py-12 font-garamond min-h-screen">
-                <div v-if="isLoading">
-                    <Skeleton height="200px" />
+                <div v-if="isLoading"
+                    class="bg-white min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-14 self-center lg:mx-auto lg:max-w-[800px]">
+                    <Skeleton class="w-[700px] h-20 mb-6" />
+                    <Skeleton class="w-[700px] h-20" />
                 </div>
                 <div v-else
                     class="bg-[#f8f9f8] min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-14 self-center lg:mx-auto lg:max-w-[800px]">

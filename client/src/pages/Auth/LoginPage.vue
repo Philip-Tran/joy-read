@@ -70,7 +70,7 @@ const handleGoogleLogin = async () => {
         });
         if (error) throw error;
         console.log('Redirecting to Google for login:', data);
-    } catch (error) {
+    } catch (error: unknown) {
         console.error('Login failed:', error.message);
     }
 }

@@ -35,5 +35,16 @@ export const useUserStore = defineStore('user', () => {
       console.error('Auth Error: ', (error as Error).message)
     }
   }
-  return { state, getId, logOut }
+
+  const isLoggedIn = async () => {
+    try {
+      const res = await supabaseCli.auth.getUser()
+      if (res.data.user) {
+        return true
+      } else return false
+    } catch (error) {
+      console.error('Auth Error: ', (error as Error).message)
+    }
+  }
+  return { state, getId, logOut, isLoggedIn }
 })

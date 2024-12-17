@@ -20,7 +20,10 @@ onBeforeMount(async () => {
 
   }
 })
+import { useUserStore } from "@/stores/UserStore";
+const userStore = useUserStore()
 
+console.log("ejrierje: ", await userStore.isLoggedIn())
 </script>
 
 <template>
