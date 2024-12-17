@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-vue-next";
 
-import { supabaseCli } from "@/lib/supabase.js"
+import { supabaseCli } from "@/lib/supabase"
 
 import { ref, onMounted, onBeforeMount } from 'vue';
 
@@ -20,6 +20,7 @@ onBeforeMount(async () => {
 
   }
 })
+
 </script>
 
 <template>
@@ -32,7 +33,7 @@ onBeforeMount(async () => {
           </span>
           <span> Design is out now! </span>
           <div>
-            <!-- {{ user }} -->
+            {{ user2.id }}
           </div>
         </Badge>
 

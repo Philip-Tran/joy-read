@@ -24,6 +24,7 @@ model user {
 
 model Book {
   id          String    @id @default(cuid())
+  userId      String    @db.Uuid
   title       String
   content     String
   audioUrlSer String?

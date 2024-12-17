@@ -76,7 +76,7 @@ const handleGoogleLogin = async () => {
     }
 }
 
-import { supabaseCli } from "@/lib/supabase.js"
+import { supabaseCli } from "@/lib/supabase"
 
 import { ref, onMounted } from 'vue';
 

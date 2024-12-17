@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 const createBook = async (req, res) => {
   try {
     const book = req.body;
-    const { title, content, audioUrlOnl } = book;
+    const { title, content, audioUrlOnl, userId } = book;
 
     if (!title || !content) {
       return res
@@ -52,6 +52,7 @@ const createBook = async (req, res) => {
       // Create the book in the database, including the audioUrlSer if audioUrlOnl is provided
       const newBook = await prisma.book.create({
         data: {
+          userId,
           title,
           content,
           audioUrlOnl,

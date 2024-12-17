@@ -1,8 +1,10 @@
-import { ref, type Ref } from 'vue'
+import { useUserStore } from './UserStore'
+
 import { axiosMainApi } from '@/api/axios.express'
 import { axiosDjango } from '@/api/axios.django'
 import { readingTime } from 'reading-time-estimator'
 
+import { ref, type Ref } from 'vue'
 import { defineStore } from 'pinia'
 
 interface Book {
@@ -71,7 +73,11 @@ const useAddBookStore = defineStore('addBook', () => {
 
   const addBook = async (book: Book) => {
     try {
-      const response = await axiosMainApi.post('/api/book/create', book)
+      const userStore = useUserStore()
+      const userId = await userStore.getId()
+      console.log(userId)
+
+      const response = await axiosMainApi.post('/api/book/create', { ...book, userId })
       console.log('Post book')
       if (!response) {
         initialState.value.message = 'Error creating book'
@@ -93,9 +99,11 @@ const useAddBookStore = defineStore('addBook', () => {
 
   const addBookDirectFromStore = async () => {
     try {
+      const userStore = useUserStore()
+      const userId = await userStore.getId()
       const book = initialState.value.book
       initialState.value.isLoading = true
-      const response = await axiosMainApi.post('/api/book/create', book)
+      const response = await axiosMainApi.post('/api/book/create', { ...book, userId })
       if (!response) {
         initialState.value.isError = true
         initialState.value.message = 'Error occur when creating book'
