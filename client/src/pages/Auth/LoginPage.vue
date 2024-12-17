@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/AuthStore/AuthStore";
 
-import { use } from "@su"
 import { toTypedSchema } from "@vee-validate/zod"
 import { useForm } from 'vee-validate';
 import { z } from 'zod' // Make sure to import zod
@@ -10,10 +9,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useRouter } from "vue-router";
 import { useToast } from 'primevue/usetoast';
-import { onMounted } from "vue"
 
 import Toast from 'primevue/toast';
 import AuthLayout from "@/layouts/AuthLayout.vue";
+import { supabaseCli } from "@/lib/supabase";
 
 const authStore = useAuthStore()
 
@@ -75,13 +74,6 @@ const handleGoogleLogin = async () => {
         console.error('Login failed:', error.message);
     }
 }
-
-import { supabaseCli } from "@/lib/supabase"
-
-import { ref, onMounted } from 'vue';
-
-// const { data: { user } } = await supabaseCli.auth.getUser()
-// console.log(user)
 
 </script>
 
