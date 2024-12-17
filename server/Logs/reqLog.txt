@@ -13297,3 +13297,13 @@
 20241217	20:21:42	c6da0c20-8344-4a49-ab79-7f1651aa3f2b	GET	http://localhost:3000	/api/book/undefined/cm4sevgib0004mjo8rui929bw
 20241217	20:21:43	4473ec36-a2ba-4f2e-8b6e-3e24cc1a4448	GET	http://localhost:3000	/api/book/9975a485-2ca3-4da8-87bd-5933f817f8ce/cm4sevgib0004mjo8rui929bw
 20241217	20:21:44	adade50a-1659-46cd-80cc-cd846be5e1a1	GET	http://localhost:3000	/api/book/9975a485-2ca3-4da8-87bd-5933f817f8ce
+20241217	20:22:30	34f09436-1d77-47c1-8085-317c08f43015	GET	http://localhost:3000	/api/book/9975a485-2ca3-4da8-87bd-5933f817f8ce
+20241217	20:22:58	25614483-e566-4f6a-8fce-5d9461f49c7a	GET	http://localhost:3000	/api/book/undefined/cm4sffyxp0000wxwm55n4wo7t
+20241217	20:22:59	90795338-477d-4001-a4af-e36517af96db	GET	http://localhost:3000	/api/book/9975a485-2ca3-4da8-87bd-5933f817f8ce/cm4sffyxp0000wxwm55n4wo7t
+20241217	20:23:07	5cfd51da-ec9d-4b6f-97ea-7a0d49db4c34	GET	http://localhost:3000	/api/book/9975a485-2ca3-4da8-87bd-5933f817f8ce
+20241217	20:33:22	daa9ab86-270a-4d24-bf9e-dea466b8f08d	GET	http://localhost:4173	/api/book/null
+20241217	20:33:45	61fe2ac2-d8ae-4076-b462-4a850fd535f8	GET	http://localhost:4173	/api/book/896d0c44-397b-469d-b701-dded84b7d2de
+20241217	20:33:51	6ae420e0-2a91-48da-821f-93d76bfe9343	OPTIONS	http://localhost:4173	/api/book/create
+20241217	20:33:52	d502b1e5-14d8-4095-8f7b-c04561fb68d5	OPTIONS	http://localhost:4173	/api/book/create
+20241217	20:33:57	4aadcbd4-b8ef-4e7f-81d6-900247d9f970	OPTIONS	http://localhost:4173	/api/book/create
+20241217	20:33:59	f6e937b0-903b-45fa-976f-c102386c3a06	GET	http://localhost:4173	/api/book/896d0c44-397b-469d-b701-dded84b7d2de

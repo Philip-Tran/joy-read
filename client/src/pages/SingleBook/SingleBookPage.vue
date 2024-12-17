@@ -108,7 +108,7 @@ const clearPreviousSelection = (event: MouseEvent): void => {
 
     const popupEl: HTMLElement | null = document.querySelector("#popup");
     if (popupEl && popupEl.contains(event.target as Node)) {
-        return; // Ignore clicks inside the popup
+        return;
     }
     if (selectionTimeout) {
         clearTimeout(selectionTimeout);
