@@ -50,50 +50,10 @@ app.use("/api/users", userRoutes);
 app.use("/api/book", bookRouter);
 app.use("/api/video", videoRouter);
 app.use("/auth", authRoutes);
-//-----------test pdf extract----------
-// import { PDFExtract } from "pdf.js-extract";
 
-// const pdfExtract = new PDFExtract();
-// const options = { normalizeWhiteSpace: false, disableCombineTextItems: true };
-
-// pdfExtract.extract("sample.pdf", options, (err, data) => {
-//   if (err) return console.log(err);
-//   console.log(data);
-//   console.log(data.pages[0].content[0].str);
-
-//   // Iterate over pages and content to print text
-//   data.pages.forEach((page, pageIndex) => {
-//     console.log(`Page ${pageIndex + 1}:`);
-//     page.content.forEach((item) => {
-//       console.log(item.str); // Print the extracted text
-//     });
-//   });
-// });
-
-//-----------test fetch transcript----------
-// async function fetchTranslatedTranscript(videoId, langCode) {
-//   try {
-//     const transcript = await YoutubeTranscript.fetchTranscript(videoId, {
-//       lang: langCode,
-//     });
-//     console.log(transcript);
-//   } catch (error) {
-//     console.error("Error fetching translated transcript:", error);
-//   }
-// }
-
-// fetchTranslatedTranscript("s5QOWbFZnZ8", "en");
-
-// const ytTranscript = new YtTranscript({ videoId: "dQw4w9WgXcQ" });
-
-// ytTranscript.listAllTranscripts().then((transcript) => {
-//   console.log(transcript);
-// });
-
-// ytTranscript.getTranscript().then((transcript) => {
-//   console.log(transcript);
-// });
-
+app.get("/", (req, res) => {
+  res.send("Hello There");
+});
 /* -------------------Bootrap------------------ */
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);

@@ -36,10 +36,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js && prisma generate"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "language learning",
+    "reading in second language"
+  ],
+  "author": "Tran Trong Quyet",
   "license": "ISC",
-  "description": ""
+  "description": "Reading Tool for progressive language learner"
 }
