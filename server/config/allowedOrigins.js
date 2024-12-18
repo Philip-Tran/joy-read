@@ -1,5 +1,7 @@
+const productionUrl = process.env.CLIENT_URL;
+
 const allowedOrigins = [
-  "https://www.mysite.com",
+  productionUrl,
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:5173",
