@@ -7,8 +7,6 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-// import { YoutubeTranscript } from "youtube-transcript";
-// import { YtTranscript } from "yt-transcript";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,6 +53,9 @@ app.get("/", (req, res) => {
   res.send("Hello There");
 });
 /* -------------------Bootrap------------------ */
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port: ${PORT}`);
+// });
+
+// Export the app for Vercel to handle the function
+export default app;
