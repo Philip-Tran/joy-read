@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-vue-next";
 </script>
 
 <template>
-    <RouterLink to="/home">
+    <RouterLink to="/">
         <Button class="absolute top-4 right-4" variant="ghost">
             Home
             <ChevronRight />

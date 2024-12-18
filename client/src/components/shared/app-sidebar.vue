@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useUserStore } from "@/stores/UserStore";
 
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import { Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-vue-next"
 
 import {
@@ -26,8 +26,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const items = [
     {
-        title: "Home",
-        url: "/",
+        title: "Dashboard",
+        url: "/app",
         icon: Home,
     },
     {
@@ -51,12 +51,13 @@ const items = [
         icon: Settings,
     },
 ]
-
+const router = useRouter()
 const userStore = useUserStore()
 const handleLogout = async () => {
     const res = await userStore.logOut()
     if (res?.success) {
         console.log(res.message)
+        router.push('/login')
     }
 }
 </script>

@@ -85,7 +85,7 @@ const isOpen = ref<boolean>(false);
     'shadow-dark': mode === 'dark',
     'w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto sticky border z-40 rounded-2xl flex justify-between items-center p-2 bg-card shadow-md': true,
   }">
-    <RouterLink to="/home" class="font-bold text-lg flex items-center">
+    <RouterLink to="/" class="font-bold text-lg flex items-center">
       <ChevronsDown
         class="bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg w-9 h-9 mr-2 border text-white" />
       Joy Read

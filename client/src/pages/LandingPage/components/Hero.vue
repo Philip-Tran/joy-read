@@ -1,29 +1,24 @@
 <script setup lang="ts">
+import { useUserStore } from "@/stores/UserStore";
+
 import { useColorMode } from "@vueuse/core";
 const mode = useColorMode();
 
+import { ref, onMounted } from 'vue';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-vue-next";
 
-import { supabaseCli } from "@/lib/supabase"
-
-import { ref, onMounted, onBeforeMount } from 'vue';
-
-const user2 = ref()
-onBeforeMount(async () => {
+const { isLoggedIn } = useUserStore()
+const user = ref<boolean | undefined>(false)
+onMounted(async () => {
   try {
-    const { data: { user } } = await supabaseCli.auth.getUser()
-    console.log(user)
-    user2.value = user
+    const isLogged = await isLoggedIn()
+    user.value = isLogged
   } catch (error) {
-
+    console.error(error)
   }
 })
-import { useUserStore } from "@/stores/UserStore";
-const userStore = useUserStore()
-
-console.log("ejrierje: ", await userStore.isLoggedIn())
 </script>
 
 <template>
@@ -35,9 +30,6 @@ console.log("ejrierje: ", await userStore.isLoggedIn())
             <Badge>New</Badge>
           </span>
           <span> Design is out now! </span>
-          <div>
-            {{ user2.id }}
-          </div>
         </Badge>
 
         <div class="max-w-screen-md mx-auto text-center text-5xl md:text-6xl font-bold">
@@ -55,13 +47,13 @@ console.log("ejrierje: ", await userStore.isLoggedIn())
         </p>
 
         <div class="space-y-4 md:space-y-0 md:space-x-4">
-          <RouterLink to="/sign-up">
+          <RouterLink :to="user ? '/app' : '/sign-up'">
             <Button class="font-bold group/arrow">
               Get Started
               <ArrowRight class="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
           </RouterLink>
-          <RouterLink v-if="user2" to="/">
+          <RouterLink v-if="user" to="/app">
             <Button variant="secondary" class="font-bold">
               DashBoard
             </Button>
@@ -73,7 +65,6 @@ console.log("ejrierje: ", await userStore.isLoggedIn())
           </RouterLink>
         </div>
       </div>
-
       <div class="relative group mt-14">
         <!-- gradient shadow -->
         <div

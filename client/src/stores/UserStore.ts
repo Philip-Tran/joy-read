@@ -1,7 +1,8 @@
+import { supabaseCli } from '@/lib/supabase'
+import type { AuthError } from '@supabase/supabase-js'
+
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-
-import { supabaseCli } from '@/lib/supabase'
 
 export const useUserStore = defineStore('user', () => {
   const state = ref({
@@ -46,5 +47,6 @@ export const useUserStore = defineStore('user', () => {
       console.error('Auth Error: ', (error as Error).message)
     }
   }
+
   return { state, getId, logOut, isLoggedIn }
 })

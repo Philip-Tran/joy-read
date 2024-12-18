@@ -7,6 +7,7 @@ import { toTypedSchema } from "@vee-validate/zod"
 import { useForm } from 'vee-validate'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Separator } from "@/components/ui/separator"
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useRouter } from 'vue-router'
@@ -60,9 +61,13 @@ const handleFormSubmit = handleSubmit(async (values) => {
 
 // show / hide password in password field
 const showPassword = ref(false)
-
 const togglePasswordVisibility = () => {
     showPassword.value = !showPassword.value
+}
+
+const { logInWithOAuth } = useAuthStore()
+const handleLogIn = async () => {
+    await logInWithOAuth("google", "/app")
 }
 </script>
 
@@ -131,6 +136,10 @@ const togglePasswordVisibility = () => {
                                         </Button>
                                     </div>
                                 </form>
+                                <Separator class="mt-6 mb-5" />
+                                <Button @click="handleLogIn" variant="outline" class="w-full">
+                                    Login with Google
+                                </Button>
                                 <div class="mt-4 text-center text-sm">
                                     Already have an account?
                                     <RouterLink to="/login" class="underline">

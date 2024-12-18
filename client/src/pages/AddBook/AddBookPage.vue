@@ -32,10 +32,10 @@ const handleSubmit = async () => {
     <AppNoSidebarLayout>
         <Button @click="handleSubmit" class="fixed right-4 top-4 lg:hidden ">Add Book</Button>
         <div class="w-full min-h-14 px-4 md:px-5 xl:px-10 py-2 flex items-center md:fixed">
-            <RouterLink to="/">
+            <RouterLink to="/app">
                 <Button variant="secondary" class="hover:bg-slate-200">
                     <ChevronLeft :stroke-width="1.5" />
-                    Back Home
+                    Back
                 </Button>
             </RouterLink>
         </div>

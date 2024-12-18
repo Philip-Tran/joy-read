@@ -1,28 +1,19 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/AuthStore/AuthStore";
+import { loginSchema } from "@/schemas/UserSchema";
 
+import { toast } from "vue-sonner"
 import { toTypedSchema } from "@vee-validate/zod"
 import { useForm } from 'vee-validate';
-import { z } from 'zod' // Make sure to import zod
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useRouter } from "vue-router";
-import { useToast } from 'primevue/usetoast';
 
-import Toast from 'primevue/toast';
 import AuthLayout from "@/layouts/AuthLayout.vue";
-import { supabaseCli } from "@/lib/supabase";
+import type { AuthError } from "@supabase/supabase-js";
 
 const authStore = useAuthStore()
-
-// Define login schema
-const loginSchema = z.object({
-    email: z.string().email('Invalid email address'),
-    password: z.string().min(6, 'Password must be at least 6 characters')
-})
-
-const toast = useToast();
 const router = useRouter()
 
 const { values, defineField, errors, handleSubmit } = useForm({
@@ -35,43 +26,28 @@ const [password, passwordProps] = defineField('password')
 const onSubmit = handleSubmit((values) => {
     try {
         authStore.loginUser(values)
-        // Perform login logic here
         console.log('Login values:', values);
-        toast.add({
-            severity: 'success',
-            summary: 'Login',
-            detail: 'Successfully logged in',
-            life: 3000
+        toast.success("cool", {
+            description: "description"
         });
-        // Redirect to dashboard or home page
         router.push('/');
     } catch (error) {
-        toast.add({
-            severity: 'error',
-            summary: 'Login Failed',
-            detail: error instanceof Error ? error.message : 'An error occurred',
-            life: 3000
+        toast.success("cool", {
+            description: "description"
         });
     }
 }, (invalidSubmit) => {
-    // Handle invalid submit
-    toast.add({
-        severity: 'warn',
-        summary: 'Validation Error',
-        detail: 'Please check your inputs',
-        life: 3000
+    toast.success("cool", {
+        description: "description"
     });
 });
 
+const { logInWithOAuth } = useAuthStore()
 const handleGoogleLogin = async () => {
     try {
-        const { data, error } = await supabaseCli.auth.signInWithOAuth({
-            provider: 'google',
-        });
-        if (error) throw error;
-        console.log('Redirecting to Google for login:', data);
+        await logInWithOAuth("google", "/app")
     } catch (error: unknown) {
-        console.error('Login failed:', error.message);
+        console.error('Login failed:', (error as AuthError).message);
     }
 }
 
@@ -79,7 +55,6 @@ const handleGoogleLogin = async () => {
 
 <template>
     <AuthLayout>
-        <Toast />
         <div class="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
             <div class="flex items-center justify-center py-12">
                 <div class="mx-auto grid w-[350px] gap-6">
@@ -87,9 +62,6 @@ const handleGoogleLogin = async () => {
                         <h1 class="text-3xl font-bold">
                             Login
                         </h1>
-                        <!-- <div>
-                            {{ user }}
-                        </div> -->
                         <p class="text-balance text-muted-foreground">
                             Enter your email below to login to your account
                         </p>

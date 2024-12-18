@@ -1,4 +1,6 @@
 import { axiosMainApi } from '@/api/axios.express'
+import { supabaseCli } from '@/lib/supabase'
+import type { AuthError } from '@supabase/supabase-js'
 
 import { defineStore } from 'pinia'
 import { ref, type Ref } from 'vue'
@@ -55,7 +57,21 @@ const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { loginState, loginUser, signUpState, signUpUser }
+  const logInWithOAuth = async (provider: 'google' | 'github' | 'apple', redirectUrl: string) => {
+    try {
+      const { data, error } = await supabaseCli.auth.signInWithOAuth({
+        provider: provider,
+        options: {
+          redirectTo: redirectUrl,
+        },
+      })
+      if (error) throw error
+    } catch (error) {
+      console.log('Auth Store Login User: ', (error as AuthError).message)
+    }
+  }
+
+  return { loginState, loginUser, signUpState, signUpUser, logInWithOAuth }
 })
 
 export { useAuthStore }

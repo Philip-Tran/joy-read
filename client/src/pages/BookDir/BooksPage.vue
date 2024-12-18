@@ -63,6 +63,7 @@ const { isLoading, data: books } = useQuery({
                     </div>
 
                 </div>
+                <div v-if="books = []">---------no book------------</div>
                 <TabsContent value="grid-view" class="border-none flex-col p-0 outline-none">
                     <div class="relative">
                         <ScrollArea>
