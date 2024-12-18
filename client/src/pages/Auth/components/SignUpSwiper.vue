@@ -1,3 +1,24 @@
+<script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/scrollbar';
+
+const modules = [Navigation, Pagination, Scrollbar, A11y];
+
+const onSwiper = (swiper) => {
+    console.log(swiper);
+};
+
+const onSlideChange = () => {
+    console.log('slide change');
+};
+
+</script>
+
 <template>
     <div class="w-full h-full ">
         <swiper :slides-per-view="1" :space-between="50" @swiper="onSwiper" @slideChange="onSlideChange"
@@ -26,28 +47,6 @@
         </swiper>
     </div>
 </template>
-
-<script setup>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/scrollbar';
-
-const modules = [Navigation, Pagination, Scrollbar, A11y];
-
-const onSwiper = (swiper) => {
-    console.log(swiper);
-};
-
-const onSlideChange = () => {
-    console.log('slide change');
-};
-
-</script>
-
 
 <style scoped>
 :deep(.swiper-pagination) {

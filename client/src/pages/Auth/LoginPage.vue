@@ -60,9 +60,9 @@ const handleGoogleLogin = async () => {
 </script>
 
 <template>
-    <AuthLayout>
-        <div class="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
-            <div class="flex items-center justify-center py-12">
+    <AuthLayout button-position="left">
+        <div class="w-full h-screen lg:grid  lg:grid-cols-2">
+            <div class="flex items-center justify-center py-32 lg:py-24 xl:py-28 px-4">
                 <div class="mx-auto grid w-[350px] gap-6">
                     <div class="grid gap-2 text-center">
                         <h1 class="text-3xl font-bold">

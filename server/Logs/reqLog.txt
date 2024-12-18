@@ -13424,3 +13424,5 @@
 20241218	09:41:30	ebe4932b-f6e4-4a48-bf02-8a56bea0b424	POST	http://localhost:3000	/auth/sign-up
 20241218	09:42:14	6f5a4f2a-16ea-4315-99b5-6d1cb3973292	OPTIONS	http://localhost:3000	/auth/sign-up
 20241218	09:42:14	53d7627a-6282-41e1-a878-fbb4ad1fbb94	POST	http://localhost:3000	/auth/sign-up
+20241218	09:47:37	11e083ab-0942-4048-bc37-12adbc386a7e	GET	http://localhost:3000	/api/book/c8f46523-930e-49c2-8276-9f6ff37fcd60
+20241218	10:01:41	ee4b0f0e-fe01-4db0-a0a6-c952a034ba3e	GET	http://localhost:3000	/api/book/c8f46523-930e-49c2-8276-9f6ff37fcd60

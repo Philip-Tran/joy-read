@@ -2,7 +2,7 @@
 import { useAuthStore } from "@/stores/AuthStore/AuthStore"
 import AuthLayout from "@/layouts/AuthLayout.vue"
 
-import { z } from 'zod'
+import { signUpSchema } from "@/schemas/UserSchema"
 import { toTypedSchema } from "@vee-validate/zod"
 import { useForm } from 'vee-validate'
 import { Button } from '@/components/ui/button'
@@ -15,16 +15,6 @@ import SignUpSwiper from "./components/SignUpSwiper.vue"
 import { Eye, EyeOff } from 'lucide-vue-next'
 import { ref } from "vue"
 import { toast } from "vue-sonner"
-
-// Zod validation schema
-const signUpSchema = z.object({
-    username: z.string().min(2, { message: "Name must be at least 2 characters" }),
-    email: z.string().email({ message: "Invalid email address" }),
-    password: z.string()
-        .min(8, { message: "Password must be at least 8 characters" })
-    // .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-    //     { message: "Password must include uppercase, lowercase, number, and special character" })
-})
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -55,7 +45,6 @@ const handleFormSubmit = handleSubmit(async (values) => {
         })
     }
 }, (invalidSubmit) => {
-    // Handle invalid submit
     toast.error("Registration", {
         description: "Error occurs. Please try again"
     })
