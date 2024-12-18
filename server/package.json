@@ -36,7 +36,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon src/server.js",
-    "start": "node src/server.js && prisma generate"
+    "postinstall": "prisma generate",
+    "start": "prisma generate && node src/server.js"
   },
   "keywords": [
     "language learning",
