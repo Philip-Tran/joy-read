@@ -250,7 +250,7 @@ watch(
                     </div>
                     <Separator />
                     <div v-html="`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${book?.content}`"
-                        class="prose font-garamond font-[600] text-2xl leading-9 text-[#333333] mt-10">
+                        class="prose font-serif prose-headings:font-sans prose-p:font-serif prose-blockquote:font-serif prose-figcaption:italic font-[600] text-2xl leading-9 text-[#333333] mt-10">
                     </div>
                 </div>
                 <div class="w-full min-h-32 items-center justify-center flex ">
