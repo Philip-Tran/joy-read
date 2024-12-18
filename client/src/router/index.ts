@@ -68,6 +68,7 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   const { isLoggedIn } = useUserStore()
   const authenticated = await isLoggedIn()
+
   if (authenticated && to.name == 'login' && from.meta.requiresAuth == true) {
     return { name: 'landing-page' }
   }

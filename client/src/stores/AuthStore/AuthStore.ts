@@ -30,22 +30,30 @@ const useAuthStore = defineStore('auth', () => {
       }
 
       loginState.value.accessToken = res.data.session
-      loginState.value.message = 'Login successfully'
-      return
+      loginState.value.message = 'Login Success'
+
+      if (res.data) {
+        return { success: true, data: res.data }
+      } else {
+        return { success: false }
+      }
     } catch (error) {
       console.log(error)
     } finally {
-      loginState.value.isLoading = true
+      loginState.value.isLoading = false
     }
   }
 
   const signUpUser = async (userData: { email: string; password: string; username: string }) => {
-    console.log(userData)
     try {
       signUpState.value.isLoading = true
-      const res = await axiosMainApi.post('/auth/sign-up', userData)
+      const res: { message: string } = await axiosMainApi.post('/auth/sign-up', userData)
       if (!res) {
         signUpState.value.message = 'Error occur when signing up. Please try again'
+        return { success: false, message: signUpState.value.message }
+      } else {
+        signUpState.value.message = res.message
+        return { success: true }
       }
 
       signUpState.value.message = 'Signup successfully'

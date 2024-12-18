@@ -23,14 +23,20 @@ const { values, defineField, errors, handleSubmit } = useForm({
 const [email, emailProps] = defineField('email')
 const [password, passwordProps] = defineField('password')
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(async (values) => {
     try {
-        authStore.loginUser(values)
+        const result = await authStore.loginUser(values)
         console.log('Login values:', values);
-        toast.success("cool", {
-            description: "description"
-        });
-        router.push('/');
+        if (result?.success) {
+            toast.success("cool", {
+                description: "description"
+            });
+            router.push('/');
+        } else {
+            toast.error("Error occurs", {
+                description: "Error when trying to login"
+            })
+        }
     } catch (error) {
         toast.success("cool", {
             description: "description"

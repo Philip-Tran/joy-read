@@ -41,12 +41,14 @@ const handleFormSubmit = handleSubmit(async (values) => {
     try {
         const result = await authStore.signUpUser(values)
         if (result?.success) {
-            toast.success("Registration", {
-                description: "Sign Up successfully"
+            toast.success("Headup", {
+                description: authStore.signUpState.message
             })
-            router.push('/login')
+        } else {
+            toast.warning("Error", {
+                description: authStore.signUpState.message
+            })
         }
-        // Redirect to lo or dashboard
     } catch (error) {
         toast.error("Registration", {
             description: "Error occurs. Please try again"

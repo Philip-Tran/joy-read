@@ -1,6 +1,4 @@
 import { supabaseCli } from "../init.js";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
 
 export const createAuthUser = async (email, password) => {
   console.log(email, password);
