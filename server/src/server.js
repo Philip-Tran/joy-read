@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-import bodyparser from "body-parser";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import path, { dirname } from "path";

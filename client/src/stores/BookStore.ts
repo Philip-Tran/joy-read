@@ -27,7 +27,6 @@ interface AddBookState {
     readingSpeed: number
   }
 }
-
 export type { Book }
 
 const useAddBookStore = defineStore('addBook', () => {

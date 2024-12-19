@@ -29,7 +29,7 @@ const toggleAudioPlayer = () => {
         <Popover>
             <PopoverTrigger>
                 <Button variant="ghost"
-                    class="bg-gray-200 dark:bg-slate-800 text-gray-700 hover:bg-gray-300 focus:ring-2 focus:ring-blue-500">
+                    class="bg-transparent text-transparent  hover:bg-slate-100 focus:ring-2 focus:ring-blue-500">
                     Open Settings
                 </Button>
             </PopoverTrigger>

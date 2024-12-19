@@ -54,14 +54,16 @@ const handleDeleteBook = async (id: string) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem @click="goToBook(book.id)">Start reading</DropdownMenuItem>
+                <DropdownMenuItem @click="goToBook(book.id)" class="cursor-pointer">Start reading</DropdownMenuItem>
                 <DropdownMenuItem @click="copy(book.id)">
                     Copy Book Id
                 </DropdownMenuItem>
-                <DropdownMenuItem>View senflow for this book</DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DialogTrigger class="w-full">
-                    <DropdownMenuItem>Delete</DropdownMenuItem>
+                    <DropdownMenuItem
+                        class="bg-red-200 cursor-pointer bg-opacity-40 border-red-300 border hover:bg-red-500 text-black">
+                        Delete
+                    </DropdownMenuItem>
                 </DialogTrigger>
             </DropdownMenuContent>
         </DropdownMenu>

@@ -75,7 +75,9 @@ onBeforeMount(async () => {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <SidebarMenuButton>
-                                Joy Read
+                                <span class="text-lg font-medium">
+                                    Joy Read
+                                </span>
                                 <ChevronDown class="ml-auto" />
                             </SidebarMenuButton>
                         </DropdownMenuTrigger>
@@ -93,12 +95,12 @@ onBeforeMount(async () => {
                 </SidebarMenuItem>
             </SidebarMenu>
         </SidebarHeader>
-        <SidebarContent>
+        <SidebarContent class="mt-2 xl:mt-8">
             <SidebarGroup>
                 <SidebarGroupLabel>Main</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
-                        <SidebarMenuItem v-for="item in items" :key="item.title" class="">
+                        <SidebarMenuItem v-for="item in items" :key="item.title" class="hover:bg-slate-50">
                             <SidebarMenuButton asChild class="min-h-10">
                                 <RouterLink :to="item.url">
                                     <component :is="item.icon" />

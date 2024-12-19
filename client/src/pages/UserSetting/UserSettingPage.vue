@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { supportedLanguages } from "@/lib/AppConfig";
 import { useUserSettingStore } from "@/stores/UserSettingStore"
 import AppHasSidebarLayout from '@/layouts/AppHasSidebarLayout.vue';
+
 import { Button } from '@/components/ui/button'
 import {
     FormControl,
@@ -31,8 +33,8 @@ const settingStore = useUserSettingStore()
 const formSchema = toTypedSchema(
     z.object({
         isUsePopup: z.boolean().default(true),
-        interfaceLanguage: z.enum(['en', 'vi']).default('en'),
-        learningLanguage: z.enum(['en', 'es', 'vi', 'fr']).default('es'),
+        interfaceLanguage: z.enum(['en']).default('en'),
+        learningLanguage: z.enum(supportedLanguages).default(settingStore.state.learningLanguage),
         colorMode: z.enum(['light', 'dark']).default('light'),
     })
 );
@@ -57,23 +59,73 @@ const [interfaceLanguage] = defineField("interfaceLanguage")
 const [learningLanguage] = defineField("learningLanguage")
 const [colorMode] = defineField("colorMode")
 
-const selectedLang = ref("es")
+const selectedLang = ref("")
 const languages = ref([
-    { name: "English", code: "en" },
-    { name: "Mandarin Chinese", code: "zh" },
-    { name: "Hindi", code: "hi" },
-    { name: "Spanish", code: "es" },
-    { name: "French", code: "fr" },
-    { name: "Standard Arabic", code: "ar" },
+    { name: "Afrikaans", code: "af" },
+    { name: "Albanian", code: "sq" },
+    { name: "Amharic", code: "am" },
+    { name: "Armenian", code: "hy" },
+    { name: "Azerbaijani", code: "az" },
     { name: "Bengali", code: "bn" },
-    { name: "Portuguese", code: "pt" },
-    { name: "Russian", code: "ru" },
-    { name: "Japanese", code: "ja" },
-    { name: "Punjabi", code: "pa" },
+    { name: "Bulgarian", code: "bg" },
+    { name: "Catalan", code: "ca" },
+    { name: "Croatian", code: "hr" },
+    { name: "Czech", code: "cs" },
+    { name: "Danish", code: "da" },
+    { name: "Dutch", code: "nl" },
+    { name: "English", code: "en" },
+    { name: "Estonian", code: "et" },
+    { name: "Finnish", code: "fi" },
+    { name: "French", code: "fr" },
+    { name: "Georgian", code: "ka" },
     { name: "German", code: "de" },
+    { name: "Greek", code: "el" },
+    { name: "Gujarati", code: "gu" },
+    { name: "Hebrew", code: "he" },
+    { name: "Hindi", code: "hi" },
+    { name: "Hungarian", code: "hu" },
+    { name: "Icelandic", code: "is" },
+    { name: "Indonesian", code: "id" },
+    { name: "Italian", code: "it" },
+    { name: "Japanese", code: "ja" },
     { name: "Javanese", code: "jv" },
+    { name: "Kannada", code: "kn" },
+    { name: "Kazakh", code: "kk" },
+    { name: "Khmer", code: "km" },
     { name: "Korean", code: "ko" },
-    { name: "Telugu", code: "te" }
+    { name: "Lao", code: "lo" },
+    { name: "Latvian", code: "lv" },
+    { name: "Lithuanian", code: "lt" },
+    { name: "Macedonian", code: "mk" },
+    { name: "Malay", code: "ms" },
+    { name: "Malayalam", code: "ml" },
+    { name: "Mandarin Chinese", code: "zh" },
+    { name: "Marathi", code: "mr" },
+    { name: "Mongolian", code: "mn" },
+    { name: "Nepali", code: "ne" },
+    { name: "Norwegian", code: "no" },
+    { name: "Persian", code: "fa" },
+    { name: "Polish", code: "pl" },
+    { name: "Portuguese", code: "pt" },
+    { name: "Punjabi", code: "pa" },
+    { name: "Romanian", code: "ro" },
+    { name: "Russian", code: "ru" },
+    { name: "Serbian", code: "sr" },
+    { name: "Sinhala", code: "si" },
+    { name: "Slovak", code: "sk" },
+    { name: "Slovenian", code: "sl" },
+    { name: "Spanish", code: "es" },
+    { name: "Standard Arabic", code: "ar" },
+    { name: "Swahili", code: "sw" },
+    { name: "Swedish", code: "sv" },
+    { name: "Tamil", code: "ta" },
+    { name: "Telugu", code: "te" },
+    { name: "Thai", code: "th" },
+    { name: "Turkish", code: "tr" },
+    { name: "Ukrainian", code: "uk" },
+    { name: "Urdu", code: "ur" },
+    { name: "Uzbek", code: "uz" },
+    { name: "Vietnamese", code: "vi" },
 ]);
 </script>
 

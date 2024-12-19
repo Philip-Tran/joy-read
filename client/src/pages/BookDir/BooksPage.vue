@@ -13,7 +13,7 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/components/ui/tabs'
-import { CirclePlus } from 'lucide-vue-next';
+import { CirclePlus, LayoutGrid, LayoutList } from 'lucide-vue-next';
 import BookListingView from './components/BookListingView.vue';
 
 const bookStore = useBookGeneralStore()
@@ -32,11 +32,11 @@ const { isLoading, data: books } = useQuery({
                 <div class="space-y-8">
                     <div class="space-between flex items-center">
                         <TabsList>
-                            <TabsTrigger value="grid-view" class="relative">
-                                Grid
+                            <TabsTrigger value="grid-view" class="relative p-2">
+                                <LayoutGrid class="w-4 h-4" />
                             </TabsTrigger>
-                            <TabsTrigger value="list-view">
-                                List
+                            <TabsTrigger value="list-view" class="p-2">
+                                <LayoutList class="w-4 h-4" />
                             </TabsTrigger>
                         </TabsList>
                         <div class="ml-auto">

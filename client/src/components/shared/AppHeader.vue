@@ -14,10 +14,10 @@ import AppColorModeToggle from './AppColorModeToggle.vue';
 </script>
 
 <template>
-    <div class="flex flex-row py-2 px-4 items-center justify-between space-x-4 border-b w-full max-h-[70px]">
+    <div class="flex flex-row py-2 px-4 lg:px-7 items-center justify-between space-x-4 border-b w-full max-h-[70px]">
         <div class="flex items-center justify-between space-x-4">
             <SidebarTrigger />
-            <Breadcrumb>
+            <!-- <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
                         <RouterLink to="/">
@@ -31,7 +31,7 @@ import AppColorModeToggle from './AppColorModeToggle.vue';
                         </RouterLInk>
                     </BreadcrumbItem>
                 </BreadcrumbList>
-            </Breadcrumb>
+            </Breadcrumb> -->
         </div>
         <div>
             <AppColorModeToggle />

@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref, type Ref } from 'vue'
+import { supportedLanguages } from '@/lib/AppConfig'
 
-type UserSettingState = {
+type SupportedLanguage = (typeof supportedLanguages)[number]
+
+export type UserSettingState = {
   isUsePopup: boolean
   interfaceLanguage: string
-  learningLanguage: string
+  learningLanguage: SupportedLanguage
   colorMode: 'light' | 'dark'
   audioPlayer: boolean
 }

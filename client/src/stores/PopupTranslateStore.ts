@@ -1,8 +1,11 @@
-import axios from 'axios'
+import { axiosLingvaApi } from '@/api/axios.lingva'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+import { useUserSettingStore } from './UserSettingStore'
+
 const usePopupTranslateStore = defineStore('popup', () => {
+  const settingStore = useUserSettingStore()
   const initialState = ref({
     selectedText: '',
     translatedText: '',
@@ -10,14 +13,14 @@ const usePopupTranslateStore = defineStore('popup', () => {
     isLoading: false,
     audioUrl: '',
     isLoadingAudio: false,
-    lang: 'es',
+    lang: settingStore.state.learningLanguage,
   })
 
   const getTranslation = async (text: string) => {
     try {
       initialState.value.selectedText = text
       initialState.value.isLoading = true
-      const res = await axios.get(`https://lingva.ml/api/v1/${initialState.value.lang}/en/${text}`)
+      const res = await axiosLingvaApi.get(`/${initialState.value.lang}/en/${text}`)
 
       initialState.value.translatedText = res.data.translation
     } catch (error) {
@@ -32,12 +35,9 @@ const usePopupTranslateStore = defineStore('popup', () => {
       initialState.value.isLoadingAudio = true
       const encodedText: string = encodeURIComponent(initialState.value.selectedText)
 
-      const response = await axios.get(
-        `https://lingva.ml/api/v1/audio/${initialState.value.lang}/${encodedText}`,
-      )
+      const response = await axiosLingvaApi.get(`/${initialState.value.lang}/${encodedText}`)
 
       const audioBlob = new Blob([new Uint8Array(response.data.audio)], { type: 'audio/mpeg' })
-      console.log(audioBlob)
       initialState.value.audioUrl = URL.createObjectURL(audioBlob)
       return response.data.audio
     } catch (error) {
