@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/breadcrumb'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { RouterLink } from 'vue-router';
+import AppColorModeToggle from './AppColorModeToggle.vue';
 
 </script>
 
@@ -33,7 +34,7 @@ import { RouterLink } from 'vue-router';
             </Breadcrumb>
         </div>
         <div>
-            right
+            <AppColorModeToggle />
         </div>
     </div>
 </template>

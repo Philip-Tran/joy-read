@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useUserStore } from "@/stores/UserStore";
+import { supabaseCli } from "@/lib/supabase";
+import type { User } from "@supabase/supabase-js";
 
 import { RouterLink, useRouter } from "vue-router";
-import { Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-vue-next"
+import { Book, Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-vue-next"
 
 import {
     Sidebar,
@@ -23,12 +25,13 @@ import {
     DropdownMenuContent
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { onBeforeMount, ref } from "vue";
 
 const items = [
     {
         title: "Dashboard",
         url: "/app",
-        icon: Home,
+        icon: Book,
     },
     {
         title: "Books",
@@ -36,14 +39,9 @@ const items = [
         icon: Inbox,
     },
     {
-        title: "Senflow",
-        url: "/senflows",
-        icon: Calendar,
-    },
-    {
-        title: "Analytic",
-        url: "/analytic",
-        icon: Search,
+        title: "Home",
+        url: "/",
+        icon: Home,
     },
     {
         title: "Settings",
@@ -60,6 +58,13 @@ const handleLogout = async () => {
         router.push('/login')
     }
 }
+
+const userData = ref<User>()
+onBeforeMount(async () => {
+    const { data: { user } } = await supabaseCli.auth.getUser()
+    if (user) userData.value = user
+})
+
 </script>
 
 <template>
@@ -70,19 +75,18 @@ const handleLogout = async () => {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <SidebarMenuButton>
-                                Select Workspace
+                                Joy Read
                                 <ChevronDown class="ml-auto" />
                             </SidebarMenuButton>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent class="w-[--radix-popper-anchor-width]">
                             <DropdownMenuItem>
-                                <span>Acme Inc</span>
+                                <RouterLink to="/">
+                                    <span>Landing page</span>
+                                </RouterLink>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                                <span>Acme Corp.</span>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Button @click="handleLogout"> Log out</Button>
+                                <Button @click="handleLogout">Log out</Button>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -108,11 +112,16 @@ const handleLogout = async () => {
         </SidebarContent>
         <SidebarFooter class="flex flex-row">
             <Avatar>
-                <AvatarImage src="https://github.com/radix-vue.png" alt="@radix-vue" />
+                <AvatarImage :src="userData?.identities[0].identity_data.avatar_url" />
                 <AvatarFallback><img src="/favicon.ico" /></AvatarFallback>
             </Avatar>
-            <div>
-                quyet@gmail.com
+            <div class="flex flex-col font-medium">
+                <div>
+                    {{ userData?.identities[0].identity_data.name }}
+                </div>
+                <div class="text-xs text-gray-600">
+                    {{ userData?.email }}
+                </div>
             </div>
         </SidebarFooter>
     </Sidebar>

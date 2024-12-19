@@ -39,7 +39,7 @@ const { isLoading, data: books } = useQuery({
                                 List
                             </TabsTrigger>
                         </TabsList>
-                        <div class="ml-auto mr-4">
+                        <div class="ml-auto">
                             <RouterLink to="/books/create">
                                 <Button>
                                     <CirclePlus class="mr-2 h-5 w-5" />
@@ -63,7 +63,6 @@ const { isLoading, data: books } = useQuery({
                     </div>
 
                 </div>
-                <div v-if="books = []">---------no book------------</div>
                 <TabsContent value="grid-view" class="border-none flex-col p-0 outline-none">
                     <div class="relative">
                         <ScrollArea>

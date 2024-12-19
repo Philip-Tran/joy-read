@@ -79,9 +79,8 @@ const languages = ref([
 
 <template>
     <AppHasSidebarLayout>
-        <div class="p-4 lg:p-10 xl:p-24 2xl:p-52">
-            <div class="flex p-4 lg:p-8 rounded-lg border">
-                <pre>{{ values }}</pre>
+        <div class="p-4 lg:p-10 xl:p-24 2xl:pt-32">
+            <div class="flex p-4 lg:p-8 rounded-lg border max-w-[700px] mx-auto">
                 <form class="w-full space-y-6" @submit="onSubmit">
                     <div>
                         <h3 class="mb-4 text-lg font-medium">
