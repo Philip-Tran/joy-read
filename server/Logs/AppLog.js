@@ -1,12 +1,10 @@
 import { format } from "date-fns";
 import { v4 as uuid } from "uuid";
-
 import fs from "fs";
 import { promises as fsPromises } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Resolving `__dirname` in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
