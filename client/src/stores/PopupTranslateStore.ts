@@ -14,13 +14,16 @@ const usePopupTranslateStore = defineStore('popup', () => {
     audioUrl: '',
     isLoadingAudio: false,
     lang: settingStore.state.learningLanguage,
+    toLang: settingStore.state.translateToLanguage,
   })
 
   const getTranslation = async (text: string) => {
     try {
       initialState.value.selectedText = text
       initialState.value.isLoading = true
-      const res = await axiosLingvaApi.get(`/${initialState.value.lang}/en/${text}`)
+      const res = await axiosLingvaApi.get(
+        `/${initialState.value.lang}/${initialState.value.toLang}/${text}`,
+      )
 
       initialState.value.translatedText = res.data.translation
     } catch (error) {

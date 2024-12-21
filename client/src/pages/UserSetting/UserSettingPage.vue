@@ -3,6 +3,7 @@ import { supportedLanguages } from "@/lib/AppConfig";
 import { useUserSettingStore } from "@/stores/UserSettingStore"
 import AppHasSidebarLayout from '@/layouts/AppHasSidebarLayout.vue';
 
+import { useRouter } from "vue-router"
 import { Button } from '@/components/ui/button'
 import {
     FormControl,
@@ -23,6 +24,7 @@ import {
 import { Switch } from '@/components/ui/switch'
 import { toast } from "vue-sonner"
 
+const router = useRouter();
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { ref } from 'vue'
@@ -35,6 +37,7 @@ const formSchema = toTypedSchema(
         isUsePopup: z.boolean().default(true),
         interfaceLanguage: z.enum(['en']).default('en'),
         learningLanguage: z.enum(supportedLanguages).default(settingStore.state.learningLanguage),
+        translateToLanguage: z.enum(supportedLanguages).default(settingStore.state.translateToLanguage),
         colorMode: z.enum(['light', 'dark']).default('light'),
     })
 );
@@ -46,17 +49,21 @@ const { handleSubmit, values, defineField } = useForm({
     },
 })
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(async (values) => {
     toast.info('You submitted the following values:', {
         description: JSON.stringify(values, null, 2),
     })
-    settingStore.updateSetting(values)
+    const result = await settingStore.updateSetting(values)
+    if (result.success) {
+        router.go(0)
+    }
 
 })
 
 const [isUsePopup] = defineField("isUsePopup")
 const [interfaceLanguage] = defineField("interfaceLanguage")
 const [learningLanguage] = defineField("learningLanguage")
+const [translateToLanguage] = defineField("translateToLanguage")
 const [colorMode] = defineField("colorMode")
 
 const selectedLang = ref("")
@@ -202,6 +209,35 @@ const languages = ref([
                                 <FormItem class="flex flex-row items-center justify-between rounded-lg border p-4">
                                     <div class="space-y-0.5">
                                         <FormLabel class="text-base">
+                                            Translate to language
+                                        </FormLabel>
+                                        <FormDescription>
+                                            Translate to language
+                                        </FormDescription>
+                                    </div>
+                                    <FormControl>
+                                        <Select :modelValue="translateToLanguage"
+                                            @update:modelValue="val => translateToLanguage = val">
+                                            <SelectTrigger class="w-60">
+                                                <SelectValue :placeholder="'Select a language'" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                    <SelectLabel>Choose language</SelectLabel>
+                                                    <SelectItem v-for="lang in languages" :key="lang.code"
+                                                        :value="lang.code">
+                                                        {{ lang.name }}
+                                                    </SelectItem>
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
+                                    </FormControl>
+                                </FormItem>
+                            </FormField>
+                            <FormField name="security_emails">
+                                <FormItem class="flex flex-row items-center justify-between rounded-lg border p-4">
+                                    <div class="space-y-0.5">
+                                        <FormLabel class="text-base">
                                             Interface language
                                         </FormLabel>
                                         <FormDescription>
@@ -211,7 +247,7 @@ const languages = ref([
                                     <FormControl>
                                         <Select defaultValue="en" @update:modelValue="val => interfaceLanguage = val">
                                             <SelectTrigger class="w-60">
-                                                <SelectValue :placeholder="'Select a language'" />
+                                                <SelectValue :placeholder="'Select a language 2'" />
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectGroup>

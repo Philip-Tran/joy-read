@@ -8,6 +8,7 @@ export type UserSettingState = {
   isUsePopup: boolean
   interfaceLanguage: string
   learningLanguage: SupportedLanguage
+  translateToLanguage: SupportedLanguage
   colorMode: 'light' | 'dark'
   audioPlayer: boolean
 }
@@ -19,6 +20,7 @@ const useUserSettingStore = defineStore(
       isUsePopup: true,
       interfaceLanguage: 'en',
       learningLanguage: 'es',
+      translateToLanguage: 'en',
       colorMode: 'light',
       audioPlayer: true,
     })
@@ -30,6 +32,7 @@ const useUserSettingStore = defineStore(
     const updateSetting = (settings: UserSettingState) => {
       console.log(settings)
       state.value = settings
+      return { success: true }
     }
 
     const updatePopupState = () => {
