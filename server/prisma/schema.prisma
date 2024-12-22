@@ -44,8 +44,9 @@ model SenFlow {
 }
 
 model Setting {
-  id                Int     @id @default(autoincrement())
-  usePopupTranslate Boolean @default(true)
-  interfaceLanguage String  @default("en") // Valid values: "en",
-  learningLanguage  String // Valid values: "en", "es", "fr", "vi"
+  id                  Int     @id @default(autoincrement())
+  usePopupTranslate   Boolean @default(true)
+  interfaceLanguage   String  @default("en") // Valid values: "en",
+  learningLanguage    String
+  translateToLanguage String
 }
