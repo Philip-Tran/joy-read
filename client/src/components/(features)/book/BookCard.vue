@@ -14,6 +14,8 @@ import {
 } from '@/components/ui/context-menu'
 import { cn } from '@/lib/utils'
 import { CirclePlus } from 'lucide-vue-next'
+import { useRouter } from "vue-router";
+import { Button } from "@/components/ui/button";
 
 interface bookCardProps {
     book: BookListingCard,
@@ -25,6 +27,11 @@ interface bookCardProps {
 withDefaults(defineProps<bookCardProps>(), {
     aspectRatio: 'portrait',
 })
+
+const router = useRouter()
+const goToSenFlow = (bookId: string) => {
+    router.push(`/flow/${bookId}`)
+}
 
 </script>
 
@@ -61,11 +68,12 @@ withDefaults(defineProps<bookCardProps>(), {
                         </ContextMenuSubContent>
                     </ContextMenuSub>
                     <ContextMenuSeparator />
-                    <ContextMenuItem>Play Later</ContextMenuItem>
-                    <ContextMenuItem>Create Station</ContextMenuItem>
-                    <ContextMenuSeparator />
-                    <ContextMenuItem>Like</ContextMenuItem>
-                    <ContextMenuItem>Share</ContextMenuItem>
+                    <ContextMenuItem>
+                        <Button variant="secondary" @click="goToSenFlow"
+                            class="w-full p-0 flex items-center bg-transparent border-transparent">
+                            SenFlow Card
+                        </Button>
+                    </ContextMenuItem>
                 </ContextMenuContent>
             </ContextMenu>
             <div class="space-y-1 text-sm">
