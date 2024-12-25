@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/UserStore';
+import { useSenFlowStore } from '@/stores/SenFlowStore';
 import { useUserSettingStore } from '@/stores/UserSettingStore';
 import { usePopupTranslateStore } from '@/stores/PopupTranslateStore';
 import { axiosMainApi } from '@/api/axios.express';
@@ -16,6 +17,7 @@ import { ref, nextTick, watch, onMounted, onUnmounted, computed, onBeforeMount }
 import { Minus, AudioLines, ChevronLeft } from 'lucide-vue-next';
 import { useAddBookStore } from '@/stores/BookStore';
 import HiddenSetting from './components/HiddenSetting.vue';
+import { toast } from 'vue-sonner';
 
 interface Book {
     id: string
@@ -25,6 +27,7 @@ interface Book {
     audioUrlSer: string
 }
 
+const senflowStore = useSenFlowStore()
 const userStore = useUserStore()
 const bookStore = useAddBookStore()
 const settingStore = useUserSettingStore()
@@ -177,6 +180,19 @@ watch(
     },
     { immediate: true }
 );
+
+//add senflow through popup
+const handleAddSenFlow = async () => {
+    const item = {
+        frontText: popupStore.initialState.selectedText,
+        backText: popupStore.initialState.translatedText,
+    }
+    const result = await senflowStore.createSenFlow(item, userId.value, params.bookId)
+
+    if (result?.success) {
+        toast.info("Create senflow successfully")
+    }
+}
 </script>
 
 <template>
@@ -214,6 +230,10 @@ watch(
                         class="bg-transparent rounded-full w-8 h-8 absolute top-1 right-1 p-2 py-2 focus:ring focus:ring-gray-300">
                         <Minus class="text-slate-400" />
                     </Button>
+                </div>
+                <div v-if="popupStore.initialState.translatedText" class="w-full flex items-end justify-end">
+                    <Button @click="handleAddSenFlow" class="p-0 text-gray-400 font-normal hover:text-gray-900"
+                        variant="link">Create senflow card</Button>
                 </div>
             </div>
         </div>

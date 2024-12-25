@@ -27,10 +27,10 @@ const useSenFlowStore = defineStore('senflow', () => {
     message: '',
   })
 
-  const createSenFlow = async (data: SenFlowType, bookId: string) => {
+  const createSenFlow = async (data: SenFlowType, userId: string, bookId: string) => {
     try {
       initialState.value.isLoading = true
-      const res = await axiosMainApi.post(`/api/book/${bookId}/flow`, data)
+      const res = await axiosMainApi.post(`/api/book/${userId}/${bookId}/flow`, data)
 
       if (!res) {
         initialState.value.isLoading = false
@@ -41,6 +41,8 @@ const useSenFlowStore = defineStore('senflow', () => {
       initialState.value.senFlow = res.data.sen
       initialState.value.isSuccess = true
       initialState.value.message = 'Create new flow successfully'
+
+      return { success: true }
     } catch (error) {
       console.log('Error occur when creating senflow: ', (error as Error).message)
     } finally {
