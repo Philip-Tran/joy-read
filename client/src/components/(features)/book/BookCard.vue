@@ -29,6 +29,11 @@ withDefaults(defineProps<bookCardProps>(), {
 })
 
 const router = useRouter()
+
+const goToBook = (bookId: string) => {
+    router.push(`/books/${bookId}`)
+}
+
 const goToSenFlow = (bookId: string) => {
     router.push(`/flow/${bookId}`)
 }
@@ -55,22 +60,27 @@ const goToSenFlow = (bookId: string) => {
                     </div>
                 </ContextMenuTrigger>
                 <ContextMenuContent class="w-40">
-                    <ContextMenuItem>Start Reading</ContextMenuItem>
+                    <ContextMenuItem class="p-0">
+                        <Button variant="secondary" size="sm" @click="goToBook(book.id)"
+                            class="w-full text-left  flex items-center  border-transparent">
+                            Start reading
+                        </Button>
+                    </ContextMenuItem>
                     <ContextMenuSub>
                         <ContextMenuSubTrigger>Edit</ContextMenuSubTrigger>
                         <ContextMenuSubContent class="w-48">
                             <ContextMenuItem>
                                 <CirclePlus class="mr-2 h-4 w-4" />
-                                New Playlist
+                                New book
                             </ContextMenuItem>
                             <ContextMenuSeparator />
                             <ContextMenuItem>Delete book</ContextMenuItem>
                         </ContextMenuSubContent>
                     </ContextMenuSub>
                     <ContextMenuSeparator />
-                    <ContextMenuItem>
-                        <Button variant="secondary" @click="goToSenFlow"
-                            class="w-full p-0 flex items-center bg-transparent border-transparent">
+                    <ContextMenuItem class="p-0">
+                        <Button variant="default" size="sm" @click="goToSenFlow(book.id)"
+                            class="w-full text-left  flex items-center  border-transparent">
                             SenFlow Card
                         </Button>
                     </ContextMenuItem>
