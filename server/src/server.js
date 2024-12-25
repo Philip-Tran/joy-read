@@ -57,9 +57,9 @@ app.get("/", (req, res) => {
 });
 
 /* -------------------Bootstrap------------------ */
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port: ${PORT}`);
+// });
 
 // Export the app for Vercel to handle the function
-// export default app;
+export default app;

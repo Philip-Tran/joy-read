@@ -2,7 +2,7 @@
 import { useSenFlowStore } from '@/stores/SenFlowStore';
 import { useUserStore } from '@/stores/UserStore';
 
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import type { CarouselApi } from '@/components/ui/carousel'
 import { Card, CardContent } from '@/components/ui/card';
@@ -24,6 +24,23 @@ function setApi(val: CarouselApi) {
     api.value = val
 }
 
+watch(() => {
+    senFlowStore.getSenFlowsState.senFlows
+},
+    () => {
+        watchOnce(api, (api) => {
+            if (!api)
+                return
+
+            totalCount.value = api.scrollSnapList().length
+            current.value = api.selectedScrollSnap() + 1
+
+            api.on('select', () => {
+                current.value = api.selectedScrollSnap() + 1
+            })
+        })
+    }
+)
 watchOnce(api, (api) => {
     if (!api)
         return
@@ -71,13 +88,15 @@ const handleKeydown = (event: KeyboardEvent) => {
                             :key="index + sen.frontText">
                             <div class="relative">
                                 <div class="p-1">
+
+                                    <!-- Front Card -->
                                     <Card>
                                         <CardContent class="flex aspect-square items-center justify-center p-6">
                                             <span class="text-2xl font-semibold">{{ sen.frontText }}</span>
                                         </CardContent>
                                     </Card>
 
-                                    <!-- Back Card with fade-in effect -->
+                                    <!-- Back Card -->
                                     <Card class="absolute inset-0 transition-opacity duration-300 ease-in-out" :class="[
                                         flippedCards[index]
                                             ? 'opacity-100'
