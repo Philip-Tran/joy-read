@@ -15,6 +15,12 @@ interface senFlowState {
   message: string
 }
 
+interface GetSenFlowsState {
+  senFlows: SenFlowType[]
+  isLoading: boolean
+  message: string
+}
+
 const useSenFlowStore = defineStore('senflow', () => {
   const initialState: Ref<senFlowState> = ref({
     senFlow: {
@@ -24,6 +30,12 @@ const useSenFlowStore = defineStore('senflow', () => {
     bookId: '',
     isLoading: false,
     isSuccess: false,
+    message: '',
+  })
+
+  const getSenFlowsState: Ref<GetSenFlowsState> = ref({
+    senFlows: [],
+    isLoading: false,
     message: '',
   })
 
@@ -50,6 +62,27 @@ const useSenFlowStore = defineStore('senflow', () => {
     }
   }
 
-  return { initialState, createSenFlow }
+  const getSenflows = async (bookId: string, userId: string) => {
+    try {
+      initialState.value.isLoading = true
+      const res = await axiosMainApi.get(`/api/book/${userId}/${bookId}/flow`)
+
+      if (!res) {
+        getSenFlowsState.value.isLoading = false
+        console.log('Error, no response from the server')
+        getSenFlowsState.value.message = 'Error, no response from the server'
+      }
+
+      getSenFlowsState.value.senFlows = res.data
+
+      return { success: true }
+    } catch (error) {
+      console.log('Error occur when creating senflow: ', (error as Error).message)
+    } finally {
+      getSenFlowsState.value.isLoading = false
+    }
+  }
+
+  return { initialState, createSenFlow, getSenflows, getSenFlowsState }
 })
 export { useSenFlowStore }

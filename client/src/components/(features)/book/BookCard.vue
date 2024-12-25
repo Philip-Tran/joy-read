@@ -57,10 +57,10 @@ withDefaults(defineProps<bookCardProps>(), {
                                 New Playlist
                             </ContextMenuItem>
                             <ContextMenuSeparator />
+                            <ContextMenuItem>Delete book</ContextMenuItem>
                         </ContextMenuSubContent>
                     </ContextMenuSub>
                     <ContextMenuSeparator />
-                    <ContextMenuItem>Play Next</ContextMenuItem>
                     <ContextMenuItem>Play Later</ContextMenuItem>
                     <ContextMenuItem>Create Station</ContextMenuItem>
                     <ContextMenuSeparator />

@@ -10,6 +10,7 @@ import SignUpPage from '@/pages/Auth/SignUpPage.vue'
 import LandingPage from '@/pages/LandingPage/LandingPage.vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
+import SingleFlowPage from '@/pages/Flow/SingleFlowPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,6 +56,12 @@ const router = createRouter({
       name: 'singleBook',
       meta: { requiresAuth: true },
       component: SingleBookPage,
+    },
+    {
+      path: '/flow/:bookId',
+      name: 'singleFlow',
+      meta: { requiresAuth: true },
+      component: SingleFlowPage,
     },
     {
       path: '/settings',

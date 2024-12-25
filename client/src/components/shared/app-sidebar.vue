@@ -39,6 +39,11 @@ const items = [
         icon: Inbox,
     },
     {
+        title: "Flows",
+        url: "/flow",
+        icon: Book,
+    },
+    {
         title: "Home",
         url: "/",
         icon: Home,
