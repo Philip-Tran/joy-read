@@ -170,7 +170,6 @@ const playAudio = (): void => {
 
 // reading time
 const bookContent = computed(() => book?.value?.content);
-
 watch(
     () => bookContent.value,
     (content) => {
@@ -181,16 +180,16 @@ watch(
     { immediate: true }
 );
 
-//add senflow through popup
+// add senflow through popup
 const handleAddSenFlow = async () => {
     const item = {
         frontText: popupStore.initialState.selectedText,
         backText: popupStore.initialState.translatedText,
     }
-    const result = await senflowStore.createSenFlow(item, userId.value, params.bookId)
+    const result = await senflowStore.createSenFlow(item, userId.value as string, params.bookId as string)
 
     if (result?.success) {
-        toast.info("Create senflow successfully")
+        toast.info("New SenFlow created successfully")
     }
 }
 </script>
@@ -204,35 +203,40 @@ const handleAddSenFlow = async () => {
 
         <!-- pop up -->
         <div ref="popupDiv" id="popup" style="visibility: hidden;"
-            class="popup z-50 min-h-24 max-h-45 min-w-60 max-w-96 rounded-md border absolute bg-slate-50 transition-transform duration-300 ease-out">
-            <div class=" relative p-4">
-                <div class="text-sm text-gray-600">
+            class="popup z-50 min-h-24 max-h-45 min-w-80 max-w-96 rounded-md border absolute bg-slate-800 transition-transform duration-300 ease-out">
+            <div class="relative p-4">
+                <div class="text-sm text-gray-400">
                     <div v-if="popupStore.initialState.isLoading">
                         <Skeleton class="w-5 h-5 rounded-full mt-2 mb-3" />
                         <Skeleton class="w-[80px] h-3 rounded-full pt-2" />
                     </div>
                     <div v-else>
                         <div class="flex flex-col items-start">
-                            <Button variant="link" class="p-0" @click="playAudio">
-                                <AudioLines class="text-slate-600 hover:text-slate-700" />
-                            </Button>
-                            <span id="translated-text" class="text-gray-800 text-base">{{
-                                popupStore.initialState.selectedText }}
+                            <span id="translated-text"
+                                class="text-gray-200 text-lg text-wrap font-medium mb-1 2xl:mb-2">{{
+                                    popupStore.initialState.translatedText }}
                             </span>
-                            <span id="translated-text" class="text-gray-800 text-base">{{
-                                popupStore.initialState.translatedText }}
-                            </span>
+                            <div class="w-full flex items-center justify-start space-x-2 text-opacity-70">
+                                <Button variant="link" size="icon"
+                                    class="p-0 h-6 w-6 -ml-[4px] rounded-full hover:text-white hover:bg-slate-700"
+                                    @click="playAudio">
+                                    <AudioLines class="text-slate-400 " />
+                                </Button>
+                                <span id="translated-text" class="text-gray-200 text-wrap text-base">{{
+                                    popupStore.initialState.selectedText }}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="mt-4 flex justify-end space-x-2">
                     <Button @click="handleClosePopup" variant="ghost" id="close-button"
-                        class="bg-transparent rounded-full w-8 h-8 absolute top-1 right-1 p-2 py-2 focus:ring focus:ring-gray-300">
-                        <Minus class="text-slate-400" />
+                        class="bg-transparent rounded-full w-8 h-8 absolute top-1 right-1 p-2 py-2 focus:ring focus:ring-gray-700">
+                        <Minus class="text-slate-500" />
                     </Button>
                 </div>
-                <div v-if="popupStore.initialState.translatedText" class="w-full flex items-end justify-end">
-                    <Button @click="handleAddSenFlow" class="p-0 text-gray-400 font-normal hover:text-gray-900"
+                <div v-if="!popupStore.initialState.isLoading" class="w-full flex items-end justify-end h-min">
+                    <Button @click="handleAddSenFlow" class="p-0 text-gray-500 font-normal h-min hover:text-gray-100"
                         variant="link">Create senflow card</Button>
                 </div>
             </div>

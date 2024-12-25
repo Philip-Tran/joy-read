@@ -38,7 +38,7 @@ const usePopupTranslateStore = defineStore('popup', () => {
       initialState.value.isLoadingAudio = true
       const encodedText: string = encodeURIComponent(initialState.value.selectedText)
 
-      const response = await axiosLingvaApi.get(`/${initialState.value.lang}/${encodedText}`)
+      const response = await axiosLingvaApi.get(`/audio/${initialState.value.lang}/${encodedText}`)
 
       const audioBlob = new Blob([new Uint8Array(response.data.audio)], { type: 'audio/mpeg' })
       initialState.value.audioUrl = URL.createObjectURL(audioBlob)
