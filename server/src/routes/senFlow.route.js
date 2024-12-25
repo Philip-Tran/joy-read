@@ -13,7 +13,6 @@ const senFlowRouter = express.Router({ mergeParams: true });
     |--------------------------------------------------------------------------
     */
 
-senFlowRouter.get("/", getSenFlow);
-senFlowRouter.post("/", addSenFlow);
+senFlowRouter.route("/").get(getSenFlow).post(addSenFlow);
 
 export default senFlowRouter;

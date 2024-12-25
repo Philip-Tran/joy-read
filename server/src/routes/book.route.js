@@ -18,13 +18,14 @@ import senFlowRouter from "../routes/senFlow.route.js";
     | Book Route
     |--------------------------------------------------------------------------
     */
+router.use("/:userId/:bookId/flow", senFlowRouter);
+
 router.post("/create", createBook);
 router.get("/:userId", getAllBooks);
 router.get("/:userId/:bookId", getSingleBook);
 router.delete("/:id", deleteBook);
+
 router.post("/get-pdf-text", getTextFromPdf);
 router.post("/get-web-text", getTextFromWeb);
-
-router.use("/:id/flow", senFlowRouter);
 
 export default router;

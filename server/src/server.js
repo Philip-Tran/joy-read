@@ -55,10 +55,11 @@ app.use("/auth", authRoutes);
 app.get("/", (req, res) => {
   res.send("Hello There");
 });
-/* -------------------Bootrap------------------ */
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port: ${PORT}`);
-// });
+
+/* -------------------Bootstrap------------------ */
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
+});
 
 // Export the app for Vercel to handle the function
-export default app;
+// export default app;

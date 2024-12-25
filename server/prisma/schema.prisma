@@ -49,4 +49,6 @@ model Setting {
   interfaceLanguage   String  @default("en") // Valid values: "en",
   learningLanguage    String
   translateToLanguage String
+
+  userId String @db.Uuid
 }

@@ -4,11 +4,23 @@ import prisma from "../../lib/prisma.js";
  * Controller
  */
 const getSenFlow = async (req, res) => {
-  const { id } = req.params;
+  const { userId, bookId } = req.params;
+  const book = await prisma.book.findUnique({
+    where: {
+      id: bookId,
+      userId,
+    },
+  });
+
+  if (!book) {
+    res
+      .status(400)
+      .json({ message: "Not authorized or this book was removed exist" });
+  }
   try {
     const sens = await prisma.SenFlow.findMany({
       where: {
-        bookId: id,
+        bookId: bookId,
       },
     });
 
@@ -21,26 +33,26 @@ const getSenFlow = async (req, res) => {
 
 const addSenFlow = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { userId, bookId } = req.params;
     const book = await prisma.book.findUnique({
       where: {
-        id,
+        id: bookId,
       },
     });
     if (!book) return res.status(400).json({ message: "Book not found" });
 
     const { frontText, backText } = req.body;
 
-    const senFlow = await prisma.SenFlow.create({
+    const newSenFlow = await prisma.SenFlow.create({
       data: {
         frontText,
         backText,
-        bookId: id,
+        bookId,
       },
     });
-    res.json({ bookId: id, sen: senFlow });
+    res.status(201).json({ bookId, sen: newSenFlow });
   } catch (error) {
-    console.log("Error get senflow", error.message);
+    console.log("Error add senflow", error.message);
   }
 };
 
