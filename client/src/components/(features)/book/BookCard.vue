@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { BookListingCard } from "@/types/BookTypes"
 import dayjs from "dayjs";
+import { truncate } from "@/lib/composables";
 
 import {
     ContextMenu,
@@ -13,7 +14,7 @@ import {
     ContextMenuTrigger,
 } from '@/components/ui/context-menu'
 import { cn } from '@/lib/utils'
-import { CirclePlus } from 'lucide-vue-next'
+import { BookText, CirclePlus } from 'lucide-vue-next'
 import { useRouter } from "vue-router";
 import { Button } from "@/components/ui/button";
 
@@ -52,10 +53,13 @@ const goToSenFlow = (bookId: string) => {
                             )">
                         </div>
                         <div v-else>
-                            <img src="https://via.placeholder.com/300x600?text=No+Image" alt="No image available"
-                                :width="width" :height="height" :class="cn('h-auto w-auto object-cover transition-all hover:scale-105',
-                                    aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square',
-                                )" />
+                            <div :width="width" :height="height" :class="cn('h-auto w-auto object-cover transition-all hover:scale-105',
+                                aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square',
+                            )" class="bg-slate-700 flex justify-center p-4 xl:p-5">
+                                <div class="text-slate-100 font-serif text-opacity-35 text-wrap "
+                                    v-html="truncate(book.content, { length: 350 })">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </ContextMenuTrigger>

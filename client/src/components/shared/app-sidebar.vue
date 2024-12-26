@@ -4,7 +4,7 @@ import { supabaseCli } from "@/lib/supabase";
 import type { User } from "@supabase/supabase-js";
 
 import { RouterLink, useRouter } from "vue-router";
-import { Book, Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-vue-next"
+import { Book, Calendar, ChevronDown, Home, Inbox, Search, Settings, TvMinimal } from "lucide-vue-next"
 
 import {
     Sidebar,
@@ -38,15 +38,15 @@ const items = [
         url: "/books",
         icon: Inbox,
     },
+    // {
+    //     title: "Flows",
+    //     url: "/flow",
+    //     icon: Book,
+    // },
     {
-        title: "Flows",
-        url: "/flow",
-        icon: Book,
-    },
-    {
-        title: "Home",
+        title: "How to use",
         url: "/",
-        icon: Home,
+        icon: TvMinimal,
     },
     {
         title: "Settings",
@@ -105,9 +105,10 @@ onBeforeMount(async () => {
                 <SidebarGroupLabel>Main</SidebarGroupLabel>
                 <SidebarGroupContent>
                     <SidebarMenu>
-                        <SidebarMenuItem v-for="item in items" :key="item.title" class="hover:bg-slate-50">
+                        <SidebarMenuItem v-for="item in items" :key="item.title"
+                            class="hover:bg-green-50 dark:hover:bg-green-950 rounded-sm">
                             <SidebarMenuButton asChild class="min-h-10">
-                                <RouterLink :to="item.url">
+                                <RouterLink :to="item.url" class="" activeClass="bg-green-100 dark:bg-green-900">
                                     <component :is="item.icon" />
                                     <span>{{ item.title }}</span>
                                 </RouterLink>

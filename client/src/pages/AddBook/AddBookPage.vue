@@ -86,7 +86,8 @@ const handleSubmit = async () => {
                         <div class="hidden lg:flex flex-col w-full  lg:fixed">
                             <span class="text-lg font-md mb-2">Preview</span>
                             <div>
-                                <div class="w-64 h-[360px] flex relative bg-slate-200 mb-4 rounded-sm lg:p-5">
+                                <div
+                                    class="w-64 h-[360px] flex relative bg-slate-200 dark:bg-slate-800 mb-4 rounded-sm lg:p-5">
                                     <div class="flex items-center justify-center align-middle w-full">
                                         <span class="text-center text-wrap text-lg self-center font-semibold">
                                             {{ bookStore.initialState.book.title }}</span>

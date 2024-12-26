@@ -87,7 +87,7 @@ const handleKeydown = (event: KeyboardEvent) => {
         <div class="flex w-full min-h-screen">
             <div class="w-full py-20 lg:py-32 xl:py-40 2xl:py-56">
                 <div class="max-w-[700px] mx-auto items-center justify-center flex">
-                    <Carousel v-slot="{ canScrollNext }" @init-api="setApi" class="relative w-full max-w-xs">
+                    <Carousel v-slot="{ canScrollNext }" @init-api="setApi" class="relative w-full max-w-[600px]">
                         <CarouselContent>
                             <CarouselItem v-for="(sen, index) in senFlowStore.getSenFlowsState.senFlows"
                                 :key="index + sen.frontText">
@@ -96,10 +96,10 @@ const handleKeydown = (event: KeyboardEvent) => {
 
                                         <!-- Front Card -->
                                         <Card>
-                                            <CardContent class="flex aspect-square items-center justify-center p-6">
+                                            <CardContent class="flex aspect-video items-center justify-center p-6">
                                                 <span class="text-xl font-normal text-center self-center">{{
                                                     sen.frontText
-                                                    }}</span>
+                                                }}</span>
                                             </CardContent>
                                         </Card>
 
@@ -111,10 +111,10 @@ const handleKeydown = (event: KeyboardEvent) => {
                                                     : 'opacity-0 pointer-events-none'
                                             ]">
                                             <CardContent
-                                                class="flex aspect-square items-center rounded-md justify-center p-6 bg-green-700 bg-opacity-20">
+                                                class="flex aspect-video items-center rounded-md justify-center p-6 bg-green-700 bg-opacity-20">
                                                 <span class="text-xl font-normal text-center self-center">{{
                                                     sen.backText
-                                                    }}</span>
+                                                }}</span>
                                             </CardContent>
                                         </Card>
                                     </div>

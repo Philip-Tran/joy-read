@@ -54,7 +54,7 @@ const { isLoading, data: book } = useQuery<Book>({
 /* -------------------------------------------------------------------------- */
 const selectedText = ref<string>("");
 const translatedText = ref<string>("");
-let selectionTimeout: number | null = null;
+let selectionTimeout: ReturnType<typeof setTimeout> | null = null;
 
 watch(
     () => popupStore.initialState.translatedText,
@@ -102,6 +102,7 @@ const handleTextSelection = async () => {
         }
     }
 };
+
 
 // Clear the timeout if the user is still selecting text
 const clearPreviousSelection = (event: MouseEvent): void => {
@@ -262,9 +263,10 @@ const handleAddSenFlow = async () => {
             <!-- Main -->
             <div class="py-12 font-garamond min-h-screen">
                 <div v-if="isLoading"
-                    class="bg-white min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-14 self-center lg:mx-auto lg:max-w-[800px]">
-                    <Skeleton class="w-[700px] h-20 mb-6" />
-                    <Skeleton class="w-[700px] h-20" />
+                    class="bg-white min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-12 self-center lg:mx-auto lg:max-w-[800px]">
+                    <Skeleton class="w-full h-20 mb-6" />
+                    <Skeleton class="w-52 h-5 rounded" />
+                    <Skeleton class="w-full h-20 mt-14 lg:mt-12 xl:mt-24 2xl:mt-28" />
                 </div>
                 <div v-else
                     class="bg-[#f8f9f8] min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-14 self-center lg:mx-auto lg:max-w-[800px]">

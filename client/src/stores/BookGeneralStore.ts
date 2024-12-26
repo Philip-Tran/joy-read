@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 import { type Ref, ref, useId } from 'vue'
 import { useUserStore } from './UserStore'
 
-interface Book {
+export interface Book {
   title: string
   content: string
   id: string

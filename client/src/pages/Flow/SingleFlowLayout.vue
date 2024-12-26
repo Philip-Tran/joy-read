@@ -8,7 +8,7 @@ const { params } = useRoute()
 
 <template>
     <div class="w-full min-h-screen flex flex-col">
-        <div class="flex w-full min-h-12 items-center justify-between px-4 2xl:px-8">
+        <div class="flex fixed top-0 right-0 left-0 w-full min-h-12 items-center justify-between px-4 2xl:px-8">
             <div>
                 <RouterLink to="/books">
                     <Button size="icon" variant="outline">
