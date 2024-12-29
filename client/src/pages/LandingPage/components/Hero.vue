@@ -7,6 +7,7 @@ const mode = useColorMode();
 import { ref, onMounted } from 'vue';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsTrigger, TabsList } from "@/components/ui/tabs";
 import { ArrowRight } from "lucide-vue-next";
 
 const { isLoggedIn } = useUserStore()
@@ -20,7 +21,8 @@ onMounted(async () => {
   }
 })
 
-const youtubeEmbedUrl = "https://www.youtube.com/embed/wf_luRrQqnQ?si=axD1Ieg0PvFIAVRE"
+const youtubeVideoUrlEn = "https://www.youtube.com/embed/wf_luRrQqnQ?si=axD1Ieg0PvFIAVRE"
+const youtubeVideoUrlVn = "https://www.youtube.com/embed/wf_luRrQqnQ?si=axD1Ieg0PvFIAVRE"
 </script>
 
 <template>
@@ -67,24 +69,37 @@ const youtubeEmbedUrl = "https://www.youtube.com/embed/wf_luRrQqnQ?si=axD1Ieg0Pv
           </RouterLink>
         </div>
       </div>
-      <div class="relative group mt-14">
-        <!-- Gradient shadow -->
-        <!-- <div class="absolute -top-6 right-12 w-[90%] h-12 lg:h-[80%] bg-primary/50 blur-3xl  rounded-full ">
-        </div> -->
-
-        <!-- Video container -->
-        <div
-          class="w-full md:w-[1200px] mx-auto aspect-video rounded-lg relative leading-none flex items-center border border-t-2 border-t-primary/30 ">
-          <iframe :src="youtubeEmbedUrl" class="w-full h-full rounded-lg" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-
-        <!-- Gradient effect -->
-        <!-- <div
-          class="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg">
-        </div> -->
+      <div id="hero" class="relative group mt-14 w-full flex flex-col ">
+        <Tabs default-value="account" class="w-full space-y-4 xl:space-y-8 2xl:space-y-10">
+          <TabsContent value="account">
+            <div
+              class="w-full md:w-[1200px] mx-auto aspect-video rounded-lg relative leading-none flex items-center border border-t-2 border-t-primary/30 ">
+              <iframe :src="youtubeVideoUrlEn" class="w-full h-full rounded-lg" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </TabsContent>
+          <TabsContent value="password">
+            <div
+              class="w-full md:w-[1200px] mx-auto aspect-video rounded-lg relative leading-none flex items-center border border-t-2 border-t-primary/30 ">
+              <iframe :src="youtubeVideoUrlEn" class="w-full h-full rounded-lg" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </TabsContent>
+          <div class="mx-auto">
+            <TabsList class="grid grid-cols-2 w-[100px] self-center mx-auto">
+              <TabsTrigger value="account">
+                En
+              </TabsTrigger>
+              <TabsTrigger value="password">
+                VI
+              </TabsTrigger>
+            </TabsList>
+          </div>
+        </Tabs>
       </div>
     </div>
   </section>
