@@ -35,6 +35,7 @@ Visit JoyRead [HERE](https://joyread-tranquyet.vercel.app/)
 - Tailwind CSS
 - JavaScript & TypeScript
 - Pinia
+- Zod
 
 #### Backend
 
