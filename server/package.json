@@ -38,8 +38,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon src/server.js",
     "postinstall": "prisma generate",
-    "start": "prisma generate && node src/server.js",
-    "vercel-build": "npx patch-package && npx prisma generate"
+    "start": "prisma generate && node src/server.js"
   },
   "keywords": [
     "language learning",

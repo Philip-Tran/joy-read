@@ -14,6 +14,12 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+model pages {
+  id      Int    @id @default(autoincrement())
+  name    String
+  message String
+}
+
 model user {
   id        String   @id @default(uuid())
   auth_id   String

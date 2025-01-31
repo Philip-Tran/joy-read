@@ -7,6 +7,8 @@ import fileUpload from "express-fileupload";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
+import prisma from "../lib/prisma.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -53,7 +55,16 @@ app.use("/api/video", videoRouter);
 app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hello There");
+  try {
+    const page = prisma.pages.findMany({
+      where: {
+        id: 1,
+      },
+    });
+    res.send("Hello There", page.message);
+  } catch (error) {
+    console.error(error.message);
+  }
 });
 
 /* -------------------Bootstrap------------------ */
