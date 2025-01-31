@@ -7,8 +7,6 @@ import fileUpload from "express-fileupload";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import prisma from "../lib/prisma.js";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -21,6 +19,7 @@ import bookRouter from "./routes/book.route.js";
 import userRoutes from "./routes/user.route.js";
 import videoRouter from "./routes/video.route.js";
 import authRoutes from "./routes/auth.route.js";
+import keepAliveRouter from "./routes/keep-alive.route.js";
 
 /*
     |--------------------------------------------------------------------------
@@ -53,18 +52,10 @@ app.use("/api/users", userRoutes);
 app.use("/api/book", bookRouter);
 app.use("/api/video", videoRouter);
 app.use("/auth", authRoutes);
+app.use("/keep-alive", keepAliveRouter);
 
 app.get("/", (req, res) => {
-  try {
-    const page = prisma.pages.findMany({
-      where: {
-        id: 1,
-      },
-    });
-    res.send("Hello There", page.message);
-  } catch (error) {
-    console.error(error.message);
-  }
+  res.send("Hello,");
 });
 
 /* -------------------Bootstrap------------------ */
