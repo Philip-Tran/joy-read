@@ -12,6 +12,8 @@ import { useRouter } from "vue-router";
 
 import AuthLayout from "@/layouts/AuthLayout.vue";
 import type { AuthError } from "@supabase/supabase-js";
+import Separator from "@/components/ui/separator/Separator.vue";
+import { Github } from "lucide-vue-next";
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -26,7 +28,6 @@ const [password, passwordProps] = defineField('password')
 const onSubmit = handleSubmit(async (values) => {
     try {
         const result = await authStore.loginUser(values)
-        console.log('Login values:', values);
         if (result?.success) {
             toast.success("cool", {
                 description: "description"
@@ -54,6 +55,14 @@ const handleGoogleLogin = async () => {
         await logInWithOAuth("google", "/app")
     } catch (error: unknown) {
         console.error('Login failed:', (error as AuthError).message);
+    }
+}
+
+const handleGithubLogin = async () => {
+    try {
+        await logInWithOAuth("github", "/app")
+    } catch (error) {
+        console.error("Login faile", (error as AuthError).message)
     }
 }
 
@@ -97,8 +106,16 @@ const handleGoogleLogin = async () => {
                             </Button>
                         </div>
                     </form>
-                    <div>
-                        <Button @click="handleGoogleLogin" class="w-full" variant="outline">Login With Google</Button>
+
+                    <Separator label="OR" />
+                    <div class="flex flex-col space-y-2">
+                        <Button @click="handleGithubLogin" class="w-full" variant="outline">
+                            <Github />
+                            Login with Github
+                        </Button>
+                        <Button @click="handleGoogleLogin" class="w-full" variant="outline">
+                            Login With Google
+                        </Button>
                     </div>
                     <div class="mt-6 text-center text-sm">
                         Don't have an account?

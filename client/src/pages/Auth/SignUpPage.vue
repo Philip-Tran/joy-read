@@ -31,7 +31,7 @@ const handleFormSubmit = handleSubmit(async (values) => {
     try {
         const result = await authStore.signUpUser(values)
         if (result?.success) {
-            toast.success("Headup", {
+            toast.success("Signup successfully", {
                 description: authStore.signUpState.message
             })
         } else {

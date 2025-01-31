@@ -29,11 +29,12 @@ const toggleAudioPlayer = () => {
         <Popover>
             <PopoverTrigger>
                 <Button variant="ghost"
-                    class="bg-transparent text-transparent  hover:bg-slate-100 focus:ring-2 focus:ring-blue-500">
+                    class="bg-transparent text-transparent  hover:bg-slate-100 dark:hover:bg-gray-500 focus:ring-2 focus:ring-blue-500">
                     Open Settings
                 </Button>
             </PopoverTrigger>
-            <PopoverContent class="p-6 bg-white shadow-lg mr-4 rounded-lg border border-gray-200 max-w-sm">
+            <PopoverContent
+                class="p-6 bg-white dark:bg-black shadow-lg mr-4 rounded-lg border border-gray-200 dark:border-gray-800 max-w-sm">
                 <div class="grid gap-6">
                     <!-- Header Section -->
                     <!-- <div class="space-y-2">
@@ -49,7 +50,8 @@ const toggleAudioPlayer = () => {
                     <div class="space-y-4">
                         <!-- Popup Translation Option -->
                         <div class="grid grid-cols-3 items-center gap-4">
-                            <Label for="popupTranslation" class="col-span-2 text-gray-700 text-sm font-medium">
+                            <Label for="popupTranslation"
+                                class="col-span-2 text-gray-700 dark:text-gray-50 text-sm font-medium">
                                 Popup Translation
                             </Label>
                             <Switch id="popupTranslation" class="col-span-1" @update:checked="togglePopupTranslation">
@@ -58,7 +60,8 @@ const toggleAudioPlayer = () => {
 
                         <!-- Hide Audio Player Option -->
                         <div class="grid grid-cols-3 items-center gap-4">
-                            <Label for="hideAudioPlayer" class="col-span-2 text-gray-700 text-sm font-medium">
+                            <Label for="hideAudioPlayer"
+                                class="col-span-2 text-gray-700 dark:text-gray-50 text-sm font-medium">
                                 Hide Audio Player
                             </Label>
                             <Switch id="hideAudioPlayer" class="col-span-1" v-model:checked="isAudioVisible"
@@ -67,10 +70,11 @@ const toggleAudioPlayer = () => {
 
                         <!-- change color mode -->
                         <div class="grid grid-cols-3 items-center gap-4">
-                            <Label for="hideAudioPlayer" class="col-span-2 text-gray-700 text-sm font-medium">
+                            <Label for="hideAudioPlayer"
+                                class="col-span-2 text-gray-700 dark:text-gray-50 text-sm font-medium">
                                 Change color mode
                             </Label>
-                            <ToggleTheme />
+                            <ToggleTheme class="w-min" />
                         </div>
                     </div>
                 </div>

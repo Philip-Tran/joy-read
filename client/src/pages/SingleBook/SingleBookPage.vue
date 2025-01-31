@@ -244,7 +244,7 @@ const handleAddSenFlow = async () => {
         </div>
 
         <!-- MAIN -->
-        <div class="bg-[#e9e9e9]">
+        <div class="bg-[#e9e9e9] dark:bg-[#171717]">
 
             <!-- Back button -->
             <div class="fixed top-3 left-5">
@@ -261,22 +261,21 @@ const handleAddSenFlow = async () => {
             </div>
 
             <!-- Main -->
-            <div class="py-12 font-garamond min-h-screen">
+            <div class="py-12 font-garamond min-h-screen ">
                 <div v-if="isLoading"
-                    class="bg-white min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-12 self-center lg:mx-auto lg:max-w-[800px]">
-                    <Skeleton class="w-full h-20 mb-6" />
-                    <Skeleton class="w-52 h-5 rounded" />
-                    <Skeleton class="w-full h-20 mt-14 lg:mt-12 xl:mt-24 2xl:mt-28" />
+                    class="bg-white dark:bg-[#272727] min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-12 self-center lg:mx-auto lg:max-w-[800px]">
+                    <Skeleton class="w-full h-20 mb-6 dark:bg-gray-800" />
+                    <Skeleton class="w-52 h-5 rounded dark:bg-gray-800" />
+                    <Skeleton class="w-full h-20 mt-14 lg:mt-12 xl:mt-24 2xl:mt-28 dark:bg-gray-800" />
                 </div>
                 <div v-else
-                    class="bg-[#f8f9f8] min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-14 self-center lg:mx-auto lg:max-w-[800px]">
-                    <h1 class="text-5xl font-bold mb-4">{{ book?.title }}</h1>
-                    <div class="mb-4 font-medium text-xl">{{ bookStore.initialState.stats.text }}
-
+                    class="bg-[#f8f9f8] dark:bg-[#272727] min-h-lvh border py-5 xl:py-9 2xl:py-14 px-4 lg:px-10 xl:px-14 self-center lg:mx-auto lg:max-w-[800px]">
+                    <h1 class="text-5xl dark:text-[#DDDDDD] font-bold mb-4">{{ book?.title }}</h1>
+                    <div class="mb-4 font-medium text-xl dark:text-[#9EAAAA]">{{ bookStore.initialState.stats.text }}
                     </div>
                     <Separator />
                     <div v-html="`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${book?.content}`"
-                        class="prose font-serif prose-headings:font-sans prose-p:font-serif prose-p:text-2xl prose-blockquote:font-serif prose-figcaption:italic text-2xl leading-9 text-[#333333] mt-10">
+                        class="prose font-garamond  prose-headings:font-garamond prose-headings:font-bold prose-p:font-garamond prose-p:text-2xl prose-blockquote:font-garamond prose-figcaption:italic prose-strong:font-semibold prose-strong:font-garamond prose-a:text-orange-500 text-2xl leading-relaxed text-[#333333] dark:text-[#DDDDDD] dark:prose-h3:text-[#DDDDDD] dark:prose-headings:text-[#DDDDDD] dark:prose-strong:text-[#DDDDDD] dark:prose-blockquote:text-[#FFFFFF] mt-10">
                     </div>
                 </div>
                 <div class="w-full min-h-32 items-center justify-center flex ">

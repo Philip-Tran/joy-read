@@ -38,7 +38,7 @@ export default {
         },
       }),
       fontFamily: {
-        serif: ['Palatino', 'serif'],
+        serif: ['Garamond', 'serif'],
         garamond: ['Garamond', 'serif'],
       },
       colors: {
