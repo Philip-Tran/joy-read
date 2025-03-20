@@ -9,7 +9,7 @@ import {
 <template>
     <SidebarProvider>
         <AppSidebar />
-        <main class="w-full">
+        <main class="w-full overflow-hidden">
             <AppHeader />
             <slot />
         </main>
