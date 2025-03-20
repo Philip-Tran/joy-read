@@ -209,10 +209,10 @@ const languages = ref([
                                 <FormItem class="flex flex-row items-center justify-between rounded-lg border p-4">
                                     <div class="space-y-0.5">
                                         <FormLabel class="text-base">
-                                            Translate to language
+                                            You speak?
                                         </FormLabel>
                                         <FormDescription>
-                                            Translate to language
+                                            Language you already know
                                         </FormDescription>
                                     </div>
                                     <FormControl>

@@ -109,10 +109,10 @@ const handleGithubLogin = async () => {
 
                     <Separator label="OR" />
                     <div class="flex flex-col space-y-2">
-                        <Button @click="handleGithubLogin" class="w-full" variant="outline">
+                        <!-- <Button @click="handleGithubLogin" class="w-full" variant="outline">
                             <Github />
-                            Login with Github
-                        </Button>
+                            Login with Github here
+                        </Button> -->
                         <Button @click="handleGoogleLogin" class="w-full" variant="outline">
                             Login With Google
                         </Button>
