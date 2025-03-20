@@ -7,6 +7,8 @@ import fileUpload from "express-fileupload";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
+import prisma from "../lib/prisma.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -52,8 +54,9 @@ app.use("/api/book", bookRouter);
 app.use("/api/video", videoRouter);
 app.use("/auth", authRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Hello There");
+app.get("/health-check", async (req, res) => {
+  const bookAmount = await prisma.book.count()
+  res.send(`There are total ${bookAmount} books`);
 });
 
 /* -------------------Bootstrap------------------ */
