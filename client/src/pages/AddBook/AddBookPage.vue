@@ -12,10 +12,11 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 const bookStore = useAddBookStore()
 
-
+import { Book, BookDescription, BookHeader, BookTitle } from "@/components/ui/book";
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ChevronLeft } from 'lucide-vue-next';
+import { now, useDateFormat } from '@vueuse/core';
 
 const handleSubmit = async () => {
     const result = await bookStore.addBookDirectFromStore()
@@ -83,21 +84,26 @@ const handleSubmit = async () => {
                         </Tabs>
                     </div>
                     <div class="lg:w-1/3 xl:w-1/4 -mt-7 ">
-                        <div class="hidden lg:flex flex-col w-full  lg:fixed">
+                        <div class="hidden lg:flex flex-col w-fit-content  lg:fixed">
                             <span class="text-lg font-md mb-2">Preview</span>
                             <div>
-                                <div
-                                    class="w-64 h-[360px] flex relative bg-slate-200 dark:bg-slate-800 mb-4 rounded-sm lg:p-5">
-                                    <div class="flex items-center justify-center align-middle w-full">
-                                        <span class="text-center text-wrap text-lg self-center font-semibold">
-                                            {{ bookStore.initialState.book.title }}</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col w-64">
-                                    <p class="text-lg font-medium">{{ bookStore.initialState.book.title }}</p>
+                                <div class="py-4">
+                                    <Book>
+                                        <BookHeader>
+                                            <Icon name="heroicons:book-open-solid" size="24" />
+                                        </BookHeader>
+                                        <BookTitle>
+                                            <h1 class="text-lg font-medium">{{ bookStore.initialState.book.title }}
+                                            </h1>
+                                        </BookTitle>
+                                        <BookDescription>
+                                            <p>{{ useDateFormat(now(), "MMMM D, YYYY", { "locales": 'en-US' }) }}
+                                            </p>
+                                        </BookDescription>
+                                    </Book>
                                 </div>
                             </div>
-                            <Button @click="handleSubmit" class="w-64 mt-12">Add Book</Button>
+                            <Button @click="handleSubmit" class="w-full mt-10">Add Book</Button>
                         </div>
                     </div>
                 </div>

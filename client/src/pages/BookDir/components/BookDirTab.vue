@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { defineProps } from "vue"
 import { type Book } from "@/stores/BookStore";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CirclePlus, LayoutGrid, LayoutList } from "lucide-vue-next";
@@ -9,6 +8,7 @@ import BookCard from "@/components/(features)/book/BookCard.vue";
 import BookListingView from "./BookListingView.vue";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton/";
+import BookThreeD from "@/components/(features)/book/BookThreeD.vue";
 
 const props = defineProps<{
     books: Book[]
@@ -64,8 +64,7 @@ const props = defineProps<{
                                 </div>
                             </div>
                         </div>
-                        <BookCard v-else v-for="book in books" :key="book.title" :book="book" class="w-[250px]"
-                            aspect-ratio="portrait" :width="250" :height="330" />
+                        <BookThreeD v-else v-for="book in books" :key="book.id" :book="book" />
                     </div>
                     <ScrollBar orientation="horizontal" />
                 </ScrollArea>

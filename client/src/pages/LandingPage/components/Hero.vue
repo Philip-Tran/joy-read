@@ -8,7 +8,7 @@ import { ref, onMounted } from 'vue';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsTrigger, TabsList } from "@/components/ui/tabs";
-import { ArrowRight } from "lucide-vue-next";
+import { ArrowRight, Icon } from "lucide-vue-next";
 
 const { isLoggedIn } = useUserStore()
 const user = ref<boolean | undefined>(false)

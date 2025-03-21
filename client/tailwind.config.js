@@ -1,6 +1,7 @@
 import animate from 'tailwindcss-animate'
 import typography from '@tailwindcss/typography'
 import scrollbar from 'tailwind-scrollbar'
+import { setupInspiraUI } from '@inspira-ui/plugins'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -108,5 +109,5 @@ export default {
       },
     },
   },
-  plugins: [animate, typography, scrollbar],
+  plugins: [animate, typography, scrollbar, setupInspiraUI],
 }
