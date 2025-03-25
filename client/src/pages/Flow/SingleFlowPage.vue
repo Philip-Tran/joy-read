@@ -2,7 +2,7 @@
 import { useSenFlowStore } from '@/stores/SenFlowStore';
 import { useUserStore } from '@/stores/UserStore';
 
-import { onMounted, ref, computed, watch } from 'vue';
+import { onMounted, ref, computed, watch, onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
 import type { CarouselApi } from '@/components/ui/carousel'
 import { Card, CardContent } from '@/components/ui/card';
@@ -25,23 +25,6 @@ function setApi(val: CarouselApi) {
     api.value = val
 }
 
-watch(() => {
-    senFlowStore.getSenFlowsState.senFlows
-},
-    () => {
-        watchOnce(api, (api) => {
-            if (!api)
-                return
-
-            totalCount.value = api.scrollSnapList().length
-            current.value = api.selectedScrollSnap() + 1
-
-            api.on('select', () => {
-                current.value = api.selectedScrollSnap() + 1
-            })
-        })
-    }
-)
 watchOnce(api, (api) => {
     if (!api)
         return
@@ -99,7 +82,7 @@ const handleKeydown = (event: KeyboardEvent) => {
                                             <CardContent class="flex aspect-video items-center justify-center p-6">
                                                 <span class="text-xl font-normal text-center self-center">{{
                                                     sen.frontText
-                                                }}</span>
+                                                    }}</span>
                                             </CardContent>
                                         </Card>
 
@@ -114,7 +97,7 @@ const handleKeydown = (event: KeyboardEvent) => {
                                                 class="flex aspect-video items-center rounded-md justify-center p-6 bg-green-700 bg-opacity-20">
                                                 <span class="text-xl font-normal text-center self-center">{{
                                                     sen.backText
-                                                }}</span>
+                                                    }}</span>
                                             </CardContent>
                                         </Card>
                                     </div>

@@ -15,7 +15,7 @@ const bookStore = useAddBookStore()
 import { Book, BookDescription, BookHeader, BookTitle } from "@/components/ui/book";
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ChevronLeft } from 'lucide-vue-next';
+import { BookOpen, ChevronLeft } from 'lucide-vue-next';
 import { now, useDateFormat } from '@vueuse/core';
 
 const handleSubmit = async () => {
@@ -90,7 +90,7 @@ const handleSubmit = async () => {
                                 <div class="py-4">
                                     <Book>
                                         <BookHeader>
-                                            <Icon name="heroicons:book-open-solid" size="24" />
+                                            <BookOpen fill="white" stroke="transparent" />
                                         </BookHeader>
                                         <BookTitle>
                                             <h1 class="text-lg font-medium">{{ bookStore.initialState.book.title }}

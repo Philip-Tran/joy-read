@@ -4,7 +4,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CirclePlus, LayoutGrid, LayoutList } from "lucide-vue-next";
 import Separator from "@/components/ui/separator/Separator.vue";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import BookCard from "@/components/(features)/book/BookCard.vue";
 import BookListingView from "./BookListingView.vue";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton/";

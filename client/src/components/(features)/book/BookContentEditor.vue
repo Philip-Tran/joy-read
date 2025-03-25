@@ -46,7 +46,7 @@ watch(
 
 <template>
     <div class="rounded-lg border space-y-2">
-        <div v-if="editor" class="w-full min-h-12 p-2 flex flex-wrap gap-3 border-b border-slate-200">
+        <div v-if="editor" class="w-full min-h-12 p-2 flex flex-wrap gap-3 border-b light:border-slate-200">
             <Button class="rounded-full w-8 h-8 bg-slate-100 dark:bg-gray-800 dark:hover:bg-gray-700 hover:bg-slate-200"
                 @click="editor.chain().focus().toggleBold().run()"
                 :disabled="!editor.can().chain().focus().toggleBold().run()"
