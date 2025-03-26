@@ -19,7 +19,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     legacy({
-      targets: ['default', 'not IE 11'],
+      targets: ['defaults', 'not IE 11'],
     }),
   ],
   resolve: {
@@ -31,5 +31,5 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  base: './',
+  base: '/',
 })
