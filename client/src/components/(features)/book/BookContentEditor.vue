@@ -23,7 +23,7 @@ const editor = useEditor({
             class: "prose max-w-none text-gray-700 dark:text-slate-50 prose-sm  min-h-80  max-h-[800px] overflow-y-auto focus:outline-none p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100 scrollbar-thumb-rounded-full"
         },
         transformPastedText(text) {
-            return text.toUpperCase()
+            return text
         }
     },
     extensions: [StarterKit],

@@ -27,6 +27,7 @@
     "@vee-validate/zod": "^4.14.7",
     "@vueuse/core": "^12.0.0",
     "axios": "^1.7.9",
+    "compromise": "^14.14.4",
     "dayjs": "^1.11.13",
     "embla-carousel-vue": "^8.5.1",
     "lucide-vue-next": "^0.468.0",

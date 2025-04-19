@@ -12,7 +12,6 @@ const { isLoading, data: books } = useQuery({
     queryFn: bookStore.getAllBook
 })
 
-
 </script>
 
 <template>
