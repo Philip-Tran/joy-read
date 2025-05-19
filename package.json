@@ -20,5 +20,9 @@
   "homepage": "https://github.com/TranTrong-Quyet/joy-read#readme",
   "devDependencies": {
     "turbo": "^2.5.3"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
   }
 }
