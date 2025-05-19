@@ -2,7 +2,7 @@ import allowedOrigins from "./allowedOrigins.js";
 
 const CorsOption = {
   origin: allowedOrigins,
-  credentials: true,
+  credentials: false,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
