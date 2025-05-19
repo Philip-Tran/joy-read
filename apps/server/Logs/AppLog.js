@@ -8,19 +8,28 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Use /tmp/logs for compatibility with Vercel (read-only file system)
+const getLogDir = () => {
+  // Use '/tmp/logs' on Vercel or fallback to local 'logs' during local dev
+  return process.env.VERCEL ? "/tmp/logs" : path.join(__dirname, "..", "logs");
+};
+
 const logEvents = async (message, logName) => {
   const dateTime = `${format(new Date(), "yyyyMMdd\tHH:mm:ss")}`;
   const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
 
   try {
-    const logDir = path.join(__dirname, "..", "logs");
+    const logDir = getLogDir();
+
+    // Ensure log directory exists
     if (!fs.existsSync(logDir)) {
-      await fsPromises.mkdir(logDir);
+      await fsPromises.mkdir(logDir, { recursive: true });
     }
 
+    // Write the log
     await fsPromises.appendFile(path.join(logDir, logName), logItem);
   } catch (err) {
-    console.error(err);
+    console.error("Logging failed:", err);
   }
 };
 
