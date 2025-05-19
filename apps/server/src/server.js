@@ -38,7 +38,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(cookieParser());
 // app.use(cors(CorsOption));
 // app.options("*", cors(CorsOption)); // Preflight requests
-app.use(cors({origin: '*'}))
+app.use(cors({ origin: ['https://joy-read-next.vercel.app', 'http://localhost:3000'] }))
 app.options('*', cors({ origin: '*' }));
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
