@@ -1,0 +1,9 @@
+{
+  "name": "django-api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "python manage.py runserver",
+    "build": "python manage.py collectstatic --noinput",
+    "migrate": "python manage.py migrate"
+  }
+}

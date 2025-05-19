@@ -1,19 +1,24 @@
 {
-  "name": "JoyRead",
-  "version": "0.2.1",
-  "description": "Reading app for language learner",
-  "main": "index.js",
+  "name": "fullstack-joy-read",
+  "version": "1.0.0",
+  "description": "Best language learning tool",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run start:client\" \"npm run start:server\" \"npm run start:api\"",
-    "start:client": "cd client && npm run dev",
-    "start:server": "cd server && npm run server",
-    "start:api": "cd PyApi && python manage.py runserver"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TranTrong-Quyet/joy-read.git"
+  },
+  "packageManager": "pnpm@10.10.0",
   "keywords": [],
-  "author": "Tran Trong Quyet",
+  "author": "",
   "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TranTrong-Quyet/joy-read/issues"
+  },
+  "homepage": "https://github.com/TranTrong-Quyet/joy-read#readme",
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "turbo": "^2.5.3"
   }
 }

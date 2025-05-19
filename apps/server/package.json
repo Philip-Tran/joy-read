@@ -1,0 +1,53 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js",
+    "server": "nodemon src/server.js",
+    "postinstall": "prisma generate patch-package",
+    "start": "prisma generate && node src/server.js",
+    "vercel-build": "npx patch-package && npx prisma generate"
+  },
+  "dependencies": {
+    "@postlight/parser": "^2.2.3",
+    "@prisma/client": "^5.22.0",
+    "@supabase/supabase-js": "^2.47.6",
+    "axios": "^1.7.8",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "chalk": "^5.4.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-fileupload": "^1.2.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.7",
+    "patch-package": "^8.0.0",
+    "pdf-parse": "^1.1.1",
+    "pdf.js-extract": "^0.2.1",
+    "uuid": "^11.0.3",
+    "youtube-transcript": "^1.2.1",
+    "yt-transcript": "^0.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "prisma": "^5.22.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "keywords": [
+    "language learning",
+    "reading in second language"
+  ],
+  "author": "Tran Trong Quyet",
+  "license": "ISC",
+  "description": "Reading Tool for progressive language learner"
+}

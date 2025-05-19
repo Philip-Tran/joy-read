@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model user {
+  id        String   @id @default(uuid())
+  auth_id   String
+  email     String   @unique
+  username  String?
+  createdAt DateTime @default(now())
+}
+
+enum BookStatus {
+  PAUSED
+  IN_PROGRESS
+  FINISHED
+}
+
+model Book {
+  id          String     @id @default(cuid())
+  userId      String     @db.Uuid
+  title       String
+  content     String
+  audioUrlSer String?
+  audioUrlOnl String?
+  senFlows    SenFlow[]
+  status      BookStatus @default(IN_PROGRESS)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SenFlow {
+  id        Int    @id @default(autoincrement())
+  frontText String
+  backText  String
+  bookId    String
+  book      Book   @relation(fields: [bookId], references: [id])
+}
+
+model Setting {
+  id                  Int     @id @default(autoincrement())
+  usePopupTranslate   Boolean @default(true)
+  interfaceLanguage   String  @default("en") // Valid values: "en",
+  learningLanguage    String
+  translateToLanguage String
+
+  userId String @db.Uuid
+}
+
+enum WordStatus {
+  NEW
+  LEVEL_10
+  KNOWN
+}
+
+model WordsRecord {
+  word_id            Int        @id @default(autoincrement())
+  word_text          String
+  word_text_LC       String
+  word_status        WordStatus @default(NEW)
+  word_translation   String?
+  word_status_change DateTime?  @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relation: One parent → many children
+  // children WordParents[] @relation("ParentToChildren")
+
+  // Relation: Optional single parent
+  // parentLink WordParents? @relation("ChildToParent")
+}
+
+model WordParents {
+  word_id        Int @unique
+  parent_word_id Int
+
+  // Relations
+  // child  WordsRecord @relation("ChildToParent", fields: [word_id], references: [word_id])
+  // parent WordsRecord @relation("ParentToChildren", fields: [parent_word_id], references: [word_id])
+
+  // @@index([parent_word_id]) // optional, for performance on parent lookups
+}
