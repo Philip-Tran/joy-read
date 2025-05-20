@@ -162,7 +162,7 @@ const useAddBookStore = defineStore('addBook', () => {
 
   const getPdfText = async (formData: FormData) => {
     try {
-      const response = await axiosMainApi.post('/api/book/get-pdf-text', formData, {
+      const response = await axiosDjango.post('/extract-pdf', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -170,7 +170,7 @@ const useAddBookStore = defineStore('addBook', () => {
       if (response.data) {
         initialState.value.message = 'Extract text from PDF successfully'
       }
-      initialState.value.book.content = response.data.trim()
+      initialState.value.book.content = response.data.text.trim()
     } catch (error) {
       console.error('Error getting text from pdf file:', (error as Error).message)
       alert('Failed to extract text. Please check the server logs.')

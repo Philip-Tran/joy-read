@@ -53,7 +53,7 @@ const uploadFile = async () => {
     }
 
     const formData = new FormData();
-    formData.append("pdfFile", inpFile.value.files[0]);
+    formData.append("file", inpFile.value.files[0]);
 
     bookStore.getPdfText(formData)
 }
