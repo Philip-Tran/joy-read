@@ -1,0 +1,17 @@
+{
+  "name": "@joyread/book-processor",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./dist": {
+      "types": "./src/add.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "devDependencies": {
+    "typescript": "latest"
+  }
+}
